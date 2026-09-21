@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/sections/ComingSoon";
+import { LegalPage } from "@/components/sections/LegalPage";
+import { security } from "@/content/legal";
 
 export const metadata: Metadata = {
-  title: "Security & data residency",
-  description: "Where client data lives, who can reach it, and the evidence a third-party risk review asks for.",
+  title: security.title,
+  description: security.description,
   alternates: { canonical: "/security/" },
 };
 
 export default function Page() {
-  return (
-    <ComingSoon
-      trail={[{ label: "Security" }]}
-      title="Security & data residency"
-      lede="Where client data lives, who can reach it, and the evidence a third-party risk review asks for."
-      elsewhere={[{ label: "Contact", href: "/contact/" }]}
-    />
-  );
+  return <LegalPage doc={security} trail={[{ label: security.title }]} />;
 }

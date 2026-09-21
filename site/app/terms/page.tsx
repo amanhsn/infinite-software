@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/sections/ComingSoon";
+import { LegalPage } from "@/components/sections/LegalPage";
+import { terms } from "@/content/legal";
 
 export const metadata: Metadata = {
-  title: "Terms",
-  description: "The terms that apply to this site.",
+  title: terms.title,
+  description: terms.description,
   alternates: { canonical: "/terms/" },
 };
 
 export default function Page() {
-  return (
-    <ComingSoon
-      trail={[{ label: "Terms" }]}
-      title="Terms"
-      lede="The terms that apply to this site."
-      elsewhere={[]}
-    />
-  );
+  return <LegalPage doc={terms} trail={[{ label: terms.title }]} />;
 }

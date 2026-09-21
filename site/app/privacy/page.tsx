@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/sections/ComingSoon";
+import { LegalPage } from "@/components/sections/LegalPage";
+import { privacy } from "@/content/legal";
 
 export const metadata: Metadata = {
-  title: "Privacy",
-  description: "How we handle personal data.",
+  title: privacy.title,
+  description: privacy.description,
   alternates: { canonical: "/privacy/" },
 };
 
 export default function Page() {
-  return (
-    <ComingSoon
-      trail={[{ label: "Privacy" }]}
-      title="Privacy"
-      lede="How we handle personal data."
-      elsewhere={[]}
-    />
-  );
+  return <LegalPage doc={privacy} trail={[{ label: privacy.title }]} />;
 }

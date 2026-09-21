@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/sections/ComingSoon";
+import { LegalPage } from "@/components/sections/LegalPage";
+import { accessibility } from "@/content/legal";
 
 export const metadata: Metadata = {
-  title: "Accessibility",
-  description: "Our accessibility commitment and how to report a barrier.",
+  title: accessibility.title,
+  description: accessibility.description,
   alternates: { canonical: "/accessibility/" },
 };
 
 export default function Page() {
-  return (
-    <ComingSoon
-      trail={[{ label: "Accessibility" }]}
-      title="Accessibility"
-      lede="Our accessibility commitment and how to report a barrier."
-      elsewhere={[]}
-    />
-  );
+  return <LegalPage doc={accessibility} trail={[{ label: accessibility.title }]} />;
 }
