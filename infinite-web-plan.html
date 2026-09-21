@@ -1,0 +1,278 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Infinite Web Build Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FFFFFF; --mist:#F4F7FD; --ink:#0A1024; --cobalt:#2B5CF6;
+  --ink-60:#555C77; --ink-40:#8B92AC; --rule:#DFE5F1; --rule-soft:#EDF1F9;
+  --sky:#4FC7F2; --iris:#7A4DF5; --orchid:#C07BF0; --blush:#F7AFD2;
+  --ff:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --fm:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --mesh-light:
+    radial-gradient(56% 60% at 14% 90%, #4FC7F2 0%, rgba(79,199,242,0) 60%),
+    radial-gradient(54% 58% at 50% 104%, #2B5CF6 0%, rgba(43,92,246,0) 62%),
+    radial-gradient(56% 60% at 84% 94%, #C07BF0 0%, rgba(192,123,240,0) 60%),
+    linear-gradient(180deg,#FFFFFF 0%,#F7FAFE 34%,#EAF1FD 60%,#D6E3F9 82%,#B6C6F2 100%);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ff);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:24px}
+.hero{background:var(--mesh-light);border-radius:0 0 40px 40px;
+  padding-block:clamp(44px,7vw,78px) clamp(56px,9vw,104px)}
+.eb{font-weight:700;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cobalt)}
+h1{font-weight:700;font-size:clamp(34px,6vw,58px);letter-spacing:-.042em;line-height:1.04;
+  margin:18px 0 16px;text-wrap:balance;max-width:20ch}
+.lede{font-weight:300;font-size:clamp(17px,2.1vw,20px);line-height:1.55;color:var(--ink-60);
+  max-width:62ch;margin:0}
+.lede b{color:var(--ink);font-weight:600}
+.hm{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.hm span{font-weight:600;font-size:26px;letter-spacing:-.05em}
+section{padding-block:clamp(38px,5.5vw,64px);border-bottom:1px solid var(--rule-soft)}
+section.mist{background:var(--mist)}
+h2{font-weight:600;font-size:clamp(21px,3vw,28px);letter-spacing:-.028em;line-height:1.14;margin:0 0 10px}
+p{max-width:64ch} p.q{color:var(--ink-60)}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+th{text-align:left;font-weight:700;font-size:10px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ink-40);padding:0 14px 10px 0;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule-soft);color:var(--ink-60);vertical-align:top}
+td.k{color:var(--ink);font-weight:600} td.n{color:var(--ink-40);font-size:12px;width:34px}
+td.q{font-size:13.5px}
+.grd{display:block;font-weight:400;font-size:12px;color:var(--ink-40);margin-top:3px}
+.st{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;white-space:nowrap}
+.st.supplied{color:#1F9268;background:rgba(31,146,104,.1)}
+.st.needed{color:#B07A00;background:rgba(176,122,0,.12)}
+.st.blocked{color:#CE3F35;background:rgba(206,63,53,.1)}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin-top:20px}
+.sw div{border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--paper)}
+.sw i{display:block;height:58px}
+.sw b{display:block;font-size:13px;padding:10px 12px 2px}
+.sw code{display:block;font-family:var(--fm);font-size:11px;color:var(--ink-40);padding:0 12px 11px}
+.band{background:var(--ink);border-radius:40px;padding:clamp(26px,4vw,40px);margin-top:22px;
+  position:relative;overflow:hidden}
+.band::after{content:"";position:absolute;inset:0;opacity:.15;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.band h3{color:#fff;font-weight:600;font-size:17px;margin:0 0 4px;letter-spacing:-.02em}
+.band p{color:rgba(255,255,255,.62);font-size:13.5px;margin:0 0 20px;max-width:58ch}
+.glass{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;position:relative;z-index:1}
+.glass div{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:18px 20px}
+.glass b{display:block;font-family:var(--fm);font-weight:500;font-size:27px;color:#fff;letter-spacing:-.03em}
+.glass span{display:block;font-size:12.5px;color:rgba(255,255,255,.6);margin-top:5px}
+.note{border-left:2px solid var(--cobalt);padding:2px 0 2px 16px;margin-top:22px;color:var(--ink-60);font-size:14.5px}
+.note b{color:var(--ink)}
+ul.f{margin:18px 0 0;padding:0;list-style:none}
+ul.f li{padding:10px 0;border-bottom:1px solid var(--rule-soft);font-size:14.5px;color:var(--ink-60);
+  display:flex;gap:14px}
+ul.f code{font-family:var(--fm);font-size:12.5px;color:var(--cobalt);flex:none;width:230px}
+footer{padding-block:32px 56px;color:var(--ink-40);font-size:13px}
+a{color:var(--cobalt)}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+@media (max-width:720px){ ul.f li{flex-direction:column;gap:3px} ul.f code{width:auto} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="hero"><div class="wrap">
+  <div class="hm"><svg viewBox="0 0 210 130" style="height:40px;width:auto;display:block" aria-hidden="true"><path d="M 109.7 60.8 L 106.9 57.2 L 104.1 53.6 L 101.3 50.1 L 98.5 46.5 L 95.7 43.1 L 92.9 39.6 L 90.1 36.3 L 87.3 33.0 L 84.5 29.8 L 81.7 26.7 L 78.9 23.8 L 76.1 20.9 L 73.3 18.2 L 70.5 15.7 L 67.7 13.3 L 64.8 11.0 L 61.9 9.0 L 59.0 7.1 L 56.1 5.4 L 53.0 3.9 L 49.9 2.6 L 46.7 1.6 L 43.3 0.9 L 39.9 0.5 L 36.5 0.5 L 33.0 0.9 L 29.6 1.7 L 26.3 2.9 L 23.1 4.4 L 20.2 6.3 L 17.5 8.4 L 15.0 10.8 L 12.7 13.4 L 10.6 16.1 L 8.8 19.0 L 7.1 22.0 L 5.6 25.2 L 4.2 28.4 L 3.0 31.8 L 1.9 35.2 L 1.0 38.8 L 0.2 42.4 L -0.5 46.0 L -1.0 49.8 L -1.5 53.5 L -1.8 57.3 L -1.9 61.2 L -2.0 65.0 L -1.9 68.8 L -1.8 72.7 L -1.5 76.5 L -1.0 80.2 L -0.5 84.0 L 0.2 87.6 L 1.0 91.2 L 1.9 94.8 L 3.0 98.2 L 4.2 101.6 L 5.6 104.8 L 7.1 108.0 L 8.8 111.0 L 10.6 113.9 L 12.7 116.6 L 15.0 119.2 L 17.5 121.6 L 20.2 123.7 L 23.1 125.6 L 26.3 127.1 L 29.6 128.3 L 33.0 129.1 L 36.5 129.5 L 39.9 129.5 L 43.3 129.1 L 46.7 128.4 L 49.9 127.4 L 53.0 126.1 L 56.1 124.6 L 59.0 122.9 L 61.9 121.0 L 64.8 119.0 L 67.7 116.7 L 70.5 114.3 L 73.3 111.8 L 76.1 109.1 L 78.9 106.2 L 81.7 103.3 L 84.5 100.2 L 87.3 97.0 L 90.1 93.7 L 92.9 90.4 L 95.7 86.9 L 98.5 83.5 L 101.3 79.9 L 104.1 76.4 L 106.9 72.8 L 109.7 69.2 L 100.3 60.8 L 97.1 64.0 L 93.9 67.2 L 90.7 70.4 L 87.5 73.5 L 84.3 76.5 L 81.2 79.4 L 78.1 82.3 L 75.1 85.0 L 72.1 87.6 L 69.2 90.1 L 66.3 92.4 L 63.5 94.5 L 60.8 96.4 L 58.1 98.2 L 55.6 99.8 L 53.2 101.1 L 50.9 102.2 L 48.7 103.2 L 46.8 103.9 L 45.0 104.3 L 43.4 104.6 L 42.0 104.7 L 40.9 104.7 L 39.9 104.5 L 39.2 104.3 L 38.6 104.0 L 38.2 103.7 L 37.7 103.3 L 37.3 102.9 L 36.8 102.4 L 36.3 101.7 L 35.7 100.9 L 35.0 99.8 L 34.4 98.6 L 33.6 97.2 L 32.9 95.6 L 32.2 93.8 L 31.6 91.8 L 30.9 89.6 L 30.3 87.2 L 29.8 84.8 L 29.3 82.2 L 28.9 79.5 L 28.6 76.7 L 28.3 73.8 L 28.2 70.9 L 28.0 68.0 L 28.0 65.0 L 28.0 62.0 L 28.2 59.1 L 28.3 56.2 L 28.6 53.3 L 28.9 50.5 L 29.3 47.8 L 29.8 45.2 L 30.3 42.8 L 30.9 40.4 L 31.6 38.2 L 32.2 36.2 L 32.9 34.4 L 33.6 32.8 L 34.4 31.4 L 35.0 30.2 L 35.7 29.1 L 36.3 28.3 L 36.8 27.6 L 37.3 27.1 L 37.7 26.7 L 38.2 26.3 L 38.6 26.0 L 39.2 25.7 L 39.9 25.5 L 40.9 25.3 L 42.0 25.3 L 43.4 25.4 L 45.0 25.7 L 46.8 26.1 L 48.7 26.8 L 50.9 27.8 L 53.2 28.9 L 55.6 30.2 L 58.1 31.8 L 60.8 33.6 L 63.5 35.5 L 66.3 37.6 L 69.2 39.9 L 72.1 42.4 L 75.1 45.0 L 78.1 47.7 L 81.2 50.6 L 84.3 53.5 L 87.5 56.5 L 90.7 59.6 L 93.9 62.8 L 97.1 66.0 L 100.3 69.2 Z" fill="#CBD8F5"/><path d="M 109.7 69.2 L 112.9 66.0 L 116.1 62.8 L 119.3 59.6 L 122.5 56.5 L 125.7 53.5 L 128.8 50.6 L 131.9 47.7 L 134.9 45.0 L 137.9 42.4 L 140.8 39.9 L 143.7 37.6 L 146.5 35.5 L 149.2 33.6 L 151.9 31.8 L 154.4 30.2 L 156.8 28.9 L 159.1 27.8 L 161.3 26.8 L 163.2 26.1 L 165.0 25.7 L 166.6 25.4 L 168.0 25.3 L 169.1 25.3 L 170.1 25.5 L 170.8 25.7 L 171.4 26.0 L 171.8 26.3 L 172.3 26.7 L 172.7 27.1 L 173.2 27.6 L 173.7 28.3 L 174.3 29.1 L 175.0 30.2 L 175.6 31.4 L 176.4 32.8 L 177.1 34.4 L 177.8 36.2 L 178.4 38.2 L 179.1 40.4 L 179.7 42.8 L 180.2 45.2 L 180.7 47.8 L 181.1 50.5 L 181.4 53.3 L 181.7 56.2 L 181.8 59.1 L 182.0 62.0 L 182.0 65.0 L 182.0 68.0 L 181.8 70.9 L 181.7 73.8 L 181.4 76.7 L 181.1 79.5 L 180.7 82.2 L 180.2 84.8 L 179.7 87.2 L 179.1 89.6 L 178.4 91.8 L 177.8 93.8 L 177.1 95.6 L 176.4 97.2 L 175.6 98.6 L 175.0 99.8 L 174.3 100.9 L 173.7 101.7 L 173.2 102.4 L 172.7 102.9 L 172.3 103.3 L 171.8 103.7 L 171.4 104.0 L 170.8 104.3 L 170.1 104.5 L 169.1 104.7 L 168.0 104.7 L 166.6 104.6 L 165.0 104.3 L 163.2 103.9 L 161.3 103.2 L 159.1 102.2 L 156.8 101.1 L 154.4 99.8 L 151.9 98.2 L 149.2 96.4 L 146.5 94.5 L 143.7 92.4 L 140.8 90.1 L 137.9 87.6 L 134.9 85.0 L 131.9 82.3 L 128.8 79.4 L 125.7 76.5 L 122.5 73.5 L 119.3 70.4 L 116.1 67.2 L 112.9 64.0 L 109.7 60.8 L 100.3 69.2 L 103.1 72.8 L 105.9 76.4 L 108.7 79.9 L 111.5 83.5 L 114.3 86.9 L 117.1 90.4 L 119.9 93.7 L 122.7 97.0 L 125.5 100.2 L 128.3 103.3 L 131.1 106.2 L 133.9 109.1 L 136.7 111.8 L 139.5 114.3 L 142.3 116.7 L 145.2 119.0 L 148.1 121.0 L 151.0 122.9 L 153.9 124.6 L 157.0 126.1 L 160.1 127.4 L 163.3 128.4 L 166.7 129.1 L 170.1 129.5 L 173.5 129.5 L 177.0 129.1 L 180.4 128.3 L 183.7 127.1 L 186.9 125.6 L 189.8 123.7 L 192.5 121.6 L 195.0 119.2 L 197.3 116.6 L 199.4 113.9 L 201.2 111.0 L 202.9 108.0 L 204.4 104.8 L 205.8 101.6 L 207.0 98.2 L 208.1 94.8 L 209.0 91.2 L 209.8 87.6 L 210.5 84.0 L 211.0 80.2 L 211.5 76.5 L 211.8 72.7 L 211.9 68.8 L 212.0 65.0 L 211.9 61.2 L 211.8 57.3 L 211.5 53.5 L 211.0 49.8 L 210.5 46.0 L 209.8 42.4 L 209.0 38.8 L 208.1 35.2 L 207.0 31.8 L 205.8 28.4 L 204.4 25.2 L 202.9 22.0 L 201.2 19.0 L 199.4 16.1 L 197.3 13.4 L 195.0 10.8 L 192.5 8.4 L 189.8 6.3 L 186.9 4.4 L 183.7 2.9 L 180.4 1.7 L 177.0 0.9 L 173.5 0.5 L 170.1 0.5 L 166.7 0.9 L 163.3 1.6 L 160.1 2.6 L 157.0 3.9 L 153.9 5.4 L 151.0 7.1 L 148.1 9.0 L 145.2 11.0 L 142.3 13.3 L 139.5 15.7 L 136.7 18.2 L 133.9 20.9 L 131.1 23.8 L 128.3 26.7 L 125.5 29.8 L 122.7 33.0 L 119.9 36.3 L 117.1 39.6 L 114.3 43.1 L 111.5 46.5 L 108.7 50.1 L 105.9 53.6 L 103.1 57.2 L 100.3 60.8 Z" fill="var(--cobalt)"/></svg><span>Infinite</span></div>
+  <div class="eb">Website build plan · home and services</div>
+  <h1>One dark band, and the rest is paper.</h1>
+  <p class="lede">The reference spec and the brand book disagreed on theme, accent and typeface. The book wins —
+  it is the source of truth. What survives from the spec is its <b>craft</b>: the glass, the radii, the grain,
+  the easing. All of it concentrates in <b>one ink band</b>, which is the only dark surface on the site and
+  the only place the brand permits it.</p>
+</div></header>
+
+<section><div class="wrap">
+  <h2>What carries over from your spec</h2>
+  <p class="q">Structure and motion are brand-neutral, so they transfer intact.</p>
+  <table><thead><tr><th>Move</th><th>Value</th><th>Where it lands</th></tr></thead>
+  <tbody><tr><td class="k">Glassmorphism</td><td>12px blur, 5% white fill, 1px white/10 border</td><td class="q">Confined to the ink band</td></tr><tr><td class="k">Corner radius</td><td>2.5rem sections · 1.5rem cards · 1rem inner</td><td class="q">Adopted wholesale</td></tr><tr><td class="k">Grain overlay</td><td>Noise SVG, 15%, fixed</td><td class="q">Ink band only — stops the navy banding</td></tr><tr><td class="k">Entry easing</td><td><code>cubic-bezier(.16,1,.3,1)</code> 0.8s</td><td class="q">Hero load sequence only, not every section</td></tr><tr><td class="k">Hover</td><td>105% scale, 300ms</td><td class="q">Cards and the pill button</td></tr><tr><td class="k">Pill button</td><td>White pill, nested 40px dark circle</td><td class="q">Becomes cobalt-on-white; the primary CTA everywhere</td></tr><tr><td class="k">Glass stat card</td><td>Large figure + muted caption</td><td class="q">Carries the four continuity numbers</td></tr><tr><td class="k">Max width</td><td>1600px</td><td class="q">Adopted</td></tr></tbody></table>
+</div></section>
+
+<section class="mist"><div class="wrap">
+  <h2>What the brand book overrides</h2>
+  <table><thead><tr><th>Dropped</th><th>Why</th></tr></thead><tbody>
+  <tr><td class="k">Dark <code>#000000</code> site</td><td>Brand book §14 is light-committed by written decision</td></tr><tr><td class="k">Emerald <code>#34D399</code></td><td>“Cobalt never means good and green never means brand”</td></tr><tr><td class="k">Inter</td><td>Figtree is the brand face, already licensed-free and inlined</td></tr><tr><td class="k">22vw ghost headline</td><td>Decoration with no information; the brand has no display-ghost device</td></tr><tr><td class="k">Stock abstract photography</td><td>§01 lists stock-photo humanism as a category pattern to avoid</td></tr><tr><td class="k">Pricing tiers</td><td>No public pricing exists. Slot becomes engagement models</td></tr><tr><td class="k">Per-section fade-ins</td><td>One orchestrated hero moment reads as considered; eight read as generated</td></tr>
+  </tbody></table>
+  <div class="note"><b>Two brand rules read as AI tells but are not.</b> Uppercase tracked eyebrows and a
+  mono face for figures are both written specifications in the book (Figtree 700 +0.2em; Plex Mono 500
+  tabular). They stay because the brand mandates them, not because they are defaults.</div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>The one ink band</h2>
+  <p class="q">Section 02 is the brand's structural answer to “800+ engineers” — four figures instead of a
+  headcount. It is also the only surface dark enough for glass. Those two facts resolve into one section.</p>
+  <div class="band">
+    <h3>Continuity</h3>
+    <p>Glass at 5% white over ink, 1px white/10 edge, grain at 15% to stop the navy banding.</p>
+    <div class="glass">
+      <div><b>30</b><span>months, longest engagement</span></div>
+      <div><b>6.2</b><span>day median lead time</span></div>
+      <div><b>4</b><span>days between releases</span></div>
+      <div><b>92%</b><span>engineer continuity, 12mo</span></div>
+    </div>
+  </div>
+  <div class="note">Figures shown are the brand book's illustrative samples. <b>Every one is marked
+  “needs real data” below and none ships unverified</b> — the content plan forbids invented metrics.</div>
+</div></section>
+
+<section class="mist"><div class="wrap">
+  <h2>Home — 14 sections</h2>
+  <p class="q">Section order and copy come from Part 7 of the content plan. The ground column is the
+  Paper / Mist rhythm; the gradient is spent exactly twice, on 01 and 13.</p>
+  <table><thead><tr><th></th><th>Section</th><th>What it holds</th><th>Treatment</th><th>Copy</th></tr></thead>
+  <tbody><tr>
+  <td class="n mono">01</td>
+  <td class="k">Hero<span class="grd"><code>--mesh-light</code> panel, 2.5rem radius, 92vh cap</span></td>
+  <td>H1 <em>“The team that scoped it is the team that ships it.”</em> Left type block; right a vertical stack of translucent cards. The Möbius twist runs once on load.</td>
+  <td class="q">Spec: hero geometry, radius, stat-card stack, entry easing. Brand: mesh-light ground, Figtree, cobalt. Dropped the 22vw ghost word and the 60%-opacity stock photo — §01 rules out stock-photo humanism.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">02</td>
+  <td class="k">Continuity band<span class="grd"><b>Ink #0A1024 · the one dark surface</b></span></td>
+  <td>Four figures in Plex Mono, tabular: longest engagement · median lead time · release cadence · engineer continuity over 12 months.</td>
+  <td class="q"><b>This is where the whole glass system lives</b> — 12px blur, 5% white fill, 1px white/10 border, grain overlay at 15%. The spec's Glass Stat Card lands exactly on the brand's four figures.</td>
+  <td><span class="st needed">needs real data</span></td>
+</tr><tr>
+  <td class="n mono">03</td>
+  <td class="k">Client logos<span class="grd">Paper</span></td>
+  <td>Fewer logos, shown larger. No 19-logo carousel.</td>
+  <td class="q">Plain. No glass, no motion.</td>
+  <td><span class="st needed">needs real data</span></td>
+</tr><tr>
+  <td class="n mono">04</td>
+  <td class="k">What we do<span class="grd">Mist</span></td>
+  <td>Four cards, one per service column, each naming three sub-services.</td>
+  <td class="q">Spec: 1.5rem inner cards, 105% hover. Links to the four category pages.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">05</td>
+  <td class="k">Featured case study<span class="grd">Paper · ungated</span></td>
+  <td>Three metric tiles, a named quote, and a real link. Nothing behind a form.</td>
+  <td class="q">Spec: large display card. Product-UI mock at 3° rotation replaces the stock image.</td>
+  <td><span class="st needed">needs real data</span></td>
+</tr><tr>
+  <td class="n mono">06</td>
+  <td class="k">The difference<span class="grd">Mist</span></td>
+  <td>Five statements, two lines of proof each. Ends on data residency.</td>
+  <td class="q">Plain rows, hairline rules. Deliberately undecorated — the sentences carry it.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">07</td>
+  <td class="k">How we work<span class="grd">Paper</span></td>
+  <td>Design → Develop → Refine. The tagline is the process.</td>
+  <td class="q"><b>The only numbered section</b>, because it is the only real sequence. Competitors run five to seven generic phases.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">08</td>
+  <td class="k">Engagement models<span class="grd">Mist · bento</span></td>
+  <td>Dedicated squad · Embedded engineers · Fixed-scope build.</td>
+  <td class="q">The spec's pricing bento, geometry kept, prices removed. CTA per card instead of a number.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">09</td>
+  <td class="k">Industries<span class="grd">Paper</span></td>
+  <td>Six links, one line each. Financial services first.</td>
+  <td class="q">A list, not cards. Restraint after the bento.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">10</td>
+  <td class="k">Selected work<span class="grd">Paper</span></td>
+  <td>Three cards plus “All work”.</td>
+  <td class="q">Spec card treatment, 105% hover.</td>
+  <td><span class="st needed">needs real data</span></td>
+</tr><tr>
+  <td class="n mono">11</td>
+  <td class="k">Credentials<span class="grd">Mist · quiet</span></td>
+  <td>Partner badges and certifications, once.</td>
+  <td class="q">Ships only if §8 of the open items resolves. Not a ten-badge wall.</td>
+  <td><span class="st blocked">blocked</span></td>
+</tr><tr>
+  <td class="n mono">12</td>
+  <td class="k">Insights<span class="grd">Paper</span></td>
+  <td>Three cards.</td>
+  <td class="q">Plain.</td>
+  <td><span class="st needed">needs real data</span></td>
+</tr><tr>
+  <td class="n mono">13</td>
+  <td class="k">Contact band<span class="grd"><code>--mesh-light</code> · the second and last gradient</span></td>
+  <td>Five fields max, a real email, Canadian HQ first and Pakistan delivery second.</td>
+  <td class="q">Closes the arc opened by the hero. Gradient budget spent exactly twice.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr><tr>
+  <td class="n mono">14</td>
+  <td class="k">Footer<span class="grd">Ink</span></td>
+  <td>Four columns, not nine. Legal bar with AODA statement.</td>
+  <td class="q">Shares the ink ground with §2 but carries no glass.</td>
+  <td><span class="st supplied">copy ready</span></td>
+</tr></tbody></table>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Services — index and 27 leaves</h2>
+  <p class="q"><code>/services/</code> is four category blocks, each opening to its own page and its
+  sub-service leaves. One taxonomy, flat URLs, no duplicate paths.</p>
+  <table><thead><tr><th>Column</th><th>Leaves</th><th>Count</th></tr></thead><tbody>
+  <tr><td class="k">Product Engineering</td><td>Product strategy &amp; discovery · UX/UI · Web · Mobile · MVP &amp; 0→1 · Platform modernisation · QA &amp; test automation</td><td class="mono">7</td></tr><tr><td class="k">AI Engineering</td><td>AI readiness · LLM applications · Agents &amp; workflow automation · RAG &amp; knowledge · ML &amp; data science · MLOps &amp; evaluation · AI governance</td><td class="mono">7</td></tr><tr><td class="k">Data &amp; Cloud</td><td>Data engineering · Analytics &amp; BI · Cloud architecture · Migration · DevOps &amp; platform · Reliability &amp; observability · FinOps</td><td class="mono">7</td></tr><tr><td class="k">Teams &amp; Delivery</td><td>Dedicated squads · Embedded engineers · Offshore delivery centre · Technical advisory · Support &amp; maintenance · Security &amp; compliance</td><td class="mono">6</td></tr>
+  </tbody></table>
+  <ul class="f">
+    <li><code>/services/</code>Index — four columns, the difference block, contact band</li>
+    <li><code>/services/{category}/</code>Category — leaves, related work, engagement models</li>
+    <li><code>/services/{category}/{slug}/</code>Leaf — problem, approach, proof, adjacent services</li>
+  </ul>
+</div></section>
+
+<section class="mist"><div class="wrap">
+  <h2>Tokens, verified</h2>
+  <p class="q">Read out of <code>infinite-book-build.py</code>, not retyped from the plan.</p>
+  <div class="sw">
+    <div><i style="background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--rule)"></i><b>Paper</b><code>#FFFFFF</code></div>
+    <div><i style="background:#F4F7FD"></i><b>Mist</b><code>#F4F7FD</code></div>
+    <div><i style="background:#0A1024"></i><b>Ink</b><code>#0A1024</code></div>
+    <div><i style="background:#2B5CF6"></i><b>Cobalt</b><code>#2B5CF6</code></div>
+    <div><i style="background:var(--mesh-light)"></i><b>Mesh light</b><code>2 surfaces only</code></div>
+  </div>
+  <ul class="f" style="margin-top:22px">
+    <li><code>Display</code>Figtree 700 · −0.042em</li>
+    <li><code>Heading</code>Figtree 600 · −0.028em</li>
+    <li><code>Body</code>Figtree 400 · 15.5/1.66 · max 64ch</li>
+    <li><code>Eyebrow</code>Figtree 700 · +0.2em · uppercase</li>
+    <li><code>Figures</code>IBM Plex Mono 500 · tabular · never headings or eyebrows</li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>How I would build it</h2>
+  <ul class="f">
+    <li><code>tokens.css</code>Single source: colours, type ladder, radii, motion, spacing</li>
+    <li><code>components.css</code>Pill button, glass card, bento, section shell, nav, footer</li>
+    <li><code>index.html</code>Home, all 14 sections</li>
+    <li><code>services/index.html</code>Services index; templates follow per category</li>
+    <li><code>build.py</code>Emits pages from section data, as the brand books do</li>
+  </ul>
+  <div class="note"><b>Motion is the one undesigned brand item.</b> The book flags the Möbius twist as needing
+  a prototype before the website brief. I will build it as a single load sequence behind
+  <code>prefers-reduced-motion</code> and we can tune it once you see it move.</div>
+</div></section>
+
+<section class="mist"><div class="wrap">
+  <h2>What I will not invent</h2>
+  <p class="q">Six of the fourteen sections need data only you have. I will build them as marked slots
+  with realistic structure, never with fabricated clients, logos, metrics or quotes.</p>
+  <ul class="f">
+    <li><code>Continuity figures</code>The four numbers in the ink band</li>
+    <li><code>Client logos</code>Who may be named publicly</li>
+    <li><code>Case study</code>Metrics, quote, attribution</li>
+    <li><code>Selected work</code>Three projects</li>
+    <li><code>Credentials</code>ISO / SOC 2 status — ships only if held</li>
+    <li><code>Data residency</code>Actual cloud regions; the one claim a bank audits</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">Infinite · web build plan v0.1 · 21 September 2026 · brand book is source of truth</div></footer>

@@ -1,0 +1,205 @@
+<title>Kronos Labs Rebrand Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#0A1117; --raised:#0F1720; --sunk:#070C11;
+  --rule:#1C2733; --rule-soft:#141D26;
+  --text:#E9EFF3; --quiet:#8E9DAA; --faint:#5E6B77;
+  --green:#93E109; --green-dim:#69C526;
+  --ff:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --fm:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--ground); color:var(--text); font-family:var(--ff);
+  font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+.wrap{ max-width:940px; margin-inline:auto; padding-inline:22px; }
+.hero{ padding-block:clamp(48px,9vw,86px) clamp(32px,5vw,52px); border-bottom:1px solid var(--rule); }
+.eyebrow{ font-weight:700; font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--green); margin-bottom:20px; }
+h1{ font-weight:700; font-size:clamp(34px,6.2vw,60px); letter-spacing:-0.035em; line-height:1.02;
+  margin:0 0 18px; text-wrap:balance; }
+.lede{ font-weight:300; font-size:clamp(17px,2.2vw,20px); line-height:1.55; color:var(--quiet);
+  max-width:60ch; margin:0; }
+.lede b{ color:var(--text); font-weight:600; }
+section{ padding-block:clamp(38px,6vw,62px); border-bottom:1px solid var(--rule-soft); }
+h2{ font-weight:700; font-size:clamp(22px,3.2vw,29px); letter-spacing:-0.028em; line-height:1.14;
+  margin:0 0 12px; }
+.sec-n{ font-family:var(--fm); font-size:12px; color:var(--faint); display:block; margin-bottom:9px; }
+p{ max-width:68ch; } p.q{ color:var(--quiet); }
+.mono{ font-family:var(--fm); font-variant-numeric:tabular-nums; }
+b.mono{ color:var(--green); font-weight:500; }
+.routes{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:26px; }
+@media (max-width:680px){ .routes{ grid-template-columns:1fr; } }
+.route{ background:var(--raised); border:1px solid var(--rule); border-radius:7px; overflow:hidden; }
+.route-stage{ padding:30px 26px; display:flex; align-items:center; justify-content:center;
+  min-height:128px; background:var(--sunk); }
+.route-stage svg{ color:var(--text); max-width:190px; }
+.route-b{ padding:17px 19px 20px; }
+.route-n{ font-weight:700; font-size:17px; letter-spacing:-0.02em; }
+.route-b p{ margin:7px 0 0; font-size:14px; color:var(--quiet); line-height:1.55; }
+.lock{ margin-top:16px; background:var(--sunk); border:1px solid var(--rule); border-radius:7px;
+  padding:22px 26px; display:flex; align-items:center; justify-content:center; }
+.lock svg{ color:var(--text); max-width:330px; }
+table{ width:100%; border-collapse:collapse; margin-top:22px; font-size:14.5px; }
+th{ text-align:left; font-weight:700; font-size:10.5px; letter-spacing:0.17em; text-transform:uppercase;
+  color:var(--faint); padding:0 16px 11px 0; border-bottom:1px solid var(--rule); white-space:nowrap; }
+td{ padding:13px 16px 13px 0; border-bottom:1px solid var(--rule-soft); color:var(--quiet);
+  vertical-align:top; }
+td.k{ color:var(--text); font-weight:600; white-space:nowrap; }
+td .mono{ color:var(--green); }
+.chip{ display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:7px;
+  vertical-align:-1px; }
+.sw{ display:grid; grid-template-columns:132px 1fr; gap:0; background:var(--raised);
+  border:1px solid var(--rule); border-radius:7px; overflow:hidden; margin-top:14px; }
+.sw.rec{ border-color:var(--green); }
+@media (max-width:560px){ .sw{ grid-template-columns:1fr; } }
+.sw-chip{ min-height:104px; display:flex; align-items:center; justify-content:center; }
+.sw-ink{ color:#07100B; font-weight:800; font-size:26px; letter-spacing:-0.03em; }
+.sw-b{ padding:16px 19px 18px; }
+.sw-h{ display:flex; align-items:center; gap:11px; }
+.sw-n{ font-weight:700; font-size:16.5px; letter-spacing:-0.02em; }
+.tag{ font-weight:700; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--green); border:1px solid var(--green); border-radius:20px; padding:2px 8px; }
+.sw-x{ font-size:13px; color:var(--quiet); margin-top:3px; }
+.sw-b p{ margin:9px 0 0; font-size:14px; color:var(--quiet); }
+.sw-m{ display:flex; gap:18px; flex-wrap:wrap; margin-top:11px; font-size:12.5px; color:var(--faint); }
+.dec{ border-top:1px solid var(--rule-soft); padding:19px 0; display:grid;
+  grid-template-columns:172px 1fr; gap:24px; }
+.dec:first-of-type{ border-top:0; }
+@media (max-width:640px){ .dec{ grid-template-columns:1fr; gap:8px; } }
+.dec h3{ margin:0; font-weight:700; font-size:16px; letter-spacing:-0.018em; }
+.dec p{ margin:0; font-size:14.5px; color:var(--quiet); }
+.steps{ counter-reset:s; margin:22px 0 0; padding:0; list-style:none; }
+.steps li{ counter-increment:s; position:relative; padding:12px 0 12px 42px;
+  border-bottom:1px solid var(--rule-soft); font-size:15px; color:var(--quiet); }
+.steps li::before{ content:counter(s,decimal-leading-zero); position:absolute; left:0; top:12px;
+  font-family:var(--fm); font-size:12px; color:var(--green); }
+.steps li b{ color:var(--text); font-weight:600; }
+footer{ padding-block:34px 60px; color:var(--faint); font-size:13px; }
+a{ color:var(--green); }
+:focus-visible{ outline:2px solid var(--green); outline-offset:3px; }
+</style>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Rebrand plan · for approval</div>
+  <h1>Kronos Labs</h1>
+  <p class="lede">Two K monograms, one dark identity in the neighbourhood of HiddenLayer, and a
+  green pulled back toward NVIDIA. This is the plan — <b>nothing is built yet.</b> Once you pick
+  a route and answer the four questions at the end, I build it the same way as the Infinite and
+  Echo books: a paginated landscape manual generated from a script, fonts inlined, prints to PDF.</p>
+</div></header>
+
+<section><div class="wrap">
+  <span class="sec-n">01</span>
+  <h2>What you gave me</h2>
+  <p class="q">Both files are a single compound path carrying the monogram and the stacked wordmark
+  together. I split them on subpath geometry, so the mark can stand alone — <b style="color:var(--text)">
+  the artwork itself is untouched and will be used exactly as supplied</b>.</p>
+  <div class="routes">
+    <div class="route">
+      <div class="route-stage"><svg viewBox="0 0 1350 406" style="width:auto;height:auto;display:block;height:96px" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M246.026 390.26C244.324 389.567 232.394 377.624 215.333 359.525C204.534 348.073 191.017 333.99 172.359 314.751C163.683 305.807 152.657 294.363 147.868 289.321C143.069 284.288 122.245 263.067 101.587 242.162C80.9291 221.266 64.2098 203.859 64.4378 203.491C64.6659 203.123 90.0606 202.746 120.868 202.649C175.438 202.474 177.008 202.518 181.64 204.271C188.017 206.674 192.429 210.383 206.219 224.922C221.42 240.943 235.964 256.113 251.245 271.853C277.947 299.37 287.183 308.963 305.262 327.957C315.587 338.813 331.596 355.579 340.824 365.225C350.052 374.87 359.306 384.639 361.376 386.928L365.131 391.093L306.473 391.04C274.201 391.005 247.008 390.654 246.026 390.26ZM107.017 389.234C93.5782 388.664 91.4203 388.129 75.8764 381.631C44.9905 368.723 19.9992 347.529 8.92028 324.879C0.376421 307.411 -0.167438 302.062 0.165895 238.532L0.437825 187.26L21.9291 208.717C47.0168 233.779 54.0431 241.004 109.648 299.028C120.508 310.358 133.947 324.362 139.526 330.149C157.482 348.774 181.824 374.292 188.912 381.921L195.815 389.339L191.982 389.471C180.017 389.865 117.789 389.699 107.017 389.234ZM150.876 91.8981C220.999 22.2642 236.35 7.42726 240.35 5.45425L245.175 3.06911L309.648 2.82359L374.122 2.58683L365.35 11.4259C320.534 56.612 243.543 132.402 225.85 148.756C204.131 168.828 198.841 172.967 193.034 174.44C191.315 174.878 162.087 175.396 128.069 175.597L66.2273 175.965L150.876 91.8981ZM0.0255441 128.903C0.0167722 105.025 0.385193 82.2435 0.841334 78.2712C1.83256 69.6864 6.76239 54.4022 11.0782 46.5365C21.8062 26.9907 38.0606 13.5918 59.6484 6.48898L67.1045 4.03369L114.692 3.72678C140.868 3.5514 162.28 3.67417 162.28 3.99862C162.28 4.60367 153.183 15.0211 145.096 23.676C142.622 26.3242 137.71 31.6557 134.183 35.514C120.824 50.1406 96.2185 75.4038 48.9203 123.054L0.034316 172.309L0.0255441 128.903Z"/></svg></div>
+      <div class="route-b"><div class="route-n">Angular</div>
+        <p>Hard 45° chevrons, one rounded outer corner. Engineered, defence-adjacent, closest in
+        temperament to the security category.</p></div>
+    </div>
+    <div class="route">
+      <div class="route-stage"><svg viewBox="0 0 1386 420" style="width:auto;height:auto;display:block;height:96px" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M117.999 412.349C104.189 410.249 94.8394 408.179 85.9994 405.259C43.6994 391.289 11.8694 357.349 2.81938 316.559C1.04938 308.569 0.869375 305.029 1.29937 286.499C1.81937 264.299 3.60938 253.459 7.86938 246.729C8.89938 245.099 18.6694 234.749 29.5694 223.729L49.3894 203.679L53.2594 208.089C55.3894 210.519 63.8994 220.379 72.1594 229.999C80.4194 239.619 92.6094 253.739 99.2394 261.379C115.579 280.179 118.929 286.069 125.149 306.999C127.289 314.219 127.389 316.309 127.749 363.749L128.129 412.999L124.319 412.859C122.219 412.789 119.379 412.559 117.999 412.349ZM312.499 405.969C269.119 405.289 267.699 405.109 252.379 398.009C242.459 393.419 234.059 387.799 226.119 380.449C219.849 374.639 216.339 370.429 177.129 321.499C163.909 304.999 151.599 289.699 149.789 287.499C136.729 271.619 129.649 263.249 116.499 248.119C108.249 238.629 98.4194 227.179 94.6494 222.679C90.8794 218.179 85.5994 212.239 82.8994 209.469C80.2094 206.699 77.9994 204.039 77.9994 203.559C77.9994 203.069 94.0094 202.959 114.749 203.299C164.819 204.129 179.739 206.069 196.659 213.969C213.959 222.059 226.669 232.509 239.219 248.999C246.449 258.489 255.119 269.739 276.999 297.999C294.599 320.729 345.499 388.239 353.619 399.619C357.229 404.679 357.729 405.889 356.429 406.389C355.549 406.729 354.089 406.909 353.169 406.789C352.249 406.679 333.949 406.309 312.499 405.969ZM0.279375 167.419C0.729375 117.959 0.909375 116.069 6.92937 98.6691C16.6994 70.4291 42.4094 38.6091 69.1794 21.6291C86.3294 10.7491 107.249 3.02914 124.849 1.07914L131.209 0.369141L130.719 31.4391C130.329 55.7591 129.859 64.1291 128.519 69.9991C126.549 78.6391 123.229 86.9691 119.009 93.8291C117.289 96.6191 91.7994 122.579 57.9594 155.979L-0.140625 213.339L0.279375 167.419ZM77.9994 171.279C77.9994 170.259 87.4894 159.289 111.999 131.989C121.079 121.889 132.949 108.639 138.389 102.559C157.389 81.3191 172.549 64.5191 179.499 56.9991C183.349 52.8391 191.209 44.2791 196.979 37.9691C210.119 23.5791 213.779 19.9891 220.289 15.0691C227.619 9.53914 236.119 5.57914 245.939 3.11914C253.869 1.12914 256.929 0.999141 296.809 0.999141H339.229L337.439 3.72914C335.189 7.15914 317.659 29.7191 305.059 45.3891C299.799 51.9191 294.619 58.4491 293.539 59.8891C292.449 61.3191 285.899 69.4691 278.969 77.9991C257.659 104.209 237.659 129.049 234.379 133.379C229.779 139.459 217.359 151.069 210.499 155.679C198.459 163.789 190.509 166.859 174.499 169.589C164.019 171.379 77.9994 172.889 77.9994 171.279Z"/></svg></div>
+      <div class="route-b"><div class="route-n">Petal</div>
+        <p>The same arms swept into leaf forms. Organic and warmer — reads research lab or
+        life sciences more than threat intelligence.</p></div>
+    </div>
+  </div>
+  <div class="lock"><svg viewBox="0 0 1350 406" style="width:auto;height:auto;display:block;height:62px" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M246.026 390.26C244.324 389.567 232.394 377.624 215.333 359.525C204.534 348.073 191.017 333.99 172.359 314.751C163.683 305.807 152.657 294.363 147.868 289.321C143.069 284.288 122.245 263.067 101.587 242.162C80.9291 221.266 64.2098 203.859 64.4378 203.491C64.6659 203.123 90.0606 202.746 120.868 202.649C175.438 202.474 177.008 202.518 181.64 204.271C188.017 206.674 192.429 210.383 206.219 224.922C221.42 240.943 235.964 256.113 251.245 271.853C277.947 299.37 287.183 308.963 305.262 327.957C315.587 338.813 331.596 355.579 340.824 365.225C350.052 374.87 359.306 384.639 361.376 386.928L365.131 391.093L306.473 391.04C274.201 391.005 247.008 390.654 246.026 390.26ZM107.017 389.234C93.5782 388.664 91.4203 388.129 75.8764 381.631C44.9905 368.723 19.9992 347.529 8.92028 324.879C0.376421 307.411 -0.167438 302.062 0.165895 238.532L0.437825 187.26L21.9291 208.717C47.0168 233.779 54.0431 241.004 109.648 299.028C120.508 310.358 133.947 324.362 139.526 330.149C157.482 348.774 181.824 374.292 188.912 381.921L195.815 389.339L191.982 389.471C180.017 389.865 117.789 389.699 107.017 389.234ZM150.876 91.8981C220.999 22.2642 236.35 7.42726 240.35 5.45425L245.175 3.06911L309.648 2.82359L374.122 2.58683L365.35 11.4259C320.534 56.612 243.543 132.402 225.85 148.756C204.131 168.828 198.841 172.967 193.034 174.44C191.315 174.878 162.087 175.396 128.069 175.597L66.2273 175.965L150.876 91.8981ZM0.0255441 128.903C0.0167722 105.025 0.385193 82.2435 0.841334 78.2712C1.83256 69.6864 6.76239 54.4022 11.0782 46.5365C21.8062 26.9907 38.0606 13.5918 59.6484 6.48898L67.1045 4.03369L114.692 3.72678C140.868 3.5514 162.28 3.67417 162.28 3.99862C162.28 4.60367 153.183 15.0211 145.096 23.676C142.622 26.3242 137.71 31.6557 134.183 35.514C120.824 50.1406 96.2185 75.4038 48.9203 123.054L0.034316 172.309L0.0255441 128.903ZM955.262 405.448C949.464 404.702 937.28 401.405 933.771 399.634C916.789 391.049 908.061 379.316 905.719 361.936L905.157 357.771H922.201C931.578 357.771 940.42 357.534 941.841 357.254C944.271 356.771 944.534 356.991 945.991 360.796C950.043 371.407 959.21 375.94 974.973 375.116C988.491 374.406 995.613 369.855 995.613 361.927C995.613 358.516 993.201 355.509 989.078 353.781C984.763 351.984 970.113 348.494 956.499 346.029C944.508 343.855 932.096 340.11 925.096 336.55C919.201 333.551 913.113 327.141 910.262 320.942C905.491 310.533 905.982 295.231 911.447 284.305C915.771 275.642 922.403 269.179 931.762 264.479C956.175 252.229 991.131 252.009 1014.95 263.97C1028.56 270.81 1039.47 287.225 1039.47 300.87V305.158H1019.3H999.122V302.939C999.122 297.336 993.324 290.014 987.122 287.804C985.28 287.146 980.762 286.392 977.078 286.12C969.201 285.542 959.745 287.936 955.377 291.601C950.28 295.898 949.719 303.43 954.236 306.982C957.78 309.77 961.412 311.05 974.008 313.944C998.052 319.46 1001.51 320.319 1008.33 322.459C1022.93 327.027 1032.88 334.244 1037.46 343.574C1039.73 348.195 1039.91 349.344 1039.91 359.086C1039.91 369.451 1039.86 369.714 1036.65 376.282C1032.19 385.402 1024.56 392.522 1013.69 397.705C1001.04 403.729 993.631 405.22 974.561 405.553C965.64 405.711 956.947 405.658 955.262 405.448ZM619.71 403.913C605.596 401.607 595.894 397.178 588.219 389.576C579.631 381.052 575.657 369.881 576.596 356.894C577.236 348.099 579.104 342.39 583.482 335.831C594.403 319.486 617.789 313.137 667.324 313.067L680.701 313.05V310.594C680.701 309.235 679.683 306.087 678.438 303.597C674.657 296.012 668.324 291.855 657.964 290.145C645.868 288.146 635.376 291.662 629.166 299.8C626.297 303.562 626.192 303.606 621.026 303.562C618.148 303.527 608.534 303.483 599.675 303.456L583.561 303.404L584.315 299.239C584.727 296.95 586.657 291.855 588.587 287.927C595.508 273.861 610.376 263.321 630.701 258.069C638.797 255.973 641.508 255.692 653.069 255.736C663.771 255.78 667.701 256.157 674.104 257.788C696.964 263.593 712.912 274.922 720.157 290.487C725.859 302.737 726.315 307.727 726.315 357.455V400.686L716.394 400.932C710.947 401.063 700.876 401.054 694.026 400.914L681.578 400.642L681.569 395.214C681.561 392.224 681.324 388.375 681.043 386.665L680.526 383.56L675.359 388.541C662.368 401.054 639.982 407.236 619.71 403.913ZM814.473 404.229C805.122 402.352 795.508 397.336 788.043 390.444L784.412 387.103L784.008 393.496C783.78 397.012 783.403 400.09 783.157 400.327C782.526 400.958 742.271 401.195 741.648 400.572C740.894 399.818 740.841 214.417 741.596 213.207C742.026 212.505 748.49 212.207 763.21 212.207H784.21L784.341 220.757C784.412 225.457 784.412 238.926 784.35 250.676C784.289 262.436 784.42 272.336 784.631 272.686C784.85 273.037 786.78 271.713 788.912 269.731C799.42 260.007 812.947 255.131 829.473 255.105C839.017 255.096 847.069 256.657 856.798 260.41C865.745 263.856 872.657 268.416 880.499 276.036C890.236 285.498 895.148 293.995 899.622 309.104C901.657 315.987 901.964 318.627 902.026 329.711C902.087 340.891 901.815 343.487 899.736 351.194C892.078 379.632 872.262 398.538 844.622 403.773C837.157 405.193 820.526 405.439 814.473 404.229ZM435.315 400.905L431.596 400.642L431.368 328.123C431.245 288.242 431.254 245.862 431.385 233.954L431.64 212.295L453.973 212.269L476.315 212.251V287.637V363.032H521.49H566.666V381.886V400.739L562.499 400.844C552.561 401.089 438.683 401.151 435.315 400.905ZM650.876 373.511C658.692 372.257 668.192 367.496 672.771 362.533C677.499 357.412 680.754 350.291 681.341 343.802L681.806 338.699L675.333 339.085C671.771 339.295 662.736 340.224 655.262 341.145C630.192 344.223 621.929 348.985 621.929 360.34C621.929 363.024 622.578 364.584 624.683 366.978C628.008 370.767 629.806 371.801 635.526 373.204C641.122 374.581 643.833 374.634 650.876 373.511ZM834.982 367.224C843.938 363.892 849.745 359.341 854.245 352.124C859.227 344.127 860.876 337.576 860.28 328.22C859.026 308.788 848.455 296.731 828.789 292.285C823.49 291.092 821.42 291.022 815.841 291.873C799.306 294.389 786.973 305.465 783.385 321.038C782.201 326.185 782.227 336.436 783.438 342.162C786.219 355.246 797.666 366.242 811.561 369.162C817.183 370.346 829.289 369.346 834.982 367.224ZM1262.58 196.879C1242.45 193.231 1227.97 183.708 1220.82 169.415C1218.01 163.785 1214.92 151.404 1216.05 150.273C1216.3 150.027 1225.12 149.703 1235.66 149.562L1254.82 149.29L1257.24 154.324C1261.31 162.803 1269.09 166.609 1282.37 166.609C1290.77 166.609 1298.21 164.513 1302.28 160.997C1304.96 158.691 1305.49 157.638 1305.57 154.587C1305.64 151.877 1305.14 150.369 1303.62 148.756C1299.67 144.547 1293.48 142.731 1262.98 136.847C1232.62 130.999 1219.88 119.731 1218.64 97.6505C1217.71 81.0334 1224.71 67.8625 1239.61 58.1816C1251.79 50.2721 1268.72 46.7382 1290.3 47.5888C1324.04 48.9305 1345.33 65.0652 1348.71 91.8542L1349.29 96.4579H1329.53H1309.77L1308.4 91.7402C1305.82 82.831 1297.5 78.0432 1284.63 78.0432C1273.25 78.0432 1265.1 81.8314 1262.62 88.2765C1261.46 91.293 1261.4 92.4768 1262.26 95.0987C1264.09 100.623 1269.66 102.982 1291.49 107.498C1309.3 111.172 1325.5 116.346 1332.36 120.529C1343.08 127.07 1348.69 135.769 1349.67 147.396C1352.25 178.052 1324.42 198.405 1280.32 198.098C1274.02 198.054 1266.03 197.502 1262.58 196.879ZM787.28 196.774C773.096 194.722 761.859 191.425 752.157 186.479C728.034 174.185 712.569 146.879 714.394 119.809C715.885 97.7732 722.613 82.489 736.683 69.1515C748.894 57.5854 760.175 51.9206 778.368 48.2114C786.569 46.5365 789.762 46.3261 801.613 46.7032C813.631 47.0802 816.534 47.4748 824.815 49.8863C860.394 60.2073 880.912 86.5753 880.771 121.791C880.727 132.945 879.587 139.566 876.192 148.379C867.245 171.581 845.561 188.996 818.491 194.713C810.447 196.415 792.824 197.581 787.28 196.774ZM1112.48 195.985C1074.86 189.171 1050.89 165.697 1046.52 131.393C1045.67 124.773 1046.6 110.751 1048.34 103.911C1051.4 91.8191 1059.73 77.1838 1068.11 69.1428C1077.71 59.9354 1093.68 51.8417 1108.77 48.5446C1114.42 47.3082 1119.73 46.9224 1130.7 46.9487C1143.66 46.9838 1146.08 47.2381 1153.83 49.3689C1164.46 52.2889 1171.34 55.0336 1177.75 58.8832C1200.79 72.7117 1213.43 97.6066 1211.98 126.272C1211.39 137.987 1209.9 144.169 1205.32 153.894C1194.8 176.255 1173.41 191.03 1144.4 195.976C1135.06 197.563 1121.23 197.572 1112.48 195.985ZM431.578 97.3348V0H453.938H476.297L476.526 39.6354L476.754 79.2708L489.912 64.8635C505.745 47.5187 530.455 21.247 542.254 9.20734L550.85 0.438445L578.052 0.271836C593.017 0.175378 605.262 0.333218 605.262 0.613823C605.262 1.4381 598.912 8.17261 570.236 37.7501C518.964 90.6616 521.701 87.6714 522.973 89.2674C523.605 90.0566 528.464 95.6687 533.771 101.746C539.078 107.814 555.85 127.316 571.052 145.09C586.254 162.865 601.947 181.192 605.929 185.822L613.183 194.231L582.824 194.459L552.464 194.696L550.569 192.276C549.534 190.952 544.148 184.708 538.596 178.403C533.043 172.098 523.973 161.646 518.42 155.192C512.868 148.729 505.999 140.864 503.14 137.707C494.087 127.71 490.087 123.221 483.333 115.46L476.754 107.901L476.526 151.281L476.297 194.67H453.938H431.578V97.3348ZM618.42 122.765V50.8596H638.596H658.771L658.947 58.5324C659.043 62.7502 659.087 67.2925 659.034 68.6166C658.912 72.0716 660.008 71.5893 661.92 67.3364C664.175 62.3556 671.447 55.0862 676.999 52.2714C685.982 47.7203 696.604 46.3612 707.49 48.3692L712.99 49.3777L713.429 53.8498C713.964 59.2953 713.727 88.3028 713.14 88.8377C712.912 89.0482 709.754 88.8465 706.14 88.3993C697.701 87.3382 688.034 88.6886 681.578 91.8104C672.324 96.3 664.683 106.393 662.429 117.109C661.876 119.731 661.429 136.418 661.324 158.103L661.148 194.67H639.789H618.42V122.765ZM890.35 122.808V50.9473L910.745 51.1227L931.14 51.2981L931.394 59.9179L931.64 68.5377L937.192 63.3465C943.964 57.0154 948.92 54.1567 959.21 50.6404C966.192 48.2552 968.271 47.9483 977.192 47.922C988.991 47.887 998.245 49.9652 1008.77 54.9898C1017.96 59.3742 1028.32 69.7215 1032.74 78.9464C1038.73 91.4421 1038.86 92.7925 1038.77 139.864C1038.73 163.014 1038.67 184.813 1038.64 188.312L1038.6 194.67H1017.63H996.666L996.131 188.751C995.841 185.497 995.736 169.415 995.903 153.017C996.262 118.468 995.701 108.103 993.166 102.368C990.973 97.4225 984.912 90.7055 980.736 88.6097C966.254 81.3403 945.315 86.2158 937.394 98.7027C932.868 105.849 932.587 109.138 932.745 153.675L932.894 194.67H911.622H890.35V122.808ZM807.245 159.647C815.552 157.524 820.148 155.201 825.131 150.615C841.061 135.935 840.412 107.726 823.798 92.7223C812.473 82.489 794.903 80.3757 779.92 87.4435C774.096 90.1881 766.526 97.7031 763.429 103.797C757.999 114.513 757.49 130.639 762.271 140.934C769.482 156.499 788.552 164.426 807.245 159.647ZM1141.53 159.576C1161.63 153.368 1172.22 133.989 1167.14 112.68C1163.49 97.3523 1152.19 86.8209 1136.52 84.12C1129.03 82.8398 1122.97 83.5062 1114.8 86.5315C1095.65 93.6343 1085.38 118.468 1093.09 139.066C1096.47 148.107 1108.12 158.033 1118.09 160.374C1124.39 161.848 1135.36 161.479 1141.53 159.576Z"/></svg></div>
+  <p class="q" style="font-size:13.5px;margin-top:10px">Full lockup, Angular · <span class="mono">1350 × 406</span>,
+  4 mark subpaths, 14 wordmark subpaths</p>
+</div></section>
+
+<section><div class="wrap">
+  <span class="sec-n">02</span>
+  <h2>What HiddenLayer actually does</h2>
+  <p class="q">Read off the live site rather than guessed, so we are matching real values.</p>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Ground</td><td><span class="chip" style="background:#08111A"></span><span class="mono">#08111A</span></td><td>Near-black, pulled blue</td></tr>
+      <tr><td class="k">Raised</td><td><span class="chip" style="background:#09151E"></span><span class="mono">#09151E</span></td><td>Cards and the nav bar</td></tr>
+      <tr><td class="k">Accent</td><td><span class="chip" style="background:#42E996"></span><span class="mono">#42E996</span></td><td>Spring green — buttons, arrows, edge glow</td></tr>
+      <tr><td class="k">Type</td><td class="mono">Degular</td><td>Licensed, not free</td></tr>
+      <tr><td class="k">Radius</td><td class="mono">5–7px</td><td>Small, plus full pills on buttons</td></tr>
+      <tr><td class="k">Theme</td><td class="mono">dark only</td><td>No light mode anywhere on the site</td></tr>
+    </tbody>
+  </table>
+  <p class="q" style="margin-top:20px">The structural moves worth taking: <b style="color:var(--text)">one
+  accent doing all the pointing</b>, a near-black that is tinted rather than neutral, small radii, and a
+  single large statement paragraph set in the accent colour. What I would not copy is the mint hue — which
+  is the part you already flagged.</p>
+</div></section>
+
+<section><div class="wrap">
+  <span class="sec-n">03</span>
+  <h2>The green</h2>
+  <p class="q">NVIDIA's <span class="mono">#76B900</span> is a dark yellow-green built for white
+  backgrounds — dropped straight onto a near-black ground it goes muddy and loses the glow that makes
+  HiddenLayer's accent work. So I held <b style="color:var(--text)">NVIDIA's hue (82°)</b> and raised
+  the luminance until it matched <b style="color:var(--text)">HiddenLayer's brightness</b>. That is the
+  first swatch: same family as NVIDIA, same behaviour as the reference.</p>
+  <div class="sw rec">
+      <div class="sw-chip" style="background:#93E109"><span class="sw-ink">Aa</span></div>
+      <div class="sw-b">
+        <div class="sw-h"><span class="sw-n">Kronos green</span><span class="tag">Recommended</span></div>
+        <div class="mono sw-x">#93E109</div>
+        <p>NVIDIA's hue (82°) at HiddenLayer's brightness</p>
+        <div class="sw-m"><span>on ground <b class="mono">11.8:1</b></span>
+          <span>ink on fill <b class="mono">12.0:1</b></span></div>
+      </div></div><div class="sw">
+      <div class="sw-chip" style="background:#A4F514"><span class="sw-ink">Aa</span></div>
+      <div class="sw-b">
+        <div class="sw-h"><span class="sw-n">Voltage</span></div>
+        <div class="mono sw-x">#A4F514</div>
+        <p>Brighter, more electric. Harder to sit type on.</p>
+        <div class="sw-m"><span>on ground <b class="mono">14.2:1</b></span>
+          <span>ink on fill <b class="mono">14.4:1</b></span></div>
+      </div></div><div class="sw">
+      <div class="sw-chip" style="background:#69C526"><span class="sw-ink">Aa</span></div>
+      <div class="sw-b">
+        <div class="sw-h"><span class="sw-n">Moss</span></div>
+        <div class="mono sw-x">#69C526</div>
+        <p>Closest to NVIDIA's own value. Calmer, less signal.</p>
+        <div class="sw-m"><span>on ground <b class="mono">8.7:1</b></span>
+          <span>ink on fill <b class="mono">8.8:1</b></span></div>
+      </div></div>
+  <p class="q" style="margin-top:18px;font-size:14px">Ratios measured against the proposed ground
+  <span class="mono">#0A1117</span> and against <span class="mono">#07100B</span> text on a filled
+  button. All three clear <span class="mono">4.5:1</span> both ways — the choice is tone, not legality.</p>
+</div></section>
+
+<section><div class="wrap">
+  <span class="sec-n">04</span>
+  <h2>The book I would build</h2>
+  <p class="q">Same machine as the other two: a Python build script emitting landscape pages,
+  geometry and colour derived rather than retyped, fonts inlined so the file works offline, and a
+  print rule that gives you a PDF at <span class="mono">297 × 167 mm</span>.</p>
+  <table>
+    <thead><tr><th>Section</th><th>Pages cover</th></tr></thead>
+    <tbody><tr><td class="k"><span class="mono" style="color:var(--faint)">01</span>&nbsp;&nbsp;Mark</td><td>Both routes, construction, clear space, lockups, don'ts</td></tr><tr><td class="k"><span class="mono" style="color:var(--faint)">02</span>&nbsp;&nbsp;Colour</td><td>Ground system, the green, states, contrast floors</td></tr><tr><td class="k"><span class="mono" style="color:var(--faint)">03</span>&nbsp;&nbsp;Typography</td><td>Display and text faces, hierarchy, the data face</td></tr><tr><td class="k"><span class="mono" style="color:var(--faint)">04</span>&nbsp;&nbsp;Surfaces</td><td>Site, deck, app icon, card, signature</td></tr><tr><td class="k"><span class="mono" style="color:var(--faint)">05</span>&nbsp;&nbsp;Motion & voice</td><td>How the K resolves, how the copy sounds</td></tr></tbody>
+  </table>
+  <ol class="steps">
+    <li><b>Confirm the route</b> and the three answers below.</li>
+    <li><b>Lock the palette</b> — ground, green, and the two or three greys between them.</li>
+    <li><b>Pick and inline the typeface</b>, then set the wordmark decision.</li>
+    <li><b>Build <span class="mono">kronos-brand-book.html</span></b> plus its build script.</li>
+    <li><b>Logo frames</b> — export-ready 16:9 boards, as Infinite got.</li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <span class="sec-n">05</span>
+  <h2>What I need from you</h2>
+  <div class="dec"><h3>Which K ships</h3><p>Angular and Petal are the same monogram at different temperatures. Angular reads engineered and defence-adjacent; Petal reads organic and softer, closer to a life-sciences or research lab. I can build the book on one, or on one with the other recorded as an alternate.</p></div><div class="dec"><h3>Wordmark</h3><p>Both files carry the same stacked <em>Kronos Labs</em> in a heavy geometric grotesque. I can keep it verbatim as supplied, or reset it in the chosen brand face so the lockup and the headlines agree.</p></div><div class="dec"><h3>How dark</h3><p>HiddenLayer commits fully to dark — there is no light mode on the marketing site. Same for Kronos, or a light ground for documents and decks with dark reserved for the site?</p></div><div class="dec"><h3>Typeface budget</h3><p>HiddenLayer uses Degular, which is licensed. If Kronos will pay for a face I will spec one; otherwise I will pick the best open-licensed match and inline it, as with the other two books.</p></div>
+</div></section>
+
+<footer><div class="wrap">Kronos Labs · rebrand plan v0.1 · 18 September 2026 · no artwork redrawn</div></footer>

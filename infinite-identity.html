@@ -1,0 +1,1261 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Infinite Identity Routes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   INFINITE SOFTWARE SOLUTIONS — IDENTITY ROUTES
+   Light-committed by decision, not omission: this identity is ink
+   on paper first, screen second. No dark theme — see §14.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --paper:#FFFFFF;
+  --mist:#F4F7FD;
+  --ice:#E8EFFB;
+
+  --sky:#4FC7F2;
+  --cobalt:#2B5CF6;
+  --iris:#7A4DF5;
+  --orchid:#C07BF0;
+  --blush:#F7AFD2;
+
+  --ink:#0A1024;
+  --ink-70:#3B4260;
+  --ink-50:#666E8C;
+  --ink-35:#99A0B8;
+  --rule:#E0E8F6;
+  --rule-soft:#EFF3FB;
+
+  --ok:#1F9268;
+  --warn:#B07A00;
+  --crit:#CE3F35;
+
+  --ff:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --fm:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --maxw:1140px;
+  --gut:28px;
+
+  --mesh-frame:
+    radial-gradient(58% 68% at 12% 16%, #74D9F7 0%, rgba(116,217,247,0) 62%),
+    radial-gradient(54% 62% at 84% 20%, #CBA9F6 0%, rgba(203,169,246,0) 60%),
+    radial-gradient(68% 78% at 74% 90%, #F4B2D6 0%, rgba(244,178,214,0) 58%),
+    radial-gradient(64% 74% at 26% 84%, #3F7BF7 0%, rgba(63,123,247,0) 62%),
+    linear-gradient(135deg,#4FA8F2 0%,#5B7CF6 42%,#8E6BF3 72%,#BC92EF 100%);
+
+  --mesh:
+    radial-gradient(56% 50% at 12% 96%, #4FC7F2 0%, rgba(79,199,242,0) 60%),
+    radial-gradient(54% 50% at 42% 104%, #2B5CF6 0%, rgba(43,92,246,0) 62%),
+    radial-gradient(56% 52% at 74% 96%, #7A4DF5 0%, rgba(122,77,245,0) 62%),
+    radial-gradient(52% 48% at 98% 86%, #F7AFD2 0%, rgba(247,175,210,0) 60%),
+    linear-gradient(180deg,#FFFFFF 0%,#FAFCFE 28%,#EDF3FD 52%,#DCE7FA 68%,#BBC9F6 84%,#8E93EE 100%);
+}
+
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--ff);
+  font-weight:400;
+  font-size:15.5px;
+  line-height:1.66;
+  -webkit-font-smoothing:antialiased;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gut); }
+
+/* ── atoms ───────────────────────────────────────────────────── */
+/* Eyebrows are Figtree, never the mono face. */
+.lab{
+  font-family:var(--ff);
+  font-weight:700; font-size:10.5px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--cobalt); line-height:1.6;
+}
+.lab.q{ color:var(--ink-35); }
+.lab.w{ color:rgba(10,16,36,0.55); }
+
+.num{ font-family:var(--fm); font-weight:500; font-variant-numeric:tabular-nums; letter-spacing:0; }
+
+.lead{
+  font-weight:300; font-size:clamp(17px,2.1vw,20.5px); line-height:1.56;
+  color:var(--ink-70); max-width:64ch; margin:0; letter-spacing:-0.008em;
+}
+.lead b{ color:var(--ink); font-weight:600; }
+
+section{ padding-block:clamp(56px,7.2vw,94px); }
+section + section{ border-top:1px solid var(--rule-soft); }
+.tinted{ background:var(--mist); }
+
+.sec-head{ margin-bottom:clamp(28px,3.8vw,44px); }
+.sec-n{ display:block; margin-bottom:12px; }
+.sec-title{
+  font-weight:700; font-size:clamp(26px,4vw,40px);
+  letter-spacing:-0.035em; line-height:1.06;
+  margin:0 0 15px; color:var(--ink); text-wrap:balance;
+}
+
+/* ── hero ────────────────────────────────────────────────────── */
+.hero{
+  position:relative; overflow:hidden;
+  background:var(--mesh);
+  padding-block:clamp(60px,8vw,96px) clamp(88px,14vw,176px);
+}
+.hero .wrap{ position:relative; z-index:1; }
+.hero-mk{ display:flex; align-items:center; gap:clamp(14px,1.8vw,26px); margin:26px 0 clamp(26px,3.4vw,36px); flex-wrap:wrap; }
+.hero-mk svg{ height:clamp(58px,8.4vw,104px); width:auto; display:block; }
+.hero-wd{ font-weight:600; font-size:clamp(50px,9vw,116px); letter-spacing:-0.055em; line-height:0.84; color:var(--ink); }
+.hero-tag{
+  font-weight:300; font-size:clamp(19px,2.8vw,29px); line-height:1.32;
+  letter-spacing:-0.022em; color:var(--ink); max-width:23ch; margin:0; text-wrap:balance;
+}
+.hero-tag em{ font-style:normal; font-weight:600; }
+
+.rail{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:var(--rule); border:1px solid var(--rule);
+  margin-top:clamp(32px,4.6vw,52px); background-clip:padding-box;
+}
+.rail > div{ background:var(--paper); padding:17px 19px; }
+.rail .k{ display:block; margin-bottom:6px; }
+.rail .v{ font-weight:600; font-size:14px; letter-spacing:-0.006em; line-height:1.45; }
+@media (max-width:820px){ .rail{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:430px){ .rail{ grid-template-columns:1fr; } }
+
+/* ── cards ───────────────────────────────────────────────────── */
+.card{ background:var(--paper); border:1px solid var(--rule); border-radius:3px; }
+.card-hd{
+  display:flex; justify-content:space-between; align-items:center; gap:18px;
+  padding:13px 20px; border-bottom:1px solid var(--rule-soft);
+}
+.card-bd{ padding:clamp(22px,3.2vw,32px); }
+.tinted .card{ box-shadow:0 1px 2px rgba(10,16,36,0.03), 0 8px 26px rgba(43,92,246,0.06); }
+
+.c2{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.c3{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+@media (max-width:860px){ .c3{ grid-template-columns:1fr; } }
+@media (max-width:780px){ .c2{ grid-template-columns:1fr; } }
+
+/* ── routes (the three directions) ───────────────────────────── */
+.route-stage{
+  display:flex; align-items:center; justify-content:center;
+  min-height:190px; padding:26px; background:var(--paper);
+  border-bottom:1px solid var(--rule-soft);
+}
+.route-stage svg{ width:min(100%,232px); height:auto; display:block; }
+.route-bd{ padding:24px clamp(20px,2.6vw,26px) 26px; }
+.route-nm{ font-weight:700; font-size:21px; letter-spacing:-0.028em; margin:6px 0 10px; }
+.route-bd p{ margin:0 0 16px; color:var(--ink-70); font-size:14.5px; }
+.pros{ display:flex; flex-direction:column; gap:7px; margin-top:16px; padding-top:16px; border-top:1px solid var(--rule-soft); }
+.pros div{ display:flex; gap:9px; align-items:flex-start; font-size:13.5px; line-height:1.55; }
+.pros .m{ flex:none; font-weight:700; width:11px; }
+.pros .up .m{ color:var(--ok); }
+.pros .dn .m{ color:var(--crit); }
+.pros .up{ color:var(--ink-70); }
+.pros .dn{ color:var(--ink-50); }
+
+.verdict{
+  display:inline-flex; align-items:center; gap:8px;
+  font-weight:700; font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase;
+  padding:6px 11px; border-radius:2px;
+}
+.verdict.go{ color:var(--ok); background:rgba(31,146,104,0.1); }
+.verdict.alt{ color:var(--ink-50); background:var(--mist); }
+
+/* ── marks / sizes ───────────────────────────────────────────── */
+.sizes{ display:flex; align-items:flex-end; gap:clamp(24px,4.6vw,56px); flex-wrap:wrap; }
+.size-u{ display:flex; flex-direction:column; align-items:center; gap:13px; }
+.size-u svg{ display:block; width:auto; }
+
+.map-row{
+  display:grid; grid-template-columns:96px 200px 1fr; gap:clamp(20px,3vw,34px);
+  padding:27px 0; border-bottom:1px solid var(--rule-soft); align-items:start;
+}
+.map-row:first-child{ padding-top:0; }
+.map-row:last-child{ border-bottom:0; padding-bottom:0; }
+@media (max-width:880px){ .map-row{ grid-template-columns:80px 1fr; } .map-row .why{ grid-column:2; } }
+@media (max-width:540px){ .map-row{ grid-template-columns:1fr; gap:13px; } .map-row .why{ grid-column:1; } }
+.map-fig svg{ width:76px; height:auto; display:block; }
+.map-what{ font-weight:700; font-size:17.5px; letter-spacing:-0.022em; line-height:1.25; }
+.map-tag{ display:block; margin-top:8px; }
+.why{ color:var(--ink-70); margin:0; }
+.why b{ color:var(--ink); font-weight:600; }
+
+/* ── spec lists ──────────────────────────────────────────────── */
+.spec{ display:flex; flex-direction:column; }
+.spec-i{
+  display:flex; justify-content:space-between; align-items:baseline; gap:20px;
+  padding:12px 0; border-bottom:1px solid var(--rule-soft);
+}
+.spec-i:last-child{ border-bottom:0; }
+.spec-i .k{ color:var(--ink-50); font-size:14.5px; }
+.spec-i .v{ font-family:var(--fm); font-weight:500; font-size:13px; text-align:right; font-variant-numeric:tabular-nums; }
+
+/* ── lockups ─────────────────────────────────────────────────── */
+.lock{ display:flex; align-items:center; gap:18px; }
+.lock svg{ height:52px; width:auto; display:block; }
+.lock .wd{ font-weight:600; font-size:54px; letter-spacing:-0.052em; line-height:0.86; }
+.lock .wd small{ display:block; font-weight:600; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink-50); margin-top:9px; line-height:1; }
+
+.lock-v{ display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center; }
+.lock-v svg{ height:64px; width:auto; display:block; }
+.lock-v .wd{ font-weight:600; font-size:44px; letter-spacing:-0.05em; line-height:0.9; }
+.lock-v .wd small{ display:block; font-weight:600; font-size:10px; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-50); margin-top:9px; line-height:1; }
+
+.ab{ display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+.ab > div{ background:var(--paper); padding:28px 24px; display:flex; flex-direction:column; gap:20px; }
+.ab .t{ display:block; }
+
+/* ── misuse ──────────────────────────────────────────────────── */
+.dont .card-bd{ display:flex; align-items:center; justify-content:center; min-height:150px; }
+.dont-cap{ padding:13px 20px; border-top:1px solid var(--rule-soft); color:var(--ink-50); display:flex; gap:10px; font-size:14px; }
+.xm{ color:var(--crit); font-weight:700; flex:none; }
+
+/* ── colour ──────────────────────────────────────────────────── */
+.swatches{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); }
+@media (max-width:920px){ .swatches{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:480px){ .swatches{ grid-template-columns:1fr; } }
+.sw{ background:var(--paper); display:flex; flex-direction:column; }
+.sw-chip{ height:120px; }
+.sw-meta{ padding:15px 17px 18px; }
+.sw-n{ font-weight:700; font-size:15px; letter-spacing:-0.018em; }
+.sw-r{ font-size:13px; color:var(--ink-35); margin-bottom:10px; line-height:1.5; }
+.sw-v{ display:flex; flex-direction:column; gap:2px; font-family:var(--fm); font-size:12px; color:var(--ink-50); }
+.ramp{ height:90px; border:1px solid var(--rule); background:var(--mesh); }
+
+/* ── type ────────────────────────────────────────────────────── */
+.trow{
+  display:grid; grid-template-columns:182px 1fr; gap:clamp(18px,3vw,32px);
+  padding:25px 0; border-bottom:1px solid var(--rule-soft); align-items:baseline;
+}
+.trow:first-child{ padding-top:0; }
+.trow:last-child{ border-bottom:0; padding-bottom:0; }
+@media (max-width:740px){ .trow{ grid-template-columns:1fr; gap:9px; } }
+.tkey .n{ display:block; font-weight:700; font-size:14px; letter-spacing:-0.012em; }
+.tkey .d{ display:block; color:var(--ink-35); font-size:13px; line-height:1.6; }
+.s-disp{ font-weight:700; font-size:clamp(30px,4.4vw,44px); letter-spacing:-0.042em; line-height:1.04; }
+.s-head{ font-weight:600; font-size:23px; letter-spacing:-0.028em; }
+.s-body{ font-weight:400; font-size:15.5px; color:var(--ink-70); max-width:60ch; }
+.s-lab{ font-weight:700; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--cobalt); }
+.s-val{ font-family:var(--fm); font-weight:500; font-size:16px; color:var(--ink-70); font-variant-numeric:tabular-nums; }
+.glyphs{ font-weight:500; font-size:clamp(24px,3.7vw,36px); letter-spacing:0.02em; line-height:1.5; word-break:break-word; color:var(--ink-70); }
+.glyphs .b{ font-weight:800; color:var(--ink); }
+.glyphs .l{ font-weight:300; }
+
+/* ── applications ────────────────────────────────────────────── */
+.icons{ display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+.appicon{ width:102px; height:102px; border-radius:23px; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(43,92,246,0.2); }
+.appicon svg{ height:50px; width:auto; display:block; }
+.appicon.grad{ background:var(--mesh); }
+.appicon.ink{ background:var(--ink); }
+.appicon.paper{ background:var(--paper); border:1px solid var(--rule); }
+
+.bcard{
+  aspect-ratio:1.75/1; padding:clamp(18px,2.6vw,24px);
+  display:flex; flex-direction:column; justify-content:space-between;
+  border-radius:3px; box-shadow:0 10px 28px rgba(43,92,246,0.16);
+}
+.bcard.g{ background:var(--mesh); }
+.bcard.i{ background:var(--ink); color:rgba(255,255,255,0.7); align-items:center; justify-content:center; }
+.bcard.i svg{ height:54px; width:auto; }
+.bc-t{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+.bcard svg{ height:26px; width:auto; flex:none; }
+.bcard .nm{ font-weight:700; font-size:15px; letter-spacing:-0.018em; color:var(--ink); }
+.bcard .rl{ font-size:13px; color:var(--ink-50); }
+.bcard .ct{ font-family:var(--fm); font-size:11.5px; color:var(--ink-70); line-height:1.8; }
+
+.sig{ border:1px solid var(--rule); background:var(--paper); padding:22px 24px; display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; }
+.sig svg{ height:40px; width:auto; flex:none; }
+.sig-b{ border-left:1px solid var(--rule); padding-left:20px; }
+.sig-n{ font-weight:700; font-size:15px; letter-spacing:-0.018em; }
+.sig-r{ font-size:13.5px; color:var(--ink-50); margin-bottom:7px; }
+.sig-c{ font-family:var(--fm); font-size:11.5px; color:var(--ink-70); line-height:1.75; }
+@media (max-width:560px){ .sig-b{ border-left:0; padding-left:0; } }
+
+/* ── voice ───────────────────────────────────────────────────── */
+.vrow{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3.4vw,38px); padding:23px 0; border-bottom:1px solid var(--rule-soft); }
+.vrow:first-child{ padding-top:0; }
+.vrow:last-child{ border-bottom:0; padding-bottom:0; }
+@media (max-width:740px){ .vrow{ grid-template-columns:1fr; gap:13px; } }
+.vy{ font-size:15.5px; }
+.vn{ font-size:15.5px; color:var(--ink-35); }
+.vn s{ text-decoration:line-through; text-decoration-color:var(--crit); text-decoration-thickness:1px; }
+.vl{ display:block; margin-bottom:7px; }
+
+/* ── flags / tables ──────────────────────────────────────────── */
+.flags{ display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+.flag{ display:grid; grid-template-columns:112px 1fr; gap:22px; padding:23px; background:var(--paper); }
+@media (max-width:640px){ .flag{ grid-template-columns:1fr; gap:9px; } }
+.flag p{ margin:0; color:var(--ink-70); max-width:74ch; }
+.flag b{ color:var(--ink); font-weight:600; }
+
+.tscroll{ overflow-x:auto; }
+table.cmp{ width:100%; border-collapse:collapse; min-width:600px; }
+table.cmp th{
+  text-align:left; font-weight:700; font-size:10.5px; letter-spacing:0.17em;
+  text-transform:uppercase; color:var(--ink-35); padding:0 20px 12px 0;
+  border-bottom:1px solid var(--rule); white-space:nowrap;
+}
+table.cmp td{ padding:15px 20px 15px 0; border-bottom:1px solid var(--rule-soft); color:var(--ink-70); font-size:14px; vertical-align:top; }
+table.cmp tr:last-child td{ border-bottom:0; }
+table.cmp td.nm{ color:var(--ink); font-weight:600; white-space:nowrap; }
+
+.frow{ display:flex; justify-content:space-between; align-items:baseline; gap:20px; padding:13px 0; border-bottom:1px solid var(--rule-soft); }
+.frow:last-child{ border-bottom:0; }
+.frow .fn{ font-weight:600; }
+.frow .fd{ color:var(--ink-35); font-size:13px; text-align:right; font-family:var(--fm); }
+
+.frame{
+  background:var(--mesh-frame);
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(56px,10vw,120px) var(--gut);
+  min-height:clamp(330px,46vw,560px);
+}
+.frame .lock{ gap:clamp(15px,2.3vw,30px); }
+.frame .lock svg{ height:clamp(54px,8.4vw,112px); }
+.frame .lock .wd{ font-size:clamp(54px,9.4vw,128px); color:#FFFFFF; }
+.frame .lock .wd small{
+  color:rgba(255,255,255,0.8); letter-spacing:0.3em;
+  font-size:clamp(10px,1.05vw,15px); margin-top:clamp(11px,1.3vw,17px);
+}
+@media (max-width:560px){ .frame .lock{ flex-direction:column; text-align:center; } }
+
+footer{ padding-block:40px 64px; border-top:1px solid var(--rule-soft); }
+.foot{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+
+a{ color:var(--cobalt); text-underline-offset:3px; }
+:focus-visible{ outline:2px solid var(--cobalt); outline-offset:3px; }
+@media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } }
+
+/* ── print: A4, one section per page ─────────────────────────── */
+@page{ size:A4 portrait; margin:0; }
+@media print{
+  body{ font-size:10.5pt; line-height:1.58; }
+  .wrap{ max-width:none; padding-inline:16mm; }
+  section{ padding-block:13mm; }
+  section, .hero{ break-after:page; page-break-after:always; }
+  section:last-of-type{ break-after:auto; page-break-after:auto; }
+  .hero{ min-height:297mm; padding-block:0; display:flex; flex-direction:column; justify-content:center; }
+  .card,.flag,.map-row,.trow,.vrow,.sw,.route{ break-inside:avoid; page-break-inside:avoid; }
+  .c2,.c3{ grid-template-columns:repeat(2,1fr); }
+  .c3{ grid-template-columns:repeat(3,1fr); }
+  .tinted{ background:var(--mist); }
+  footer{ break-before:avoid; }
+}
+</style>
+
+<style>
+:root{
+  --rb-front:var(--ink);
+  --rb-back:#B6C4E9;
+  --mk-fill:var(--ink);
+  --mk-stroke:var(--ink);
+  --mk-accent:var(--cobalt);
+  --mk-sw:13;
+}
+.on-ink{ --rb-front:#FFFFFF; --rb-back:url(#gBandWhiteBack); --mk-fill:#FFFFFF; --mk-stroke:#FFFFFF; --mk-accent:#FFFFFF; }
+.on-grad{ --rb-front:var(--ink); --rb-back:url(#gBandInkBack); --mk-fill:var(--ink); --mk-stroke:var(--ink); --mk-accent:var(--ink); }
+.in-colour{ --rb-front:url(#gBand); --rb-back:url(#gBandBack); }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gBand" gradientUnits="userSpaceOnUse" x1="13" y1="0" x2="197" y2="0">
+      <stop offset="0" stop-color="#4FC7F2"/>
+      <stop offset="0.34" stop-color="#2B5CF6"/>
+      <stop offset="0.67" stop-color="#7A4DF5"/>
+      <stop offset="1.0" stop-color="#C07BF0"/>
+    </linearGradient>
+    <linearGradient id="gBandWhiteBack" gradientUnits="userSpaceOnUse" x1="13" y1="0" x2="197" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.30"/>
+      <stop offset="0.25" stop-color="#FFFFFF" stop-opacity="0.44"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.60"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.60"/>
+    </linearGradient>
+    <linearGradient id="gBandInkBack" gradientUnits="userSpaceOnUse" x1="13" y1="0" x2="197" y2="0">
+      <stop offset="0" stop-color="#0A1024" stop-opacity="0.20"/>
+      <stop offset="0.25" stop-color="#0A1024" stop-opacity="0.31"/>
+      <stop offset="0.5" stop-color="#0A1024" stop-opacity="0.44"/>
+      <stop offset="1" stop-color="#0A1024" stop-opacity="0.44"/>
+    </linearGradient>
+    <linearGradient id="gBandBack" gradientUnits="userSpaceOnUse" x1="13" y1="0" x2="197" y2="0">
+      <stop offset="0" stop-color="#BCEAFA"/>
+      <stop offset="0.12" stop-color="#A7D3F9"/>
+      <stop offset="0.25" stop-color="#8EB3F9"/>
+      <stop offset="0.38" stop-color="#7B93F9"/>
+      <stop offset="0.5" stop-color="#7E81F8"/>
+      <stop offset="1.0" stop-color="#7E81F8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ROUTE C · CONTINUUM — one band, one half-twist, no seam -->
+  <symbol id="mk" viewBox="0 0 210 130">
+    <path d="M 109.7 60.8 L 106.9 57.2 L 104.1 53.6 L 101.3 50.1 L 98.5 46.5 L 95.7 43.1 L 92.9 39.6 L 90.1 36.3 L 87.3 33.0 L 84.5 29.8 L 81.7 26.7 L 78.9 23.8 L 76.1 20.9 L 73.3 18.2 L 70.5 15.7 L 67.7 13.3 L 64.8 11.0 L 61.9 9.0 L 59.0 7.1 L 56.1 5.4 L 53.0 3.9 L 49.9 2.6 L 46.7 1.6 L 43.3 0.9 L 39.9 0.5 L 36.5 0.5 L 33.0 0.9 L 29.6 1.7 L 26.3 2.9 L 23.1 4.4 L 20.2 6.3 L 17.5 8.4 L 15.0 10.8 L 12.7 13.4 L 10.6 16.1 L 8.8 19.0 L 7.1 22.0 L 5.6 25.2 L 4.2 28.4 L 3.0 31.8 L 1.9 35.2 L 1.0 38.8 L 0.2 42.4 L -0.5 46.0 L -1.0 49.8 L -1.5 53.5 L -1.8 57.3 L -1.9 61.2 L -2.0 65.0 L -1.9 68.8 L -1.8 72.7 L -1.5 76.5 L -1.0 80.2 L -0.5 84.0 L 0.2 87.6 L 1.0 91.2 L 1.9 94.8 L 3.0 98.2 L 4.2 101.6 L 5.6 104.8 L 7.1 108.0 L 8.8 111.0 L 10.6 113.9 L 12.7 116.6 L 15.0 119.2 L 17.5 121.6 L 20.2 123.7 L 23.1 125.6 L 26.3 127.1 L 29.6 128.3 L 33.0 129.1 L 36.5 129.5 L 39.9 129.5 L 43.3 129.1 L 46.7 128.4 L 49.9 127.4 L 53.0 126.1 L 56.1 124.6 L 59.0 122.9 L 61.9 121.0 L 64.8 119.0 L 67.7 116.7 L 70.5 114.3 L 73.3 111.8 L 76.1 109.1 L 78.9 106.2 L 81.7 103.3 L 84.5 100.2 L 87.3 97.0 L 90.1 93.7 L 92.9 90.4 L 95.7 86.9 L 98.5 83.5 L 101.3 79.9 L 104.1 76.4 L 106.9 72.8 L 109.7 69.2 L 100.3 60.8 L 97.1 64.0 L 93.9 67.2 L 90.7 70.4 L 87.5 73.5 L 84.3 76.5 L 81.2 79.4 L 78.1 82.3 L 75.1 85.0 L 72.1 87.6 L 69.2 90.1 L 66.3 92.4 L 63.5 94.5 L 60.8 96.4 L 58.1 98.2 L 55.6 99.8 L 53.2 101.1 L 50.9 102.2 L 48.7 103.2 L 46.8 103.9 L 45.0 104.3 L 43.4 104.6 L 42.0 104.7 L 40.9 104.7 L 39.9 104.5 L 39.2 104.3 L 38.6 104.0 L 38.2 103.7 L 37.7 103.3 L 37.3 102.9 L 36.8 102.4 L 36.3 101.7 L 35.7 100.9 L 35.0 99.8 L 34.4 98.6 L 33.6 97.2 L 32.9 95.6 L 32.2 93.8 L 31.6 91.8 L 30.9 89.6 L 30.3 87.2 L 29.8 84.8 L 29.3 82.2 L 28.9 79.5 L 28.6 76.7 L 28.3 73.8 L 28.2 70.9 L 28.0 68.0 L 28.0 65.0 L 28.0 62.0 L 28.2 59.1 L 28.3 56.2 L 28.6 53.3 L 28.9 50.5 L 29.3 47.8 L 29.8 45.2 L 30.3 42.8 L 30.9 40.4 L 31.6 38.2 L 32.2 36.2 L 32.9 34.4 L 33.6 32.8 L 34.4 31.4 L 35.0 30.2 L 35.7 29.1 L 36.3 28.3 L 36.8 27.6 L 37.3 27.1 L 37.7 26.7 L 38.2 26.3 L 38.6 26.0 L 39.2 25.7 L 39.9 25.5 L 40.9 25.3 L 42.0 25.3 L 43.4 25.4 L 45.0 25.7 L 46.8 26.1 L 48.7 26.8 L 50.9 27.8 L 53.2 28.9 L 55.6 30.2 L 58.1 31.8 L 60.8 33.6 L 63.5 35.5 L 66.3 37.6 L 69.2 39.9 L 72.1 42.4 L 75.1 45.0 L 78.1 47.7 L 81.2 50.6 L 84.3 53.5 L 87.5 56.5 L 90.7 59.6 L 93.9 62.8 L 97.1 66.0 L 100.3 69.2 Z" fill="var(--rb-back)"/>
+    <path d="M 109.7 69.2 L 112.9 66.0 L 116.1 62.8 L 119.3 59.6 L 122.5 56.5 L 125.7 53.5 L 128.8 50.6 L 131.9 47.7 L 134.9 45.0 L 137.9 42.4 L 140.8 39.9 L 143.7 37.6 L 146.5 35.5 L 149.2 33.6 L 151.9 31.8 L 154.4 30.2 L 156.8 28.9 L 159.1 27.8 L 161.3 26.8 L 163.2 26.1 L 165.0 25.7 L 166.6 25.4 L 168.0 25.3 L 169.1 25.3 L 170.1 25.5 L 170.8 25.7 L 171.4 26.0 L 171.8 26.3 L 172.3 26.7 L 172.7 27.1 L 173.2 27.6 L 173.7 28.3 L 174.3 29.1 L 175.0 30.2 L 175.6 31.4 L 176.4 32.8 L 177.1 34.4 L 177.8 36.2 L 178.4 38.2 L 179.1 40.4 L 179.7 42.8 L 180.2 45.2 L 180.7 47.8 L 181.1 50.5 L 181.4 53.3 L 181.7 56.2 L 181.8 59.1 L 182.0 62.0 L 182.0 65.0 L 182.0 68.0 L 181.8 70.9 L 181.7 73.8 L 181.4 76.7 L 181.1 79.5 L 180.7 82.2 L 180.2 84.8 L 179.7 87.2 L 179.1 89.6 L 178.4 91.8 L 177.8 93.8 L 177.1 95.6 L 176.4 97.2 L 175.6 98.6 L 175.0 99.8 L 174.3 100.9 L 173.7 101.7 L 173.2 102.4 L 172.7 102.9 L 172.3 103.3 L 171.8 103.7 L 171.4 104.0 L 170.8 104.3 L 170.1 104.5 L 169.1 104.7 L 168.0 104.7 L 166.6 104.6 L 165.0 104.3 L 163.2 103.9 L 161.3 103.2 L 159.1 102.2 L 156.8 101.1 L 154.4 99.8 L 151.9 98.2 L 149.2 96.4 L 146.5 94.5 L 143.7 92.4 L 140.8 90.1 L 137.9 87.6 L 134.9 85.0 L 131.9 82.3 L 128.8 79.4 L 125.7 76.5 L 122.5 73.5 L 119.3 70.4 L 116.1 67.2 L 112.9 64.0 L 109.7 60.8 L 100.3 69.2 L 103.1 72.8 L 105.9 76.4 L 108.7 79.9 L 111.5 83.5 L 114.3 86.9 L 117.1 90.4 L 119.9 93.7 L 122.7 97.0 L 125.5 100.2 L 128.3 103.3 L 131.1 106.2 L 133.9 109.1 L 136.7 111.8 L 139.5 114.3 L 142.3 116.7 L 145.2 119.0 L 148.1 121.0 L 151.0 122.9 L 153.9 124.6 L 157.0 126.1 L 160.1 127.4 L 163.3 128.4 L 166.7 129.1 L 170.1 129.5 L 173.5 129.5 L 177.0 129.1 L 180.4 128.3 L 183.7 127.1 L 186.9 125.6 L 189.8 123.7 L 192.5 121.6 L 195.0 119.2 L 197.3 116.6 L 199.4 113.9 L 201.2 111.0 L 202.9 108.0 L 204.4 104.8 L 205.8 101.6 L 207.0 98.2 L 208.1 94.8 L 209.0 91.2 L 209.8 87.6 L 210.5 84.0 L 211.0 80.2 L 211.5 76.5 L 211.8 72.7 L 211.9 68.8 L 212.0 65.0 L 211.9 61.2 L 211.8 57.3 L 211.5 53.5 L 211.0 49.8 L 210.5 46.0 L 209.8 42.4 L 209.0 38.8 L 208.1 35.2 L 207.0 31.8 L 205.8 28.4 L 204.4 25.2 L 202.9 22.0 L 201.2 19.0 L 199.4 16.1 L 197.3 13.4 L 195.0 10.8 L 192.5 8.4 L 189.8 6.3 L 186.9 4.4 L 183.7 2.9 L 180.4 1.7 L 177.0 0.9 L 173.5 0.5 L 170.1 0.5 L 166.7 0.9 L 163.3 1.6 L 160.1 2.6 L 157.0 3.9 L 153.9 5.4 L 151.0 7.1 L 148.1 9.0 L 145.2 11.0 L 142.3 13.3 L 139.5 15.7 L 136.7 18.2 L 133.9 20.9 L 131.1 23.8 L 128.3 26.7 L 125.5 29.8 L 122.7 33.0 L 119.9 36.3 L 117.1 39.6 L 114.3 43.1 L 111.5 46.5 L 108.7 50.1 L 105.9 53.6 L 103.1 57.2 L 100.3 60.8 Z" fill="var(--rb-front)"/>
+  </symbol>
+
+  <!-- ROUTE A · FIELD — lemniscate resolved as a scanned field -->
+  <symbol id="mk-field" viewBox="0 0 210 130">
+    <g fill="var(--mk-fill)">
+      <rect x="32.4" y="13.6" width="16.1" height="2.1" rx="1.1"/>
+      <rect x="161.5" y="13.6" width="16.1" height="2.1" rx="1.1"/>
+      <rect x="27.0" y="17.1" width="29.1" height="2.1" rx="1.1"/>
+      <rect x="153.9" y="17.1" width="29.1" height="2.1" rx="1.1"/>
+      <rect x="23.8" y="20.7" width="37.8" height="2.1" rx="1.1"/>
+      <rect x="148.3" y="20.7" width="37.8" height="2.1" rx="1.1"/>
+      <rect x="21.5" y="24.3" width="44.9" height="2.1" rx="1.1"/>
+      <rect x="143.6" y="24.3" width="44.9" height="2.1" rx="1.1"/>
+      <rect x="19.6" y="27.9" width="51.0" height="2.1" rx="1.1"/>
+      <rect x="139.3" y="27.9" width="51.0" height="2.1" rx="1.1"/>
+      <rect x="18.2" y="31.6" width="56.5" height="2.1" rx="1.1"/>
+      <rect x="135.4" y="31.6" width="56.5" height="2.1" rx="1.1"/>
+      <rect x="16.8" y="35.2" width="61.6" height="2.1" rx="1.1"/>
+      <rect x="131.6" y="35.2" width="61.6" height="2.1" rx="1.1"/>
+      <rect x="15.0" y="38.8" width="67.0" height="2.1" rx="1.1"/>
+      <rect x="128.0" y="38.8" width="67.0" height="2.1" rx="1.1"/>
+      <rect x="12.6" y="42.4" width="72.8" height="2.1" rx="1.1"/>
+      <rect x="124.6" y="42.4" width="72.8" height="2.1" rx="1.1"/>
+      <rect x="9.8" y="46.0" width="79.0" height="2.1" rx="1.1"/>
+      <rect x="121.2" y="46.0" width="79.0" height="2.1" rx="1.1"/>
+      <rect x="6.4" y="49.6" width="85.8" height="2.1" rx="1.1"/>
+      <rect x="117.9" y="49.6" width="85.8" height="2.1" rx="1.1"/>
+      <rect x="2.4" y="53.2" width="93.0" height="2.1" rx="1.1"/>
+      <rect x="114.6" y="53.2" width="93.0" height="2.1" rx="1.1"/>
+      <rect x="-2.2" y="56.8" width="100.8" height="2.1" rx="1.1"/>
+      <rect x="111.4" y="56.8" width="100.8" height="2.1" rx="1.1"/>
+      <rect x="-7.3" y="60.4" width="109.1" height="2.1" rx="1.1"/>
+      <rect x="108.2" y="60.4" width="109.1" height="2.1" rx="1.1"/>
+      <rect x="-13.0" y="64.0" width="236.0" height="2.1" rx="1.1"/>
+      <rect x="-7.3" y="67.5" width="109.1" height="2.1" rx="1.1"/>
+      <rect x="108.2" y="67.5" width="109.1" height="2.1" rx="1.1"/>
+      <rect x="-2.2" y="71.2" width="100.8" height="2.1" rx="1.1"/>
+      <rect x="111.4" y="71.2" width="100.8" height="2.1" rx="1.1"/>
+      <rect x="2.4" y="74.8" width="93.0" height="2.1" rx="1.1"/>
+      <rect x="114.6" y="74.8" width="93.0" height="2.1" rx="1.1"/>
+      <rect x="6.4" y="78.4" width="85.8" height="2.1" rx="1.1"/>
+      <rect x="117.9" y="78.4" width="85.8" height="2.1" rx="1.1"/>
+      <rect x="9.8" y="82.0" width="79.0" height="2.1" rx="1.1"/>
+      <rect x="121.2" y="82.0" width="79.0" height="2.1" rx="1.1"/>
+      <rect x="12.6" y="85.5" width="72.8" height="2.1" rx="1.1"/>
+      <rect x="124.6" y="85.5" width="72.8" height="2.1" rx="1.1"/>
+      <rect x="15.0" y="89.2" width="67.0" height="2.1" rx="1.1"/>
+      <rect x="128.0" y="89.2" width="67.0" height="2.1" rx="1.1"/>
+      <rect x="16.8" y="92.8" width="61.6" height="2.1" rx="1.1"/>
+      <rect x="131.6" y="92.8" width="61.6" height="2.1" rx="1.1"/>
+      <rect x="18.2" y="96.4" width="56.5" height="2.1" rx="1.1"/>
+      <rect x="135.4" y="96.4" width="56.5" height="2.1" rx="1.1"/>
+      <rect x="19.6" y="100.0" width="51.0" height="2.1" rx="1.1"/>
+      <rect x="139.3" y="100.0" width="51.0" height="2.1" rx="1.1"/>
+      <rect x="21.5" y="103.5" width="44.9" height="2.1" rx="1.1"/>
+      <rect x="143.6" y="103.5" width="44.9" height="2.1" rx="1.1"/>
+      <rect x="23.8" y="107.2" width="37.8" height="2.1" rx="1.1"/>
+      <rect x="148.3" y="107.2" width="37.8" height="2.1" rx="1.1"/>
+      <rect x="27.0" y="110.8" width="29.1" height="2.1" rx="1.1"/>
+      <rect x="153.9" y="110.8" width="29.1" height="2.1" rx="1.1"/>
+      <rect x="32.4" y="114.4" width="16.1" height="2.1" rx="1.1"/>
+      <rect x="161.5" y="114.4" width="16.1" height="2.1" rx="1.1"/>
+    </g>
+  </symbol>
+
+  <!-- ROUTE A · FIELD, solid state for small sizes -->
+  <symbol id="mk-field-solid" viewBox="0 0 210 130">
+    <path d="M 197.0 65.0 L 197.0 68.3 L 196.8 71.5 L 196.6 74.7 L 196.3 77.9 L 195.9 81.1 L 195.4 84.1 L 194.8 87.1 L 194.1 90.1 L 193.3 92.9 L 192.5 95.6 L 191.6 98.1 L 190.5 100.6 L 189.4 102.9 L 188.2 105.1 L 187.0 107.1 L 185.6 108.9 L 184.2 110.6 L 182.7 112.1 L 181.1 113.3 L 179.4 114.5 L 177.7 115.4 L 175.9 116.1 L 174.0 116.6 L 172.1 116.9 L 170.1 117.0 L 168.0 116.9 L 165.8 116.6 L 163.6 116.1 L 161.4 115.4 L 159.1 114.5 L 156.7 113.3 L 154.3 112.1 L 151.8 110.6 L 149.3 108.9 L 146.8 107.1 L 144.2 105.1 L 141.5 102.9 L 138.9 100.6 L 136.2 98.1 L 133.4 95.6 L 130.7 92.9 L 127.9 90.1 L 125.1 87.1 L 122.2 84.1 L 119.4 81.1 L 116.5 77.9 L 113.7 74.7 L 110.8 71.5 L 107.9 68.3 L 105.0 65.0 L 102.1 61.7 L 99.2 58.5 L 96.3 55.3 L 93.5 52.1 L 90.6 48.9 L 87.8 45.9 L 84.9 42.9 L 82.1 39.9 L 79.3 37.1 L 76.6 34.4 L 73.8 31.9 L 71.1 29.4 L 68.5 27.1 L 65.8 24.9 L 63.2 22.9 L 60.7 21.1 L 58.2 19.4 L 55.7 17.9 L 53.3 16.7 L 50.9 15.5 L 48.6 14.6 L 46.4 13.9 L 44.2 13.4 L 42.0 13.1 L 39.9 13.0 L 37.9 13.1 L 36.0 13.4 L 34.1 13.9 L 32.3 14.6 L 30.6 15.5 L 28.9 16.7 L 27.3 17.9 L 25.8 19.4 L 24.4 21.1 L 23.0 22.9 L 21.8 24.9 L 20.6 27.1 L 19.5 29.4 L 18.4 31.9 L 17.5 34.4 L 16.7 37.1 L 15.9 39.9 L 15.2 42.9 L 14.6 45.9 L 14.1 48.9 L 13.7 52.1 L 13.4 55.3 L 13.2 58.5 L 13.0 61.7 L 13.0 65.0 L 13.0 68.3 L 13.2 71.5 L 13.4 74.7 L 13.7 77.9 L 14.1 81.1 L 14.6 84.1 L 15.2 87.1 L 15.9 90.1 L 16.7 92.9 L 17.5 95.6 L 18.4 98.1 L 19.5 100.6 L 20.6 102.9 L 21.8 105.1 L 23.0 107.1 L 24.4 108.9 L 25.8 110.6 L 27.3 112.1 L 28.9 113.3 L 30.6 114.5 L 32.3 115.4 L 34.1 116.1 L 36.0 116.6 L 37.9 116.9 L 39.9 117.0 L 42.0 116.9 L 44.2 116.6 L 46.4 116.1 L 48.6 115.4 L 50.9 114.5 L 53.3 113.3 L 55.7 112.1 L 58.2 110.6 L 60.7 108.9 L 63.2 107.1 L 65.8 105.1 L 68.5 102.9 L 71.1 100.6 L 73.8 98.1 L 76.6 95.6 L 79.3 92.9 L 82.1 90.1 L 84.9 87.1 L 87.8 84.1 L 90.6 81.1 L 93.5 77.9 L 96.3 74.7 L 99.2 71.5 L 102.1 68.3 L 105.0 65.0 L 107.9 61.7 L 110.8 58.5 L 113.7 55.3 L 116.5 52.1 L 119.4 48.9 L 122.2 45.9 L 125.1 42.9 L 127.9 39.9 L 130.7 37.1 L 133.4 34.4 L 136.2 31.9 L 138.9 29.4 L 141.5 27.1 L 144.2 24.9 L 146.8 22.9 L 149.3 21.1 L 151.8 19.4 L 154.3 17.9 L 156.7 16.7 L 159.1 15.5 L 161.4 14.6 L 163.6 13.9 L 165.8 13.4 L 168.0 13.1 L 170.1 13.0 L 172.1 13.1 L 174.0 13.4 L 175.9 13.9 L 177.7 14.6 L 179.4 15.5 L 181.1 16.7 L 182.7 17.9 L 184.2 19.4 L 185.6 21.1 L 187.0 22.9 L 188.2 24.9 L 189.4 27.1 L 190.5 29.4 L 191.6 31.9 L 192.5 34.4 L 193.3 37.1 L 194.1 39.9 L 194.8 42.9 L 195.4 45.9 L 195.9 48.9 L 196.3 52.1 L 196.6 55.3 L 196.8 58.5 L 197.0 61.7 L 197.0 65.0 Z" fill="var(--mk-fill)"/>
+  </symbol>
+
+  <!-- ROUTE B · MERIDIAN — two rotated squares, one shared node -->
+  <symbol id="mk-meridian" viewBox="0 0 210 130">
+    <g fill="none" stroke="var(--mk-stroke)" stroke-width="13" stroke-linejoin="miter">
+      <path d="M 75 14 L 126 65 L 75 116 L 24 65 Z"/>
+      <path d="M 135 14 L 186 65 L 135 116 L 84 65 Z"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="lab">Infinite · Identity routes · v0.1</span>
+    <div class="hero-mk in-colour">
+      <svg viewBox="0 0 210 130" role="img" aria-label="Infinite logomark"><use href="#mk"/></svg>
+      <span class="hero-wd">Infinite</span>
+    </div>
+    <p class="hero-tag">The work doesn't stop at handover. <em>Neither does the mark.</em></p>
+    <div class="rail">
+      <div><span class="lab q k">Routes</span><span class="v">Three, one recommended</span></div>
+      <div><span class="lab q k">Ground</span><span class="v">Light, ink on paper</span></div>
+      <div><span class="lab q k">Typeface</span><span class="v">Figtree, one family</span></div>
+      <div><span class="lab q k">Date</span><span class="v">15 September 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ 01 THE LANDSCAPE ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">01</span>
+      <h2 class="sec-title">What we're standing next to</h2>
+      <p class="lead">Infinite competes for the same briefs as <b>Devsinc</b>, <b>10Pearls</b> and <b>TKXEL</b>.
+        Buyers shortlist three or four firms at once, so the identity's first job is not to be beautiful —
+        it is to be <b>told apart</b> on a slide where all four logos sit in a row.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <span class="lab q">Category read</span>
+        <span class="lab q">Verify against current sites before the deck ships</span>
+      </div>
+      <div class="card-bd">
+        <div class="tscroll">
+          <table class="cmp">
+            <thead>
+              <tr><th>Pattern</th><th>Where it shows up</th><th>What it costs them</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="nm">Abstract glyph + grotesque</td>
+                <td>A geometric symbol with no argument behind it, set beside a neutral sans.</td>
+                <td>Interchangeable. Swap the logos between decks and nobody notices.</td>
+              </tr>
+              <tr>
+                <td class="nm">Scale as the pitch</td>
+                <td>Headcount, delivery-centre count, years-in-business across the hero.</td>
+                <td>Every competitor claims it, so it stops being a claim.</td>
+              </tr>
+              <tr>
+                <td class="nm">Warm corporate palette</td>
+                <td>Orange, amber and red-leaning accents dominate the local category.</td>
+                <td>Leaves the cool end of the spectrum genuinely open.</td>
+              </tr>
+              <tr>
+                <td class="nm">Stock-photo humanism</td>
+                <td>Meeting rooms, laptops, handshakes.</td>
+                <td>No proprietary visual asset. Nothing to recognise at 200 metres.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="c3" style="margin-top:20px">
+      <div class="card"><div class="card-bd">
+        <span class="lab">Opening 01</span>
+        <p class="why" style="margin-top:10px">Go <b>cool</b>. The category is warm. A blue-to-violet system is
+          differentiating on a shortlist slide before a single word is read.</p>
+      </div></div>
+      <div class="card"><div class="card-bd">
+        <span class="lab">Opening 02</span>
+        <p class="why" style="margin-top:10px">Own the <b>name</b>. Nobody else can use the lemniscate honestly.
+          For a company called Infinite it is not a cliché to dodge — it is equity to claim.</p>
+      </div></div>
+      <div class="card"><div class="card-bd">
+        <span class="lab">Opening 03</span>
+        <p class="why" style="margin-top:10px">Build a <b>system</b>, not a logo. The competitors have marks.
+          None of them have a recognisable second page.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 POSITION ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">02</span>
+      <h2 class="sec-title">The idea the mark has to carry</h2>
+      <p class="lead">A services company sells one thing that is hard to photograph: <b>continuity</b>.
+        The team that scoped it is the team that ships it, and it is still there in month thirty.
+        That is the promise the shortlist is actually testing.</p>
+    </div>
+
+    <div class="c2">
+      <div class="card"><div class="card-bd">
+        <span class="lab">Positioning line</span>
+        <p style="font-weight:300;font-size:clamp(21px,3vw,28px);line-height:1.3;letter-spacing:-0.025em;margin:14px 0 0;text-wrap:balance">
+          Not a vendor you hand off to. <b style="font-weight:600">A team that doesn't drop the thread.</b></p>
+      </div></div>
+      <div class="card"><div class="card-bd">
+        <span class="lab q">What that rules out</span>
+        <div class="spec" style="margin-top:12px">
+          <div class="spec-i"><span class="k">Rockets, orbits, launch metaphors</span><span class="v">start-up, not partner</span></div>
+          <div class="spec-i"><span class="k">Nodes, networks, circuit traces</span><span class="v">infrastructure, not service</span></div>
+          <div class="spec-i"><span class="k">Upward arrows and growth curves</span><span class="v">their outcome, not our behaviour</span></div>
+          <div class="spec-i"><span class="k">Shields, ticks, badges</span><span class="v">compliance, not craft</span></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 THREE ROUTES ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">03</span>
+      <h2 class="sec-title">Three routes</h2>
+      <p class="lead">All three read as an infinity figure. They differ in <b>how the figure is constructed</b> —
+        as a scanned field, as hard geometry, or as a single twisted surface. That construction logic is what
+        the rest of the system inherits, so this is the real decision.</p>
+    </div>
+
+    <div class="c3">
+      <div class="card route">
+        <div class="route-stage"><svg viewBox="0 0 210 130" role="img" aria-label="Route A, Field"><use href="#mk-field"/></svg></div>
+        <div class="route-bd">
+          <span class="lab q">Route A</span>
+          <div class="route-nm">Field</div>
+          <p>The lemniscate resolved as horizontal scan lines, densest at the crossing. Reads as resolution,
+            signal, a thing being measured rather than drawn.</p>
+          <div class="pros">
+            <div class="up"><span class="m">+</span><span>Most distinctive of the three. Nothing in the category looks like it.</span></div>
+            <div class="up"><span class="m">+</span><span>Generative: the line pitch becomes a whole system of patterns.</span></div>
+            <div class="dn"><span class="m">−</span><span>Collapses to grey mush below ~64&nbsp;px. Needs a separate solid cut.</span></div>
+            <div class="dn"><span class="m">−</span><span>Embroidery and single-colour print are genuinely difficult.</span></div>
+          </div>
+          <div style="margin-top:18px"><span class="verdict alt">Hold as alternate</span></div>
+        </div>
+      </div>
+
+      <div class="card route">
+        <div class="route-stage"><svg viewBox="0 0 210 130" role="img" aria-label="Route B, Meridian"><use href="#mk-meridian"/></svg></div>
+        <div class="route-bd">
+          <span class="lab q">Route B</span>
+          <div class="route-nm">Meridian</div>
+          <p>Two squares on a 45° grid, overlapped so they share one node. The shared node is the client
+            relationship — the part both parties stand in.</p>
+          <div class="pros">
+            <div class="up"><span class="m">+</span><span>Survives anywhere: fax, embroidery, engraving, 16&nbsp;px favicon.</span></div>
+            <div class="up"><span class="m">+</span><span>Rigid construction makes it trivially easy to redraw correctly.</span></div>
+            <div class="dn"><span class="m">−</span><span>Rotated-square marks are crowded territory in enterprise software.</span></div>
+            <div class="dn"><span class="m">−</span><span>Reads "partnership" more than it reads "infinite".</span></div>
+          </div>
+          <div style="margin-top:18px"><span class="verdict alt">Hold as alternate</span></div>
+        </div>
+      </div>
+
+      <div class="card route">
+        <div class="route-stage in-colour"><svg viewBox="0 0 210 130" role="img" aria-label="Route C, Continuum"><use href="#mk"/></svg></div>
+        <div class="route-bd">
+          <span class="lab" style="color:var(--ok)">Route C</span>
+          <div class="route-nm">Continuum</div>
+          <p>One ribbon with a single half-twist. Follow the surface and you return to where you started
+            having crossed to the other side — without ever leaving the band.</p>
+          <div class="pros">
+            <div class="up"><span class="m">+</span><span>On-name without being a keyboard <span class="num">∞</span>. The twist is the argument.</span></div>
+            <div class="up"><span class="m">+</span><span>Two tones carry the gradient system naturally.</span></div>
+            <div class="up"><span class="m">+</span><span>Holds from 16&nbsp;px to a building wrap with one drawing.</span></div>
+            <div class="dn"><span class="m">−</span><span>Closest to the expected answer. Execution has to earn it.</span></div>
+          </div>
+          <div style="margin-top:18px"><span class="verdict go">Recommended</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 RECOMMENDATION ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">04</span>
+      <h2 class="sec-title">Why Continuum</h2>
+      <p class="lead">Route A is the most beautiful drawing and the most fragile asset. Route B is the safest
+        asset and the least memorable drawing. <b>Route C is the only one that is both on-name and
+        unconditionally usable</b>, and it is the only one whose meaning survives being explained in one sentence.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-hd"><span class="lab q">Decision matrix</span><span class="lab q">Weighted for a services buyer</span></div>
+      <div class="card-bd">
+        <div class="tscroll">
+          <table class="cmp">
+            <thead><tr><th>Test</th><th>A · Field</th><th>B · Meridian</th><th>C · Continuum</th></tr></thead>
+            <tbody>
+              <tr><td class="nm">Distinct on a shortlist slide</td><td>Strong</td><td>Weak</td><td>Good</td></tr>
+              <tr><td class="nm">Legible at 16 px</td><td>Fails — needs a second cut</td><td>Strong</td><td>Strong</td></tr>
+              <tr><td class="nm">Single-colour reproduction</td><td>Difficult</td><td>Strong</td><td>Strong</td></tr>
+              <tr><td class="nm">Explains the business in one line</td><td>Indirect</td><td>Partial</td><td>Direct</td></tr>
+              <tr><td class="nm">Extends to a full system</td><td>Strong</td><td>Adequate</td><td>Strong</td></tr>
+              <tr><td class="nm">Risk of looking generic</td><td>Very low</td><td>High</td><td>Moderate — managed by execution</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="c2" style="margin-top:20px">
+      <div class="card"><div class="card-bd">
+        <span class="lab">The honest objection</span>
+        <p class="why" style="margin-top:10px">An infinity mark for a company called Infinite is the first thing
+          anyone would draw. We think that is the point. The lemniscate is <b>unownable as an idea and very
+          ownable as a drawing</b> — the equity comes from this specific band, this specific twist, this
+          specific pair of tones, used relentlessly.</p>
+      </div></div>
+      <div class="card"><div class="card-bd">
+        <span class="lab">The test we set it</span>
+        <p class="why" style="margin-top:10px">Cover the wordmark. Put the mark on a slide beside the other three
+          firms. If a buyer can still say which one is Infinite a week later, the mark works.
+          <b>Route C is the only one we would put through that test at 16 px and at 16 metres.</b></p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 THE MARK ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">05</span>
+      <h2 class="sec-title">The mark</h2>
+      <p class="lead">A single band, given one half-twist and closed on itself. It has <b>one surface and one
+        edge</b> — trace it with a finger and you come back to the start having covered both faces without
+        ever crossing a seam. That is a Möbius band, and it is the cleanest available picture of work that
+        has no handover point.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-bd" style="display:flex;align-items:center;justify-content:center;padding-block:clamp(40px,7vw,78px)">
+        <div class="in-colour" style="width:min(100%,560px)">
+          <svg viewBox="0 0 210 130" style="width:100%;height:auto;display:block" role="img" aria-label="Infinite logomark, Continuum"><use href="#mk"/></svg>
+        </div>
+      </div>
+      <div class="dont-cap" style="border-top:1px solid var(--rule-soft);justify-content:space-between">
+        <span>Primary positive · full colour on white</span>
+        <span class="num" style="color:var(--ink-35)">210 × 130 · ratio 1.615</span>
+      </div>
+    </div>
+
+    <div class="c3" style="margin-top:20px">
+      <div class="card">
+        <div class="card-bd" style="display:flex;align-items:center;justify-content:center;min-height:150px">
+          <svg viewBox="0 0 210 130" style="width:150px" role="img" aria-label="Mark in full colour"><use href="#mk"/></svg>
+        </div>
+        <div class="dont-cap"><span>Two-tone ink — documents, contracts</span></div>
+      </div>
+      <div class="card" style="background:var(--ink);border-color:var(--ink)">
+        <div class="card-bd on-ink" style="display:flex;align-items:center;justify-content:center;min-height:150px">
+          <svg viewBox="0 0 210 130" style="width:150px" role="img" aria-label="Mark reversed on ink"><use href="#mk"/></svg>
+        </div>
+        <div class="dont-cap" style="border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.6)"><span>Reversed — dark grounds</span></div>
+      </div>
+      <div class="card" style="border:0;background:var(--mesh)">
+        <div class="card-bd on-grad" style="display:flex;align-items:center;justify-content:center;min-height:150px">
+          <svg viewBox="0 0 210 130" style="width:150px" role="img" aria-label="Mark on gradient"><use href="#mk"/></svg>
+        </div>
+        <div class="dont-cap" style="border-color:rgba(10,16,36,0.1);color:rgba(10,16,36,0.6)"><span>Ink on gradient — covers, icons</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 MEANING ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">06</span>
+      <h2 class="sec-title">What each decision is doing</h2>
+      <p class="lead">Four choices, each one arguable. If a stakeholder wants to overturn one, this is the
+        page to argue on.</p>
+    </div>
+
+    <div class="card"><div class="card-bd">
+      <div class="map-row">
+        <div class="map-fig in-colour"><svg viewBox="0 0 210 130"><use href="#mk"/></svg></div>
+        <div>
+          <div class="map-what">The half-twist</div>
+          <span class="lab q map-tag">Not decoration</span>
+        </div>
+        <p class="why">A plain figure-eight is two loops that touch. A Möbius band is <b>one loop that changes
+          side</b>. The difference is exactly the difference between a vendor and a partner: both keep going,
+          only one of them is still the same surface at the far end.</p>
+      </div>
+
+      <div class="map-row">
+        <div class="map-fig in-colour"><svg viewBox="0 0 210 130"><use href="#mk"/></svg></div>
+        <div>
+          <div class="map-what">One ramp, two states</div>
+          <span class="lab q map-tag">Dimmed, not cut</span>
+        </div>
+        <p class="why">A single left-to-right ramp — sky, cobalt, iris, orchid — runs across the whole mark, and
+          <b>both halves sample it at the same point</b>, so the colour never breaks at the join. The receding
+          half is that same ramp lifted toward white as the surface turns away. The only tonal step left is at
+          the crossing itself, which is exactly where one surface passes in front of another.</p>
+      </div>
+
+      <div class="map-row">
+        <div class="map-fig"><svg viewBox="0 0 210 130" style="--rb-front:var(--ink);--rb-back:var(--ink)"><use href="#mk"/></svg></div>
+        <div>
+          <div class="map-what">The band narrows at the crossing</div>
+          <span class="lab q map-tag">Optical, not mathematical</span>
+        </div>
+        <p class="why">Width tapers to 42% at the centre. A constant-width band goes visually heavy where the
+          two halves meet and the mark turns into a blob. <b>The taper is what keeps the crossing readable at
+          small sizes.</b> Flattened to one colour, it still holds.</p>
+      </div>
+
+      <div class="map-row">
+        <div class="map-fig"><svg viewBox="0 0 210 130" style="--rb-front:var(--ink);--rb-back:var(--ink);width:38px"><use href="#mk"/></svg></div>
+        <div>
+          <div class="map-what">It is wider than it is tall</div>
+          <span class="lab q map-tag">1.615 : 1</span>
+        </div>
+        <p class="why">Close to the golden ratio, and close to the proportion of a business card, a slide and a
+          browser tab. <b>The mark was drawn to the containers it has to live in</b>, not to a square that gets
+          cropped later.</p>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ 07 CONSTRUCTION ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">07</span>
+      <h2 class="sec-title">Construction &amp; clear space</h2>
+      <p class="lead">The curve is a Gerono lemniscate, not a pair of circles. It is defined by two numbers,
+        which means <b>anyone can redraw it exactly</b> — no tracing, no drift between versions.</p>
+    </div>
+
+    <div class="c2">
+      <div class="card">
+        <div class="card-hd"><span class="lab q">Centreline</span><span class="lab q">Parametric</span></div>
+        <div class="card-bd">
+          <div class="s-val" style="font-size:15px;line-height:2;color:var(--ink)">
+            x(t) = a · cos&nbsp;t<br>
+            y(t) = (b/2) · sin&nbsp;2t
+          </div>
+          <div class="spec" style="margin-top:20px">
+            <div class="spec-i"><span class="k">Half-width a</span><span class="v">92</span></div>
+            <div class="spec-i"><span class="k">Height b</span><span class="v">104</span></div>
+            <div class="spec-i"><span class="k">Band width at lobe</span><span class="v">30</span></div>
+            <div class="spec-i"><span class="k">Band width at crossing</span><span class="v">12.6 · 42%</span></div>
+            <div class="spec-i"><span class="k">Back half</span><span class="v">t ∈ [π/2, 3π/2]</span></div>
+            <div class="spec-i"><span class="k">Front half</span><span class="v">t ∈ [3π/2, 5π/2]</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><span class="lab q">Clear space</span><span class="lab q">Minimum = ½ mark height</span></div>
+        <div class="card-bd" style="display:flex;align-items:center;justify-content:center;padding-block:36px">
+          <svg viewBox="-40 -40 290 210" style="width:min(100%,340px);height:auto;display:block" role="img" aria-label="Clear space diagram">
+            <rect x="-40" y="-40" width="290" height="210" fill="var(--mist)"/>
+            <rect x="-25" y="-25" width="260" height="180" fill="none" stroke="var(--cobalt)" stroke-width="1.6" stroke-dasharray="7 6" opacity="0.75"/>
+            <g class="in-colour" style="--rb-front:var(--ink);--rb-back:#C7D2EC">
+              <use href="#mk"/>
+            </g>
+            <g stroke="var(--cobalt)" stroke-width="1.4" opacity="0.75">
+              <path d="M -25 -32 L 0 -32"/><path d="M -25 -36 L -25 -28"/><path d="M 0 -36 L 0 -28"/>
+            </g>
+            <text x="-12.5" y="-42" text-anchor="middle" fill="var(--cobalt)" style="font:600 13px var(--ff)">x</text>
+          </svg>
+        </div>
+        <div class="dont-cap"><span>x = half the cap height of the mark (65 units). Nothing enters the dashed field — not type, not rules, not a page edge.</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-hd"><span class="lab q">Minimum sizes</span><span class="lab q">Measured on the mark's width</span></div>
+      <div class="card-bd">
+        <div class="sizes">
+          <div class="size-u"><svg viewBox="0 0 210 130" style="width:168px;--rb-front:var(--ink);--rb-back:#C7D2EC"><use href="#mk"/></svg><span class="lab q">168 px · slide</span></div>
+          <div class="size-u"><svg viewBox="0 0 210 130" style="width:88px;--rb-front:var(--ink);--rb-back:#C7D2EC"><use href="#mk"/></svg><span class="lab q">88 px · web header</span></div>
+          <div class="size-u"><svg viewBox="0 0 210 130" style="width:44px;--rb-front:var(--ink);--rb-back:#C7D2EC"><use href="#mk"/></svg><span class="lab q">44 px · app bar</span></div>
+          <div class="size-u"><svg viewBox="0 0 210 130" style="width:22px;--rb-front:var(--ink);--rb-back:var(--ink)"><use href="#mk"/></svg><span class="lab q">22 px · favicon, one tone</span></div>
+        </div>
+        <p class="why" style="margin-top:26px;max-width:70ch"><b>Below 40 px, drop the second tone.</b> The lighter
+          half stops reading as depth and starts reading as a printing fault. One-tone is the correct cut for
+          favicons, embroidery, etching and anything single-plate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 08 LOCKUPS ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">08</span>
+      <h2 class="sec-title">Lockups</h2>
+      <p class="lead">The wordmark is Figtree Semibold at <b>−5.2% tracking</b>. The tagline sits under it as a tracked
+        rule of three — <b>Design. Develop. Refine.</b> — and carries the whole engagement in three words.</p>
+    </div>
+
+    <div class="ab" style="grid-template-columns:1fr 1fr">
+      <div>
+        <span class="lab q t">Primary · horizontal</span>
+        <div class="lock in-colour">
+          <svg viewBox="0 0 210 130"><use href="#mk"/></svg>
+          <span class="wd">Infinite<small>Design. Develop. Refine.</small></span>
+        </div>
+      </div>
+      <div>
+        <span class="lab q t">Stacked · square containers</span>
+        <div class="lock-v in-colour">
+          <svg viewBox="0 0 210 130"><use href="#mk"/></svg>
+          <span class="wd">Infinite<small>Design. Develop. Refine.</small></span>
+        </div>
+      </div>
+      <div>
+        <span class="lab q t">Short form · tight spaces, repeat contexts</span>
+        <div class="lock in-colour">
+          <svg viewBox="0 0 210 130"><use href="#mk"/></svg>
+          <span class="wd">Infinite</span>
+        </div>
+      </div>
+      <div>
+        <span class="lab q t">Mark alone · icons, favicons, stitching</span>
+        <div class="lock in-colour" style="justify-content:flex-start">
+          <svg viewBox="0 0 210 130" style="height:72px"><use href="#mk"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px"><div class="card-bd">
+      <div class="spec">
+        <div class="spec-i"><span class="k">Gap, mark to wordmark</span><span class="v">0.33 × mark width</span></div>
+        <div class="spec-i"><span class="k">Wordmark weight</span><span class="v">Figtree 600</span></div>
+        <div class="spec-i"><span class="k">Wordmark tracking</span><span class="v">−0.052 em</span></div>
+        <div class="spec-i"><span class="k">Tagline tracking</span><span class="v">+0.28 em, uppercase</span></div>
+        <div class="spec-i"><span class="k">Tagline size</span><span class="v">0.20 × wordmark cap height</span></div>
+        <div class="spec-i"><span class="k">Alignment</span><span class="v">Mark centred on wordmark x-height</span></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ 09 MISUSE ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">09</span>
+      <h2 class="sec-title">Misuse</h2>
+      <p class="lead">Every one of these has happened to a real identity inside its first year. They are listed
+        so the answer is already written down when someone asks.</p>
+    </div>
+
+    <div class="c3">
+      <div class="card dont">
+        <div class="card-bd"><svg viewBox="0 0 210 130" style="width:128px;--rb-front:var(--ink);--rb-back:#C7D2EC;transform:rotate(-14deg)"><use href="#mk"/></svg></div>
+        <div class="dont-cap"><span class="xm">✕</span><span>Never rotate. The band reads as a surface only when it sits level.</span></div>
+      </div>
+      <div class="card dont">
+        <div class="card-bd"><svg viewBox="0 0 210 130" style="width:122px;--rb-front:var(--ink);--rb-back:#C7D2EC;transform:scaleX(1.45)"><use href="#mk"/></svg></div>
+        <div class="dont-cap"><span class="xm">✕</span><span>Never stretch. Scale proportionally or not at all.</span></div>
+      </div>
+      <div class="card dont">
+        <div class="card-bd"><svg viewBox="0 0 210 130" style="width:128px;--rb-front:#E0453B;--rb-back:#F5B21E"><use href="#mk"/></svg></div>
+        <div class="dont-cap"><span class="xm">✕</span><span>Never recolour outside the palette. Cool is the whole differentiator.</span></div>
+      </div>
+      <div class="card dont">
+        <div class="card-bd"><svg viewBox="0 0 210 130" style="width:128px;--rb-front:#98A2BE;--rb-back:#C7D2EC"><use href="#mk"/></svg></div>
+        <div class="dont-cap"><span class="xm">✕</span><span>Never tint the front half. Front is always full strength.</span></div>
+      </div>
+      <div class="card dont">
+        <div class="card-bd" style="background:var(--mist)"><svg viewBox="0 0 210 130" style="width:128px;--rb-front:var(--ink);--rb-back:#C7D2EC;filter:drop-shadow(0 6px 5px rgba(10,16,36,0.5))"><use href="#mk"/></svg></div>
+        <div class="dont-cap"><span class="xm">✕</span><span>Never add shadow, bevel or glow. The twist already carries the depth.</span></div>
+      </div>
+      <div class="card dont">
+        <div class="card-bd" style="gap:4px"><svg viewBox="0 0 210 130" style="width:74px;--rb-front:var(--ink);--rb-back:#C7D2EC"><use href="#mk"/></svg><span style="font:600 30px/1 var(--ff);letter-spacing:-0.05em">Infinite</span></div>
+        <div class="dont-cap"><span class="xm">✕</span><span>Never crowd the mark. Clear space is a minimum, not a target.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10 COLOUR ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">10</span>
+      <h2 class="sec-title">Colour</h2>
+      <p class="lead">One cool ramp, one near-black, one paper. The neutrals are <b>pulled toward the blue</b> —
+        there is no true grey anywhere in the system, which is what stops documents looking like a template.</p>
+    </div>
+
+    <div class="swatches">
+      <div class="sw"><div class="sw-chip" style="background:#2B5CF6"></div><div class="sw-meta">
+        <div class="sw-n">Cobalt</div><div class="sw-r">Primary. Links, focus, the one thing on the page that acts.</div>
+        <div class="sw-v"><span>#2B5CF6</span><span>43 92 246</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#7A4DF5"></div><div class="sw-meta">
+        <div class="sw-n">Iris</div><div class="sw-r">Mid-ramp. The bridge tone — rarely used flat.</div>
+        <div class="sw-v"><span>#7A4DF5</span><span>122 77 245</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C07BF0"></div><div class="sw-meta">
+        <div class="sw-n">Orchid</div><div class="sw-r">Ramp end. Warmth without leaving the cool family.</div>
+        <div class="sw-v"><span>#C07BF0</span><span>192 123 240</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#0A1024"></div><div class="sw-meta">
+        <div class="sw-n">Ink</div><div class="sw-r">All body text. A navy-black, never #000.</div>
+        <div class="sw-v"><span>#0A1024</span><span>10 16 36</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#4FC7F2"></div><div class="sw-meta">
+        <div class="sw-n">Sky</div><div class="sw-r">Gradient only. Never a flat fill.</div>
+        <div class="sw-v"><span>#4FC7F2</span><span>79 199 242</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#F7AFD2"></div><div class="sw-meta">
+        <div class="sw-n">Blush</div><div class="sw-r">Gradient only. The single warm note, heavily rationed.</div>
+        <div class="sw-v"><span>#F7AFD2</span><span>247 175 210</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#F4F7FD;box-shadow:inset 0 0 0 1px #E0E8F6"></div><div class="sw-meta">
+        <div class="sw-n">Mist</div><div class="sw-r">Alternating section ground. Carries rhythm.</div>
+        <div class="sw-v"><span>#F4F7FD</span><span>244 247 253</span></div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FFFFFF;box-shadow:inset 0 0 0 1px #E0E8F6"></div><div class="sw-meta">
+        <div class="sw-n">Paper</div><div class="sw-r">The default ground. Most of the brand is this colour.</div>
+        <div class="sw-v"><span>#FFFFFF</span><span>255 255 255</span></div></div></div>
+    </div>
+
+    <div class="c2" style="margin-top:20px">
+      <div class="card"><div class="card-bd">
+        <span class="lab q" style="display:block;margin-bottom:14px">The gradient — covers and icons only</span>
+        <div class="ramp"></div>
+        <p class="why" style="margin-top:16px;font-size:14px">Four radial stops rising from the bottom edge into
+          white. On covers and icons it sits <b>behind</b> content. The mark carries a linear cut of the same
+          four hues — <b>the one place a gradient is permitted inside artwork.</b></p>
+      </div></div>
+      <div class="card"><div class="card-bd">
+        <span class="lab q" style="display:block;margin-bottom:14px">Ratios</span>
+        <div class="spec">
+          <div class="spec-i"><span class="k">Paper &amp; mist</span><span class="v">~80%</span></div>
+          <div class="spec-i"><span class="k">Ink</span><span class="v">~15%</span></div>
+          <div class="spec-i"><span class="k">Cobalt</span><span class="v">~4%</span></div>
+          <div class="spec-i"><span class="k">Gradient</span><span class="v">~1%</span></div>
+        </div>
+        <p class="why" style="margin-top:16px;font-size:14px">If the gradient is on more than one surface in a
+          room, <b>it has stopped being special.</b></p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 11 TYPOGRAPHY ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">11</span>
+      <h2 class="sec-title">Typography</h2>
+      <p class="lead"><b>Figtree</b> carries everything — display, body, eyebrows. <b>IBM Plex Mono</b> appears
+        only where a number has to be trusted. Both are open-licensed, so every proposal, contract and
+        subcontractor gets the real typeface with no seat to buy.</p>
+    </div>
+
+    <div class="card"><div class="card-bd">
+      <div class="trow">
+        <div class="tkey"><span class="n">Display</span><span class="d">Figtree 700 · −4.2% tracking</span></div>
+        <div class="s-disp">A team that doesn't drop the thread</div>
+      </div>
+      <div class="trow">
+        <div class="tkey"><span class="n">Heading</span><span class="d">Figtree 600 · −2.8%</span></div>
+        <div class="s-head">Thirty months on the same platform</div>
+      </div>
+      <div class="trow">
+        <div class="tkey"><span class="n">Body</span><span class="d">Figtree 400 · 15.5/1.66 · max 64ch</span></div>
+        <div class="s-body">We staff a squad, not a ticket queue. The engineers who scope the work are the
+          engineers who ship it, and they are still on the account when the second phase starts.</div>
+      </div>
+      <div class="trow">
+        <div class="tkey"><span class="n">Eyebrow</span><span class="d">Figtree 700 · 20% tracking · uppercase</span></div>
+        <div><span class="s-lab">Engagement model</span></div>
+      </div>
+      <div class="trow">
+        <div class="tkey"><span class="n">Data</span><span class="d">IBM Plex Mono 500 · tabular</span></div>
+        <div class="s-val">99.98% uptime · 14 sprints · 6.2 day lead time</div>
+      </div>
+      <div class="trow">
+        <div class="tkey"><span class="n">Character</span><span class="d">Figtree, mixed weights</span></div>
+        <div class="glyphs"><span class="b">Infinite</span> <span class="l">Infinite</span> 0123456789 ∞</div>
+      </div>
+    </div></div>
+
+    <div class="card" style="margin-top:20px"><div class="card-bd">
+      <span class="lab q" style="display:block;margin-bottom:12px">One rule worth writing down</span>
+      <p class="why">The mono face is <b>never</b> used for eyebrows, headings or pull quotes. It is for figures
+        a reader might check — uptime, dates, coordinates, version numbers. The moment it becomes decorative,
+        the system reads as a developer's portfolio rather than a firm that ships for banks.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ 12 APPLICATIONS ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">12</span>
+      <h2 class="sec-title">Applications</h2>
+      <p class="lead">The identity has to survive the places it will actually live: an RFP cover, an email
+        signature, a phone home screen, a lanyard.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-hd"><span class="lab q">App icon</span><span class="lab q">Mark alone, never the wordmark</span></div>
+      <div class="card-bd">
+        <div class="icons">
+          <div class="appicon grad on-grad"><svg viewBox="0 0 210 130"><use href="#mk"/></svg></div>
+          <div class="appicon ink on-ink"><svg viewBox="0 0 210 130"><use href="#mk"/></svg></div>
+          <div class="appicon paper"><svg viewBox="0 0 210 130" style="--rb-front:url(#gBand);--rb-back:url(#gBandBack)"><use href="#mk"/></svg></div>
+          <div class="appicon paper" style="width:56px;height:56px;border-radius:13px"><svg viewBox="0 0 210 130" style="height:26px;--rb-front:var(--ink);--rb-back:var(--ink)"><use href="#mk"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c2" style="margin-top:20px">
+      <div class="bcard g">
+        <div class="bc-t">
+          <svg viewBox="0 0 210 130" class="on-grad"><use href="#mk"/></svg>
+          <span class="lab w" style="text-align:right">Design.<br>Develop.<br>Refine.</span>
+        </div>
+        <div>
+          <div class="nm">Nadir Khan</div>
+          <div class="rl">Director Operations</div>
+          <div class="ct" style="margin-top:10px">nadir@infinite.dev<br>+92 42 000 0000</div>
+        </div>
+      </div>
+      <div class="bcard i on-ink" style="flex-direction:column;gap:20px">
+        <svg viewBox="0 0 210 130"><use href="#mk"/></svg>
+        <span class="lab" style="color:rgba(255,255,255,0.5)">Infinite · Lahore · Dubai</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-hd"><span class="lab q">Email signature</span><span class="lab q">One tone, 40 px, no image attachments</span></div>
+      <div class="card-bd">
+        <div class="sig">
+          <svg viewBox="0 0 210 130" style="--rb-front:var(--ink);--rb-back:var(--ink)"><use href="#mk"/></svg>
+          <div class="sig-b">
+            <div class="sig-n">Nadir Khan</div>
+            <div class="sig-r">Director Operations · Infinite</div>
+            <div class="sig-c">nadir@infinite.dev · +92 42 000 0000 · infinite.dev</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 13 VOICE ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">13</span>
+      <h2 class="sec-title">Voice</h2>
+      <p class="lead">The mark promises continuity. The copy has to sound like a firm that has been doing this
+        for a while and does not need to shout — <b>specific, unhurried, and willing to name a number</b>.</p>
+    </div>
+
+    <div class="card"><div class="card-bd">
+      <div class="vrow">
+        <div><span class="lab vl">Say</span><span class="vy">The same four engineers have been on this platform for thirty months.</span></div>
+        <div><span class="lab q vl">Not</span><span class="vn"><s>Leveraging world-class talent to deliver best-in-class outcomes.</s></span></div>
+      </div>
+      <div class="vrow">
+        <div><span class="lab vl">Say</span><span class="vy">We took their release cycle from six weeks to four days.</span></div>
+        <div><span class="lab q vl">Not</span><span class="vn"><s>We drive digital transformation at scale.</s></span></div>
+      </div>
+      <div class="vrow">
+        <div><span class="lab vl">Say</span><span class="vy">Here is what we would do in the first ninety days.</span></div>
+        <div><span class="lab q vl">Not</span><span class="vn"><s>Let's synergise on your roadmap journey.</s></span></div>
+      </div>
+      <div class="vrow">
+        <div><span class="lab vl">Say</span><span class="vy">That one did not go well. Here is what we changed afterwards.</span></div>
+        <div><span class="lab q vl">Not</span><span class="vn"><s>100% client satisfaction across all engagements.</s></span></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ 14 OPEN ═══ -->
+<section class="tinted">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">14</span>
+      <h2 class="sec-title">Open items</h2>
+      <p class="lead">Things this document has decided provisionally and should not be treated as settled.</p>
+    </div>
+
+    <div class="flags">
+      <div class="flag">
+        <span class="lab q">Legal name</span>
+        <p>The lockup is set as <b>Infinite</b> over the tagline <b>Design. Develop. Refine.</b> — a tagline, not a
+          legal descriptor. Confirm the registered trading name and whether it must still appear in full on
+          contracts, invoices and the website footer.</p>
+      </div>
+      <div class="flag">
+        <span class="lab q">Trademark</span>
+        <p>Lemniscate marks are densely registered. <b>A clearance search in the relevant classes is required
+          before any spend on signage or stationery.</b> The specific band construction is defensible; the
+          general idea is not.</p>
+      </div>
+      <div class="flag">
+        <span class="lab q">Competitor read</span>
+        <p>Section 01 describes category patterns from observation. <b>Verify against the current Devsinc,
+          10Pearls and TKXEL sites</b> before this deck goes in front of anyone external.</p>
+      </div>
+      <div class="flag">
+        <span class="lab q">No dark theme</span>
+        <p>This identity is committed to light ground — ink on paper, screen second. That is a decision, not an
+          oversight. A dark system is a separate piece of work and should be scoped only if the product side
+          needs it.</p>
+      </div>
+      <div class="flag">
+        <span class="lab q">Typeface</span>
+        <p>Figtree is open-licensed and free to deploy everywhere. <b>If the brand wants a face nobody else can
+          have</b>, budget for a licensed or drawn alternative — the geometry of the mark does not depend on it.</p>
+      </div>
+      <div class="flag">
+        <span class="lab q">Motion</span>
+        <p>The band has an obvious animation: the twist travelling around the loop, once, on load. Not drawn
+          here. Worth prototyping before the website brief.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 15 NEXT ═══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="lab sec-n">15</span>
+      <h2 class="sec-title">What happens next</h2>
+      <p class="lead">Assuming Route C is approved in the room, this is the shortest path to a usable identity.</p>
+    </div>
+
+    <div class="c2">
+      <div class="card"><div class="card-bd">
+        <span class="lab q" style="display:block;margin-bottom:6px">Immediately after approval</span>
+        <div class="frow"><span class="fn">Trademark clearance search</span><span class="fd">week 1</span></div>
+        <div class="frow"><span class="fn">Master SVG + EPS artwork set</span><span class="fd">week 1</span></div>
+        <div class="frow"><span class="fn">Favicon &amp; app icon cuts</span><span class="fd">week 1</span></div>
+        <div class="frow"><span class="fn">Stationery &amp; email signature</span><span class="fd">week 2</span></div>
+        <div class="frow"><span class="fn">Proposal &amp; deck templates</span><span class="fd">week 2–3</span></div>
+      </div></div>
+      <div class="card"><div class="card-bd">
+        <span class="lab q" style="display:block;margin-bottom:6px">Artwork to be delivered</span>
+        <div class="frow"><span class="fn">Primary lockup</span><span class="fd">svg · eps · png</span></div>
+        <div class="frow"><span class="fn">Stacked lockup</span><span class="fd">svg · eps · png</span></div>
+        <div class="frow"><span class="fn">Mark, two-tone</span><span class="fd">svg · eps</span></div>
+        <div class="frow"><span class="fn">Mark, one-tone small cut</span><span class="fd">svg · eps</span></div>
+        <div class="frow"><span class="fn">Reversed set</span><span class="fd">svg · eps</span></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CLOSING FRAME — the locked asset ═══ -->
+<div class="frame on-ink">
+  <div class="lock">
+    <svg viewBox="0 0 210 130" role="img" aria-label="Infinite"><use href="#mk"/></svg>
+    <span class="wd">Infinite<small>Design. Develop. Refine.</small></span>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <span class="lab q">Infinite · Identity routes · v0.1</span>
+    <span class="lab q">Route C · Continuum recommended · 15 September 2026</span>
+  </div>
+</footer>
