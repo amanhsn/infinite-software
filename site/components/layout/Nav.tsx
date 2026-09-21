@@ -90,7 +90,7 @@ export function Nav() {
         ref={navRef}
         aria-label="Primary"
         onMouseLeave={hoverClose}
-        className="relative mx-auto flex max-w-shell items-center gap-5 rounded-pill border border-glass-light-edge bg-glass-light py-[10px] pr-[10px] pl-[22px] backdrop-blur-[20px]"
+        className="glass-bar relative mx-auto flex max-w-shell items-center gap-5 rounded-pill py-[10px] pr-[10px] pl-[22px]"
       >
         <Link href="/" className="flex items-center gap-[11px] no-underline">
           <Logo className="h-[30px]" />

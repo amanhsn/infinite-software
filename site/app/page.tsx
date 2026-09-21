@@ -299,7 +299,7 @@ export default function Home() {
 
 function HeroStat({ value, caption }: { value: string; caption: string }) {
   return (
-    <div className="flex-1 rounded-card border border-glass-light-edge bg-glass-light px-6 py-[22px] backdrop-blur-[12px]">
+    <div className="glass-card flex-1 rounded-card px-6 py-[22px]">
       <span className="block font-figure text-[clamp(30px,4vw,38px)] leading-none font-medium tracking-[-0.03em]">{value}</span>
       <span className="mt-2 block text-[14px] text-ink-60">{caption}</span>
     </div>
@@ -317,7 +317,7 @@ function ContactForm() {
       <div className="flex flex-col gap-[7px]">
         <label htmlFor="f-brief" className="text-[13px] font-semibold text-ink-60">What are you building?</label>
         <textarea id="f-brief" name="brief" rows={4}
-          className="w-full resize-y rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink" />
+          className="glass-field w-full resize-y rounded-inner px-[15px] py-[13px] text-[15px] text-ink" />
       </div>
       {/* TODO: no endpoint yet — static export has no runtime. See plan §F. */}
       <div><Button>Send it</Button></div>
@@ -332,7 +332,7 @@ function Field({ id, label, type = "text", autoComplete }: {
     <div className="flex flex-col gap-[7px]">
       <label htmlFor={id} className="text-[13px] font-semibold text-ink-60">{label}</label>
       <input id={id} name={id.replace("f-", "")} type={type} autoComplete={autoComplete}
-        className="w-full rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink" />
+        className="glass-field w-full rounded-inner px-[15px] py-[13px] text-[15px] text-ink" />
     </div>
   );
 }

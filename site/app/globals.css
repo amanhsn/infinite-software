@@ -187,6 +187,39 @@
   }
 }
 
+/* ── glass surfaces over the mesh ─────────────────────────
+   A 0.08-alpha border disappears against the near-white top of
+   the mesh and only shows where the ramp darkens, so the card
+   reads as open at the top. These carry a full border AND a drop
+   shadow, so the edge is legible on any part of the gradient. */
+@utility glass-card {
+  background: var(--glass-light);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(10 16 36 / 0.10);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.60) inset,
+    0 2px 8px -3px rgb(10 16 36 / 0.10),
+    0 14px 36px -16px rgb(10 16 36 / 0.22);
+}
+
+/* the floating nav: same logic, lighter shadow — it sits above content */
+@utility glass-bar {
+  background: var(--glass-light);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgb(10 16 36 / 0.10);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.55) inset,
+    0 6px 24px -10px rgb(10 16 36 / 0.16);
+}
+
+/* form controls on glass — same border weight so edges agree */
+@utility glass-field {
+  background: rgb(255 255 255 / 0.80);
+  border: 1px solid rgb(10 16 36 / 0.10);
+}
+
 /* Heading measure scale — replaces seven ad-hoc max-width:{14..26}ch
    caps in the prototype with three deliberate widths. */
 @utility measure-tight { max-width: 15ch; }

@@ -43,7 +43,7 @@ export default function Contact() {
               <dl className="mt-9 grid gap-5">
                 {PROMISES.slice(0, 2).map(({ icon: Icon, title, body }) => (
                   <div key={title} className="flex gap-[14px]">
-                    <span className="mt-[2px] grid size-[38px] shrink-0 place-items-center rounded-inner bg-paper/72 text-cobalt backdrop-blur-[12px]">
+                    <span className="glass-card mt-[2px] grid size-[38px] shrink-0 place-items-center rounded-inner text-cobalt">
                       <Icon size={18} strokeWidth={1.6} aria-hidden />
                     </span>
                     <span>
@@ -55,7 +55,7 @@ export default function Contact() {
               </dl>
             </div>
 
-            <div className="rounded-card border border-glass-light-edge bg-paper/72 p-[clamp(1.5rem,3vw,2.5rem)] backdrop-blur-[12px]">
+            <div className="glass-card rounded-card p-[clamp(1.5rem,3vw,2.5rem)]">
               <form className="grid gap-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Field id="c-name" label="Name" autoComplete="name" />
@@ -76,7 +76,7 @@ export default function Contact() {
                         <input type="checkbox" id={`c-${c.slug}`} name="interest" value={c.slug}
                                defaultChecked={i === 0} className="peer absolute size-0 opacity-0" />
                         <label htmlFor={`c-${c.slug}`}
-                               className="inline-flex cursor-pointer items-center rounded-pill border border-glass-light-edge bg-paper/60 px-4 py-[9px] text-[14px] text-ink-60
+                               className="inline-flex cursor-pointer items-center rounded-pill border border-[rgb(10_16_36/0.10)] bg-paper/70 px-4 py-[9px] text-[14px] text-ink-60
                                           transition-colors duration-200 ease-brand peer-checked:border-cobalt peer-checked:bg-cobalt peer-checked:text-paper
                                           peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cobalt">
                           {c.title}
@@ -92,7 +92,7 @@ export default function Contact() {
                   </label>
                   <textarea id="c-brief" name="brief" rows={5}
                     placeholder="A payments platform we cannot deploy during business hours…"
-                    className="w-full resize-y rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink placeholder:text-ink-25" />
+                    className="glass-field w-full resize-y rounded-inner px-[15px] py-[13px] text-[15px] text-ink placeholder:text-ink-25" />
                 </div>
 
                 {/* TODO: no endpoint yet. Static export has no runtime — this needs

@@ -8,7 +8,7 @@ export function Field({ id, label, type = "text", autoComplete }: {
     <div className="flex flex-col gap-[7px]">
       <label htmlFor={id} className="text-[13px] font-semibold text-ink-60">{label}</label>
       <input id={id} name={id.replace(/^[a-z]+-/, "")} type={type} autoComplete={autoComplete}
-        className="w-full rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink" />
+        className="glass-field w-full rounded-inner px-[15px] py-[13px] text-[15px] text-ink" />
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function ContactBand() {
             <div className="flex flex-col gap-[7px]">
               <label htmlFor="cb-brief" className="text-[13px] font-semibold text-ink-60">What are you building?</label>
               <textarea id="cb-brief" name="brief" rows={4}
-                className="w-full resize-y rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink" />
+                className="glass-field w-full resize-y rounded-inner px-[15px] py-[13px] text-[15px] text-ink" />
             </div>
             {/* TODO: no endpoint — static export has no runtime. */}
             <div><Button>Send it</Button></div>
