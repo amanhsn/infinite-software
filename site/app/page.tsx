@@ -6,6 +6,7 @@ import { Section, SectionHead } from "@/components/primitives/Section";
 import { ProductMock } from "@/components/visuals/ProductMock";
 import { Plate } from "@/components/primitives/Plate";
 import { ClientLogos } from "@/components/visuals/ClientLogos";
+import { HeroArc } from "@/components/visuals/HeroArc";
 import { serviceCategories } from "@/content/services";
 import { industries } from "@/content/industries";
 import { differentiators, steps, engagementModels, continuityFigures } from "@/content/home";
@@ -17,28 +18,36 @@ export default function Home() {
     <>
       {/* ═══ 01 hero — mesh surface 1 of 2 ═══ */}
       <div className="mx-auto max-w-shell px-gut pt-[18px]">
-        <div className="rounded-section bg-mesh px-panel-x pt-hero-t pb-hero-b">
-          <div className="grid grid-cols-1 items-end gap-[clamp(2rem,5vw,4.5rem)] md:grid-cols-[1.35fr_0.65fr]">
-            <div>
-              <Logo className="mb-[26px] h-[56px] animate-unfurl" />
-              <p className="text-eyebrow text-cobalt uppercase">{site.tagline}</p>
-              <h1 className="measure-base mt-[18px] mb-[22px] text-display">
-                The team that scoped it is the team that ships it.
-              </h1>
-              <p className="max-w-measure text-lead text-ink-60">
-                A Canadian software house building and running platforms for companies in
-                payments, healthcare and logistics. The same squad, month one to month thirty.
-              </p>
-              <div className="mt-[30px] flex flex-wrap gap-3">
-                <Button href="/contact/">Start a conversation</Button>
-                <Button href="/how-we-work/" variant="ghost">See how we work</Button>
-              </div>
-            </div>
-            {/* NEEDS REAL DATA */}
-            <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-              <HeroStat value="30" caption="months on the longest running engagement" />
-              <HeroStat value="6.2" caption="day median lead time to production" />
-            </div>
+        <div className="relative isolate overflow-hidden rounded-section bg-mesh px-panel-x pt-hero-t pb-hero-b">
+          {/* Sits under the type and off the left edge of it, so the measure
+              never has to compete with the ticks. Hidden on small screens,
+              where there is no room for it beside the headline. */}
+          <HeroArc className="right-[-16%] bottom-[-34%] -z-10 hidden w-[min(76%,760px)] md:block" />
+
+          <p className="inline-flex items-center gap-[10px] rounded-pill border border-glass-light-edge
+                        bg-glass-light px-[14px] py-[7px] backdrop-blur-[12px]">
+            {/* the one orchestrated load moment the plan allows */}
+            <Logo className="h-[15px] animate-unfurl" />
+            <span className="text-eyebrow text-ink-60 uppercase">A Canadian software house</span>
+          </p>
+
+          <h1 className="measure-base mt-[26px] mb-[22px] text-display">
+            Design. Develop.{" "}
+            {/* The reference sets its contrast word in an italic serif. The
+                brand has one face, so the contrast is carried by weight
+                instead: the same Figtree, dropped from 700 to 300. Cobalt
+                was the other option and is deliberately not used — §03
+                reserves it for the thing that acts. */}
+            <span className="font-light">Refine.</span>
+          </h1>
+
+          <p className="max-w-measure text-lead text-ink-60">
+            {site.description}
+          </p>
+
+          <div className="mt-[30px] flex flex-wrap gap-3">
+            <Button href="/contact/">Start a conversation</Button>
+            <Button href="/how-we-work/" variant="ghost">See how we work</Button>
           </div>
         </div>
       </div>
@@ -292,15 +301,6 @@ export default function Home() {
         </div>
       </section>
     </>
-  );
-}
-
-function HeroStat({ value, caption }: { value: string; caption: string }) {
-  return (
-    <div className="glass-card flex-1 rounded-card px-6 py-[22px]">
-      <span className="block font-figure text-[clamp(30px,4vw,38px)] leading-none font-medium tracking-[-0.03em]">{value}</span>
-      <span className="mt-2 block text-[14px] text-ink-60">{caption}</span>
-    </div>
   );
 }
 
