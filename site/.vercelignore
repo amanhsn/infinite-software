@@ -1,0 +1,9 @@
+# Build output — Vercel builds from source, so uploading these only makes
+# the CLI upload hundreds of megabytes it then throws away.
+.next/
+out/
+node_modules/
+
+# Local session artefacts
+.env.local
+*.tsbuildinfo
