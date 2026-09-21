@@ -3,7 +3,8 @@ import { Button } from "@/components/primitives/Button";
 import { Arrow } from "@/components/primitives/Arrow";
 import { Logo } from "@/components/primitives/Logo";
 import { Section, SectionHead } from "@/components/primitives/Section";
-import { MediaSlot } from "@/components/primitives/MediaSlot";
+import { ProductMock } from "@/components/visuals/ProductMock";
+import { MarkComposition } from "@/components/visuals/MarkComposition";
 import { serviceCategories } from "@/content/services";
 import { industries } from "@/content/industries";
 import { differentiators, steps, engagementModels, continuityFigures } from "@/content/home";
@@ -73,14 +74,16 @@ export default function Home() {
       <Section ground="mist">
         <p className="mb-7 text-eyebrow text-ink-40 uppercase">Who we build for</p>
         {/* NEEDS REAL DATA: which clients may be named publicly */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-card border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-5">
           {Array.from({ length: 5 }, (_, i) => (
-            <div key={i} className="grid h-[74px] place-items-center rounded-inner border border-dashed border-rule
-                                    text-[11px] font-bold tracking-[0.08em] text-ink-25 uppercase">
-              Client
+            <div key={i} className="grid h-[92px] place-items-center bg-paper">
+              <span className="text-[11px] font-bold tracking-[0.18em] text-ink-25 uppercase">Client</span>
             </div>
           ))}
         </div>
+        <p className="mt-4 text-small text-ink-40">
+          Named once each client clears it. We do not list logos we cannot attribute.
+        </p>
       </Section>
 
       {/* ═══ 04 what we do ═══ */}
@@ -98,7 +101,7 @@ export default function Home() {
                     className="group flex flex-col rounded-card border border-rule bg-paper p-[26px] no-underline
                                transition-all duration-300 ease-brand hover:-translate-y-[3px] hover:border-ink-25">
                 <span className="mb-5 grid size-[44px] place-items-center rounded-inner bg-mist text-cobalt
-                                 transition-colors duration-300 ease-brand group-hover:bg-cobalt group-hover:text-white">
+                                 transition-colors duration-300 ease-brand group-hover:bg-cobalt group-hover:text-paper">
                   {Icon && <Icon size={21} strokeWidth={1.6} aria-hidden />}
                 </span>
                 <h3 className="text-h3 text-ink">{cat.title}</h3>
@@ -145,7 +148,7 @@ export default function Home() {
               Read the case study <Arrow className="size-[13px]" />
             </Link>
           </div>
-          <MediaSlot label="Case study visual" ratio="4/3" />
+          <ProductMock />
         </div>
       </Section>
 
@@ -215,7 +218,7 @@ export default function Home() {
                     className="group flex gap-[14px] rounded-card bg-paper p-6 no-underline
                                transition-all duration-300 ease-brand hover:-translate-y-[3px]">
                 <span className="mt-[2px] grid size-[38px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt
-                                 transition-colors duration-300 ease-brand group-hover:bg-cobalt group-hover:text-white">
+                                 transition-colors duration-300 ease-brand group-hover:bg-cobalt group-hover:text-paper">
                   {Icon && <Icon size={18} strokeWidth={1.6} aria-hidden />}
                 </span>
                 <span>
@@ -237,7 +240,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
           {Array.from({ length: 3 }, (_, i) => (
             <Link key={i} href="/work/" className="group flex flex-col gap-3 no-underline">
-              <MediaSlot label="Project" ratio="16/10"
+              <MarkComposition index={i}
                          className="transition-transform duration-300 ease-brand group-hover:scale-[1.02]" />
               <h3 className="text-h3">Project name</h3>
               <p className="text-[15px] text-ink-60">One line on the sector and the outcome, with a number in it.</p>
@@ -314,7 +317,7 @@ function ContactForm() {
       <div className="flex flex-col gap-[7px]">
         <label htmlFor="f-brief" className="text-[13px] font-semibold text-ink-60">What are you building?</label>
         <textarea id="f-brief" name="brief" rows={4}
-          className="w-full resize-y rounded-inner border border-glass-light-edge bg-white/72 px-[15px] py-[13px] text-[15px] text-ink" />
+          className="w-full resize-y rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink" />
       </div>
       {/* TODO: no endpoint yet — static export has no runtime. See plan §F. */}
       <div><Button>Send it</Button></div>
@@ -329,7 +332,7 @@ function Field({ id, label, type = "text", autoComplete }: {
     <div className="flex flex-col gap-[7px]">
       <label htmlFor={id} className="text-[13px] font-semibold text-ink-60">{label}</label>
       <input id={id} name={id.replace("f-", "")} type={type} autoComplete={autoComplete}
-        className="w-full rounded-inner border border-glass-light-edge bg-white/72 px-[15px] py-[13px] text-[15px] text-ink" />
+        className="w-full rounded-inner border border-glass-light-edge bg-paper/72 px-[15px] py-[13px] text-[15px] text-ink" />
     </div>
   );
 }

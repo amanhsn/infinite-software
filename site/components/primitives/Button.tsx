@@ -24,7 +24,7 @@ export function Button({
     <>
       {children}
       {showIcon && (
-        <span className="grid size-[38px] shrink-0 place-items-center rounded-pill bg-cobalt text-white transition-colors duration-300 ease-brand">
+        <span className="grid size-[38px] shrink-0 place-items-center rounded-pill bg-cobalt text-paper transition-colors duration-300 ease-brand">
           <Arrow />
         </span>
       )}

@@ -130,7 +130,7 @@ export function Nav() {
             className="ml-[10px] inline-flex items-center gap-[14px] rounded-pill bg-ink py-[7px] pr-[7px] pl-6 text-[15px] font-medium text-paper no-underline transition-transform duration-300 ease-brand hover:scale-[1.04] motion-reduce:hover:scale-100"
           >
             Start a conversation
-            <span className="grid size-[38px] shrink-0 place-items-center rounded-pill bg-cobalt text-white">
+            <span className="grid size-[38px] shrink-0 place-items-center rounded-pill bg-cobalt text-paper">
               <Arrow />
             </span>
           </Link>
@@ -205,7 +205,7 @@ function MegaPanel() {
           <Link href={`/services/${cat.slug}/`}
                 className="group/cat mb-1 flex items-center gap-[10px] no-underline">
             {CatIcon && (
-              <span className="grid size-[32px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt transition-colors duration-200 ease-brand group-hover/cat:bg-cobalt group-hover/cat:text-white">
+              <span className="grid size-[32px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt transition-colors duration-200 ease-brand group-hover/cat:bg-cobalt group-hover/cat:text-paper">
                 <CatIcon size={17} strokeWidth={1.6} aria-hidden />
               </span>
             )}
@@ -254,7 +254,7 @@ function MenuPanel({ item }: { item: Extract<NavEntry, { kind: "menu" }> }) {
         <Link key={l.href} href={l.href}
               className="group/item flex gap-[12px] rounded-card p-4 no-underline transition-colors duration-200 ease-brand hover:bg-mist">
           {Icon && (
-            <span className="mt-[2px] grid size-[32px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt transition-colors duration-200 ease-brand group-hover/item:bg-cobalt group-hover/item:text-white">
+            <span className="mt-[2px] grid size-[32px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt transition-colors duration-200 ease-brand group-hover/item:bg-cobalt group-hover/item:text-paper">
               <Icon size={17} strokeWidth={1.6} aria-hidden />
             </span>
           )}

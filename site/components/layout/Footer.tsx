@@ -29,7 +29,7 @@ export function Footer() {
           ]} />
         </div>
 
-        <div className="mt-[clamp(2.5rem,5vw,4rem)] flex flex-wrap gap-x-[26px] gap-y-2 border-t border-white/12 pt-6 text-[13px] text-on-ink-55">
+        <div className="mt-[clamp(2.5rem,5vw,4rem)] flex flex-wrap gap-x-[26px] gap-y-2 border-t border-paper/12 pt-6 text-[13px] text-on-ink-55">
           <span>&copy; {new Date().getFullYear()} {site.legalName}</span>
           {legalLinks.map((l) => (
             <Link key={l.href} href={l.href} className="text-[13px] text-on-ink-70 no-underline hover:text-on-ink">
