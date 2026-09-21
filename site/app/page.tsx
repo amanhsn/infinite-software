@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/primitives/Button";
 import { Arrow } from "@/components/primitives/Arrow";
-import { Logo } from "@/components/primitives/Logo";
 import { Section, SectionHead } from "@/components/primitives/Section";
 import { ProductMock } from "@/components/visuals/ProductMock";
 import { Plate } from "@/components/primitives/Plate";
@@ -17,40 +16,33 @@ export default function Home() {
   return (
     <>
       {/* ═══ 01 hero — mesh surface 1 of 2 ═══ */}
-      <div className="mx-auto max-w-shell px-gut pt-[18px]">
-        <div className="relative isolate overflow-hidden rounded-section bg-mesh px-panel-x pt-hero-t pb-hero-b">
-          {/* Sits under the type and off the left edge of it, so the measure
-              never has to compete with the ticks. Hidden on small screens,
-              where there is no room for it beside the headline. */}
-          <HeroArc className="right-[-16%] bottom-[-34%] -z-10 hidden w-[min(76%,760px)] md:block" />
+      {/* Full bleed and full height. The nav is sticky and sits in normal
+          flow, so the hero is pulled up by exactly the height the nav
+          occupies and pads that height back on the inside. Result: the mesh
+          runs edge to edge behind the floating bar without the bar
+          overlapping the type. */}
+      <section className="relative isolate -mt-nav-h flex min-h-[100svh] items-center overflow-hidden bg-mesh">
+        <HeroArc className="right-[-12%] bottom-[-40%] -z-10 hidden w-[min(66%,900px)] md:block" />
 
-          <p className="inline-flex items-center gap-[10px] rounded-pill border border-glass-light-edge
-                        bg-glass-light px-[14px] py-[7px] backdrop-blur-[12px]">
-            {/* the one orchestrated load moment the plan allows */}
-            <Logo className="h-[15px] animate-unfurl" />
-            <span className="text-eyebrow text-ink-60 uppercase">A Canadian software house</span>
-          </p>
-
-          <h1 className="measure-base mt-[26px] mb-[22px] text-display">
+        <div className="mx-auto w-full max-w-shell px-gut pt-nav-h pb-[clamp(2rem,6vw,4rem)]">
+          <h1 className="measure-base mb-[22px] text-display">
             Design. Develop.{" "}
             {/* The reference sets its contrast word in an italic serif. The
                 brand has one face, so the contrast is carried by weight
                 instead: the same Figtree, dropped from 700 to 300. Cobalt
-                was the other option and is deliberately not used — §03
-                reserves it for the thing that acts. */}
+                was the other option and is deliberately not used, because
+                §03 reserves it for the thing that acts. */}
             <span className="font-light">Refine.</span>
           </h1>
 
-          <p className="max-w-measure text-lead text-ink-60">
-            {site.description}
-          </p>
+          <p className="max-w-measure text-lead text-ink-60">{site.description}</p>
 
           <div className="mt-[30px] flex flex-wrap gap-3">
             <Button href="/contact/">Start a conversation</Button>
-            <Button href="/how-we-work/" variant="ghost">See how we work</Button>
+            <Button href="/how-we-work/" variant="glass">See how we work</Button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ═══ 02 continuity — the one ink band, the only dark glass ═══ */}
       <section className="mx-auto max-w-shell px-gut py-sec">
