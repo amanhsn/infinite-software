@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/primitives/Logo";
 import { Arrow } from "@/components/primitives/Arrow";
 import { primaryNav, megaColumns, type NavEntry } from "@/content/navigation";
+import { categoryIcons, leafIcons, menuIcons } from "@/components/nav-icons";
 
 function Chevron() {
   return (
@@ -20,16 +21,29 @@ function Chevron() {
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState<string | null>(null);   // desktop panel
+  /* Whether the open panel was opened deliberately (click / keyboard) rather
+     than by hover. A clicked panel must not close just because the pointer
+     drifted off — that would make the menu unusable by keyboard and touch. */
+  const pinned = useRef(false);
   const [mobile, setMobile] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const panelId = useId();
 
-  const close = useCallback(() => setOpen(null), []);
+  const close = useCallback(() => { pinned.current = false; setOpen(null); }, []);
 
-  /* A static <a> could not do this: without it the menu stays open across a
-     client-side navigation. */
-  useEffect(() => { close(); setMobile(false); }, [pathname, close]);
+  /* Close on navigation. A static <a> could not do this: without it the menu
+     stays open across a client-side route change.
+
+     Adjusted during render rather than in an effect — React's documented
+     pattern for "reset state when a value changes". An effect would render
+     the stale open menu first, then close it on a second pass. */
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(null);
+    setMobile(false);
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -52,11 +66,20 @@ export function Nav() {
      trigger and the panel does not shut it. */
   const hoverOpen = (label: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    setOpen(label);
+    if (!pinned.current) setOpen(label);
   };
   const hoverClose = () => {
+    if (pinned.current) return;
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(close, 140);
+  };
+  const toggle = (label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen((current) => {
+      const next = current === label ? null : label;
+      pinned.current = next !== null;
+      return next;
+    });
   };
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href) && href !== "/";
@@ -99,7 +122,7 @@ export function Nav() {
               panelId={panelId}
               onOpen={() => hoverOpen(item.label)}
               onClose={hoverClose}
-              onToggle={() => setOpen((v) => (v === item.label ? null : item.label))}
+              onToggle={() => toggle(item.label)}
             />
           ))}
           <Link
@@ -175,25 +198,40 @@ function NavTrigger({
 function MegaPanel() {
   return (
     <div className="grid grid-cols-4 gap-x-8 gap-y-2 p-8">
-      {megaColumns.map((cat) => (
+      {megaColumns.map((cat) => {
+        const CatIcon = categoryIcons[cat.slug];
+        return (
         <div key={cat.slug}>
           <Link href={`/services/${cat.slug}/`}
-                className="mb-1 block text-[15px] font-semibold tracking-[-0.02em] text-ink no-underline hover:text-cobalt">
-            {cat.title}
+                className="group/cat mb-1 flex items-center gap-[10px] no-underline">
+            {CatIcon && (
+              <span className="grid size-[32px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt transition-colors duration-200 ease-brand group-hover/cat:bg-cobalt group-hover/cat:text-white">
+                <CatIcon size={17} strokeWidth={1.6} aria-hidden />
+              </span>
+            )}
+            <span className="text-[15px] font-semibold tracking-[-0.02em] text-ink group-hover/cat:text-cobalt">
+              {cat.title}
+            </span>
           </Link>
-          <p className="mb-4 text-[12.5px] leading-[1.5] text-ink-40">{cat.leaves.length} services</p>
+          <p className="mb-4 pl-[42px] text-[12.5px] leading-[1.5] text-ink-40">{cat.leaves.length} services</p>
           <ul className="m-0 flex list-none flex-col gap-[2px] p-0">
-            {cat.leaves.map((leaf) => (
+            {cat.leaves.map((leaf) => {
+              const LeafIcon = leafIcons[leaf.slug];
+              return (
               <li key={leaf.slug}>
                 <Link href={`/services/${cat.slug}/${leaf.slug}/`}
-                      className="-mx-[10px] block rounded-inner px-[10px] py-[7px] text-[13.5px] text-ink-60 no-underline transition-colors duration-200 ease-brand hover:bg-mist hover:text-ink">
+                      className="group/leaf -mx-[10px] flex items-center gap-[10px] rounded-inner px-[10px] py-[7px] text-[13.5px] text-ink-60 no-underline transition-colors duration-200 ease-brand hover:bg-mist hover:text-ink">
+                  {LeafIcon && (
+                    <LeafIcon size={15} strokeWidth={1.6} aria-hidden
+                              className="shrink-0 text-ink-25 transition-colors duration-200 ease-brand group-hover/leaf:text-cobalt" />
+                  )}
                   {leaf.name}
                 </Link>
               </li>
-            ))}
+            );})}
           </ul>
         </div>
-      ))}
+      );})}
       <div className="col-span-4 mt-2 flex items-center justify-between border-t border-rule-soft pt-5">
         <p className="m-0 max-w-[52ch] text-[13.5px] text-ink-60">
           Whichever practice an engagement starts in, it is staffed from the same bench and reports the same numbers.
@@ -210,13 +248,22 @@ function MegaPanel() {
 function MenuPanel({ item }: { item: Extract<NavEntry, { kind: "menu" }> }) {
   return (
     <div className="grid grid-cols-3 gap-2 p-6">
-      {item.items.map((l) => (
+      {item.items.map((l) => {
+        const Icon = menuIcons[l.href];
+        return (
         <Link key={l.href} href={l.href}
-              className="rounded-card p-4 no-underline transition-colors duration-200 ease-brand hover:bg-mist">
-          <span className="block text-[15px] font-semibold tracking-[-0.018em] text-ink">{l.label}</span>
-          {l.summary && <span className="mt-1 block text-[13px] leading-[1.5] text-ink-60">{l.summary}</span>}
+              className="group/item flex gap-[12px] rounded-card p-4 no-underline transition-colors duration-200 ease-brand hover:bg-mist">
+          {Icon && (
+            <span className="mt-[2px] grid size-[32px] shrink-0 place-items-center rounded-inner bg-mist text-cobalt transition-colors duration-200 ease-brand group-hover/item:bg-cobalt group-hover/item:text-white">
+              <Icon size={17} strokeWidth={1.6} aria-hidden />
+            </span>
+          )}
+          <span>
+            <span className="block text-[15px] font-semibold tracking-[-0.018em] text-ink">{l.label}</span>
+            {l.summary && <span className="mt-1 block text-[13px] leading-[1.5] text-ink-60">{l.summary}</span>}
+          </span>
         </Link>
-      ))}
+      );})}
     </div>
   );
 }
@@ -232,20 +279,30 @@ function MobileMenu() {
           </Link>
           {item.kind === "mega" && (
             <ul className="m-0 list-none px-3 pb-3 pl-5">
-              {megaColumns.map((c) => (
+              {megaColumns.map((c) => {
+                const Icon = categoryIcons[c.slug];
+                return (
                 <li key={c.slug} className="py-[6px]">
-                  <Link href={`/services/${c.slug}/`} className="text-[14px] text-ink-60 no-underline">{c.title}</Link>
+                  <Link href={`/services/${c.slug}/`} className="flex items-center gap-[10px] text-[14px] text-ink-60 no-underline">
+                    {Icon && <Icon size={15} strokeWidth={1.6} aria-hidden className="shrink-0 text-ink-25" />}
+                    {c.title}
+                  </Link>
                 </li>
-              ))}
+              );})}
             </ul>
           )}
           {item.kind === "menu" && (
             <ul className="m-0 list-none px-3 pb-3 pl-5">
-              {item.items.map((l) => (
+              {item.items.map((l) => {
+                const Icon = menuIcons[l.href];
+                return (
                 <li key={l.href} className="py-[6px]">
-                  <Link href={l.href} className="text-[14px] text-ink-60 no-underline">{l.label}</Link>
+                  <Link href={l.href} className="flex items-center gap-[10px] text-[14px] text-ink-60 no-underline">
+                    {Icon && <Icon size={15} strokeWidth={1.6} aria-hidden className="shrink-0 text-ink-25" />}
+                    {l.label}
+                  </Link>
                 </li>
-              ))}
+              );})}
             </ul>
           )}
         </div>
