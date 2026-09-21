@@ -16,7 +16,12 @@ const nextConfig: NextConfig = {
    */
   output: process.env.STATIC_EXPORT === "1" ? "export" : undefined,
 
-  // required by static export; free today — the site has no raster images
+  /**
+   * Required by static export. The site now ships raster artwork under
+   * public/img/, so this is no longer free: those files are served at their
+   * authored size with no format negotiation. See components/primitives/Plate
+   * for why they are JPEG rather than AVIF.
+   */
   images: { unoptimized: true },
 
   // Next 16 removed the `eslint` key; linting runs via `pnpm lint`.

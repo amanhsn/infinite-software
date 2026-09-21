@@ -53,6 +53,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             </div>
           ) : undefined
         }
+        banner={`/img/industries/${ind.slug}`}
       />
 
       <Section>

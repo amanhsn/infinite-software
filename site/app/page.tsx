@@ -4,7 +4,8 @@ import { Arrow } from "@/components/primitives/Arrow";
 import { Logo } from "@/components/primitives/Logo";
 import { Section, SectionHead } from "@/components/primitives/Section";
 import { ProductMock } from "@/components/visuals/ProductMock";
-import { MarkComposition } from "@/components/visuals/MarkComposition";
+import { Plate } from "@/components/primitives/Plate";
+import { ClientLogos } from "@/components/visuals/ClientLogos";
 import { serviceCategories } from "@/content/services";
 import { industries } from "@/content/industries";
 import { differentiators, steps, engagementModels, continuityFigures } from "@/content/home";
@@ -73,14 +74,10 @@ export default function Home() {
       {/* ═══ 03 logos ═══ */}
       <Section ground="mist">
         <p className="mb-7 text-eyebrow text-ink-40 uppercase">Who we build for</p>
-        {/* NEEDS REAL DATA: which clients may be named publicly */}
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-card border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-5">
-          {Array.from({ length: 5 }, (_, i) => (
-            <div key={i} className="grid h-[92px] place-items-center bg-paper">
-              <span className="text-[11px] font-bold tracking-[0.18em] text-ink-25 uppercase">Client</span>
-            </div>
-          ))}
-        </div>
+        {/* NEEDS REAL DATA: which clients may be named publicly.
+            ClientLogos is five invented companies — see the banner in that
+            file. It must be replaced with cleared artwork before launch. */}
+        <ClientLogos />
         <p className="mt-4 text-small text-ink-40">
           Named once each client clears it. We do not list logos we cannot attribute.
         </p>
@@ -240,8 +237,9 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
           {Array.from({ length: 3 }, (_, i) => (
             <Link key={i} href="/work/" className="group flex flex-col gap-3 no-underline">
-              <MarkComposition index={i}
-                         className="transition-transform duration-300 ease-brand group-hover:scale-[1.02]" />
+              <Plate src={`/img/work/plate-0${i + 1}`}
+                     sizes="(min-width: 900px) 33vw, 100vw"
+                     className="transition-transform duration-300 ease-brand group-hover:scale-[1.02]" />
               <h3 className="text-h3">Project name</h3>
               <p className="text-[15px] text-ink-60">One line on the sector and the outcome, with a number in it.</p>
             </Link>

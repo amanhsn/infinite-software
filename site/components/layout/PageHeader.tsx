@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Plate } from "@/components/primitives/Plate";
 
 export type Crumb = { label: string; href?: string };
 
@@ -28,10 +29,16 @@ export function Breadcrumb({ trail }: { trail: Crumb[] }) {
  * the upper band.
  */
 export function PageHeader({
-  trail, eyebrow, title, lede, aside, surface = "mist",
+  trail, eyebrow, title, lede, aside, banner, surface = "mist",
 }: {
   trail?: Crumb[]; eyebrow?: string; title: string; lede?: string;
-  aside?: ReactNode; surface?: "mist" | "mesh";
+  aside?: ReactNode;
+  /**
+   * Path under /img, no extension. A 21:9 artwork band under the header
+   * block — decorative, so it carries no alt text and no caption.
+   */
+  banner?: string;
+  surface?: "mist" | "mesh";
 }) {
   const mesh = surface === "mesh";
   return (
@@ -47,6 +54,14 @@ export function PageHeader({
           {aside}
         </div>
       </div>
+      {/* The source is 21:9 with clear ground above and below the band, which
+          at full width is ~600px mostly empty. Shown shorter and centre-cropped:
+          the band sits mid-frame in every one of the six, so centre is the
+          only anchor that holds for all of them. */}
+      {banner && (
+        <Plate src={banner} ratio="1000/300" radius="section" sizes="100vw" priority
+               className="mt-[18px]" />
+      )}
     </div>
   );
 }

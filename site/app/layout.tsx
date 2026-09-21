@@ -16,6 +16,8 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: { type: "website", siteName: site.name, locale: "en_CA" },
   twitter: { card: "summary_large_image" },
+  // Paired with app/robots.ts — see the note there before removing either.
+  robots: { index: false, follow: false },
 };
 
 /** viewport-fit=cover: the nav pads itself with env(safe-area-inset-top). */
