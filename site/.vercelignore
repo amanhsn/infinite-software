@@ -5,5 +5,4 @@ out/
 node_modules/
 
 # Local session artefacts
-.env.local
 *.tsbuildinfo

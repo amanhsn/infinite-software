@@ -1,3 +1,15 @@
+/**
+ * The hero's own lede, separate from `site.description`.
+ *
+ * The hero does not lead on nationality: the first thing a visitor reads
+ * should be what we do and how long we stay, not where we are registered.
+ * Country still appears where it is the actual subject, which is /company/
+ * and /company/locations/, and in the meta description.
+ */
+export const heroLede =
+  "A software house building and running platforms for companies in payments, " +
+  "healthcare and logistics. The same squad, month one to month thirty.";
+
 export const differentiators = [
   { title: "We name the engineers.", body: "You meet the squad before you sign, and the names on the proposal are the names in the standups." },
   { title: "We publish the numbers.", body: "Lead time, release cadence and uptime go in the monthly report whether or not they flatter us." },

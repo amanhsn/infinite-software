@@ -8,7 +8,7 @@ import { ClientLogos } from "@/components/visuals/ClientLogos";
 import { HeroArc } from "@/components/visuals/HeroArc";
 import { serviceCategories } from "@/content/services";
 import { industries } from "@/content/industries";
-import { differentiators, steps, engagementModels, continuityFigures } from "@/content/home";
+import { differentiators, steps, engagementModels, continuityFigures, heroLede } from "@/content/home";
 import { categoryIcons, menuIcons } from "@/components/nav-icons";
 import { site } from "@/content/site";
 
@@ -35,7 +35,7 @@ export default function Home() {
             <span className="font-light">Refine.</span>
           </h1>
 
-          <p className="max-w-measure text-lead text-ink-60">{site.description}</p>
+          <p className="max-w-measure text-lead text-ink-60">{heroLede}</p>
 
           <div className="mt-[30px] flex flex-wrap gap-3">
             <Button href="/contact/">Start a conversation</Button>
