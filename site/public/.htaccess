@@ -1,0 +1,78 @@
+# Apache configuration for the static export.
+#
+# Only used when the site is hosted on Apache, which is what GoDaddy cPanel
+# hosting runs. Vercel ignores this file entirely, so it is safe to ship in
+# both directions.
+#
+# Next writes the export as directories containing index.html, so Apache's
+# own DirectoryIndex already serves /how-we-work/delivery/ correctly. What
+# it does not get right without help is below.
+
+# ── MIME types Apache cannot infer ──────────────────────────────────────
+# Next emits the generated Open Graph images with no file extension, so
+# Apache falls back to application/octet-stream and every social preview
+# breaks silently. The <meta> tag points at the extensionless path, so the
+# fix is to force the type rather than to rename the files.
+<FilesMatch "^(opengraph-image|twitter-image|icon|apple-icon)$">
+  ForceType image/png
+</FilesMatch>
+
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+  AddType image/avif .avif
+  AddType font/woff2 .woff2
+  AddType text/plain .txt
+</IfModule>
+
+# ── 404 ─────────────────────────────────────────────────────────────────
+ErrorDocument 404 /404.html
+
+# ── Canonical host and scheme ───────────────────────────────────────────
+# Force HTTPS. The www/non-www choice is deliberately left alone: set it in
+# one place, here, only after the domain is pointed, so it cannot fight a
+# redirect configured in the GoDaddy panel.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ── Caching ─────────────────────────────────────────────────────────────
+# Everything under /_next/static/ carries a content hash in its filename,
+# so it can be cached hard. HTML must not be, or a deploy will not be
+# visible to anyone who has already loaded the site.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                     "access plus 0 seconds"
+  ExpiresByType text/css                      "access plus 1 year"
+  ExpiresByType application/javascript        "access plus 1 year"
+  ExpiresByType image/jpeg                    "access plus 1 month"
+  ExpiresByType image/png                     "access plus 1 month"
+  ExpiresByType image/svg+xml                 "access plus 1 month"
+  ExpiresByType font/woff2                    "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  # Hashed build assets are immutable by construction.
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ── Compression ─────────────────────────────────────────────────────────
+# Shared hosting has no CDN in front of it, so this is the whole of the
+# transfer-size story.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Do not serve the build's own bookkeeping ────────────────────────────
+<FilesMatch "^__next\.">
+  Require all denied
+</FilesMatch>
