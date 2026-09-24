@@ -22,3 +22,6 @@ next-env.d.ts
 
 # agent + session artefacts
 .playwright-mcp/
+
+# packaged static export for manual upload
+infinite-site-godaddy.zip
