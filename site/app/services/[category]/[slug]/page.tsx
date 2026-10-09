@@ -8,6 +8,8 @@ import { Button } from "@/components/primitives/Button";
 import { serviceCategories, getLeaf } from "@/content/services";
 import { steps } from "@/content/home";
 import { leafIcons } from "@/components/nav-icons";
+import { Arrow } from "@/components/primitives/Arrow";
+import { serviceCopy, type LeafSlug } from "@/content/service-copy";
 
 export const dynamicParams = false;
 
@@ -37,6 +39,7 @@ export default async function LeafPage(
   const hit = getLeaf(category, slug);
   if (!hit) notFound();
   const { category: cat, leaf } = hit;
+  const copy = serviceCopy[leaf.slug as LeafSlug];
   const siblings = cat.leaves.filter((l) => l.slug !== leaf.slug);
   const Icon = leafIcons[leaf.slug];
 
@@ -66,20 +69,12 @@ export default async function LeafPage(
           <div>
             <p className="text-eyebrow text-cobalt uppercase">The problem</p>
             <h2 className="measure-base mt-[14px] mb-[18px] text-h2">What usually brings people here.</h2>
-            {/* NEEDS COPY: the specific problem this service solves */}
-            <p className="max-w-measure text-ink-60">
-              Two or three paragraphs describing the situation a client is in when they need this,
-              written in the second person and naming a real symptom rather than a category.
-            </p>
+            <p className="max-w-measure text-ink-60">{copy.problem}</p>
           </div>
           <div>
             <p className="text-eyebrow text-cobalt uppercase">What we do</p>
             <h2 className="measure-base mt-[14px] mb-[18px] text-h2">How the work actually runs.</h2>
-            {/* NEEDS COPY: the concrete method, with a duration and a deliverable */}
-            <p className="max-w-measure text-ink-60">
-              What happens in week one, what you get at the end of the first increment, and who is in
-              the room. Named deliverables, not phases.
-            </p>
+            <p className="max-w-measure text-ink-60">{copy.method}</p>
           </div>
         </div>
       </Section>
@@ -97,16 +92,21 @@ export default async function LeafPage(
         </div>
       </Section>
 
+      {/* Figures are published per engagement and cleared by that client, so
+          there is no per-service metric row. Three tiles reading "—" stood
+          here; this points at the write-ups that do exist instead. */}
       <Section>
-        <SectionHead eyebrow="Proof" title="What it looked like last time." measure="measure-tight" />
-        {/* NEEDS REAL DATA: one engagement, three figures, ungated link */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {["Metric one", "Metric two", "Metric three"].map((m) => (
-            <div key={m} className="rounded-card border border-rule bg-paper p-6">
-              <span className="block font-figure text-figure text-ink-25">&mdash;</span>
-              <span className="mt-2 block text-small text-ink-60">{m}</span>
-            </div>
-          ))}
+        <div className="flex flex-wrap items-center justify-between gap-6 rounded-card border border-rule bg-paper p-[clamp(1.5rem,3vw,2.25rem)]">
+          <div>
+            <h2 className="mb-2 text-h3">Proof lives on the work page.</h2>
+            <p className="m-0 max-w-measure text-ink-60">
+              We publish numbers per engagement, cleared by that client, rather than per service
+              line. What is written up there is what we are allowed to show.
+            </p>
+          </div>
+          <Link href="/work/" className="inline-flex items-center gap-2 text-[15px] font-semibold text-cobalt no-underline">
+            See the work <Arrow className="size-[13px]" />
+          </Link>
         </div>
       </Section>
 

@@ -32,7 +32,8 @@ export default function Page() {
         <div className="grid grid-cols-1 gap-[18px] lg:grid-cols-3">
           {engagementModels.map((m) => (
             <div key={m.title}
-                 className="flex flex-col rounded-card border border-rule bg-paper p-[clamp(1.5rem,3vw,2.25rem)]">
+                 className="flex flex-col rounded-card border border-rule bg-paper p-[clamp(1.5rem,3vw,2.25rem)]
+                            transition-all duration-300 ease-brand hover:-translate-y-[3px] hover:border-ink-25 hover:shadow-[0_18px_44px_-28px_rgb(10_16_36/0.28)]">
               <h2 className="mb-3 text-h3">{m.title}</h2>
               <p className="mb-6 text-ink-60">{m.body}</p>
               <ul className="m-0 mb-8 flex list-none flex-col gap-3 p-0">

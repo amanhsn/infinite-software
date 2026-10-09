@@ -10,9 +10,15 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
 
   /**
-   * Hosting is undecided, so static export stays behind a flag rather than
-   * being baked in. Flipping it off later unlocks Server Actions, runtime
-   * OG image generation and ISR with no refactor.
+   * Hosting is decided: infinitesofteware.com is served by Vercel, which
+   * builds with plain `next build`, so this flag is off in production.
+   *
+   * STATIC_EXPORT=1 no longer produces a complete site and now fails the
+   * build on purpose. /api/contact is the contact form's endpoint and
+   * needs a runtime; an export cannot carry one, and the previous
+   * behaviour — a form that posted nowhere — is what this replaced.
+   * Moving to Apache/cPanel means porting that handler to PHP first, not
+   * flipping this flag.
    */
   output: process.env.STATIC_EXPORT === "1" ? "export" : undefined,
 

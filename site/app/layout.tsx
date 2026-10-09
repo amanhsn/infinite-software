@@ -8,7 +8,13 @@ import { site } from "@/content/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  /**
+   * The site is indexable now, so the fallback cannot be localhost: it is
+   * what every canonical and og:image URL is resolved against, and a build
+   * run without the env var would publish links to a machine nobody else
+   * can reach. NEXT_PUBLIC_SITE_URL still overrides it for previews.
+   */
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://infinitesofteware.com"),
   title: {
     default: "Infinite — The team that scoped it is the team that ships it",
     template: "%s — Infinite",
@@ -16,8 +22,6 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: { type: "website", siteName: site.name, locale: "en_CA" },
   twitter: { card: "summary_large_image" },
-  // Paired with app/robots.ts — see the note there before removing either.
-  robots: { index: false, follow: false },
 };
 
 /** viewport-fit=cover: the nav pads itself with env(safe-area-inset-top). */

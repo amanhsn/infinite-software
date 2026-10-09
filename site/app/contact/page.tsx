@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/primitives/Button";
-import { Field } from "@/components/sections/ContactBand";
+import { ContactForm } from "@/components/sections/ContactForm";
 import { Section } from "@/components/primitives/Section";
 import { Logo } from "@/components/primitives/Logo";
 import { site } from "@/content/site";
-import { serviceCategories } from "@/content/services";
 import { Clock, MessageSquareReply, FileSearch, Users } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -56,54 +54,7 @@ export default function Contact() {
             </div>
 
             <div className="glass-card rounded-card p-[clamp(1.5rem,3vw,2.5rem)]">
-              <form className="grid gap-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <Field id="c-name" label="Name" autoComplete="name" />
-                  <Field id="c-email" label="Work email" type="email" autoComplete="email" />
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <Field id="c-company" label="Company" autoComplete="organization" />
-                  <Field id="c-role" label="Your role" autoComplete="organization-title" />
-                </div>
-
-                <fieldset className="m-0 border-0 p-0">
-                  <legend className="mb-[10px] p-0 text-[13px] font-semibold text-ink-60">
-                    What is this about?
-                  </legend>
-                  <div className="flex flex-wrap gap-2">
-                    {serviceCategories.map((c, i) => (
-                      <span key={c.slug} className="relative">
-                        <input type="checkbox" id={`c-${c.slug}`} name="interest" value={c.slug}
-                               defaultChecked={i === 0} className="peer absolute size-0 opacity-0" />
-                        <label htmlFor={`c-${c.slug}`}
-                               className="inline-flex cursor-pointer items-center rounded-pill border border-[rgb(10_16_36/0.10)] bg-paper/70 px-4 py-[9px] text-[14px] text-ink-60
-                                          transition-colors duration-200 ease-brand peer-checked:border-cobalt peer-checked:bg-cobalt peer-checked:text-paper
-                                          peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cobalt">
-                          {c.title}
-                        </label>
-                      </span>
-                    ))}
-                  </div>
-                </fieldset>
-
-                <div className="flex flex-col gap-[7px]">
-                  <label htmlFor="c-brief" className="text-[13px] font-semibold text-ink-60">
-                    What are you building?
-                  </label>
-                  <textarea id="c-brief" name="brief" rows={5}
-                    placeholder="A payments platform we cannot deploy during business hours…"
-                    className="glass-field w-full resize-y rounded-inner px-[15px] py-[13px] text-[15px] text-ink placeholder:text-ink-25" />
-                </div>
-
-                {/* TODO: no endpoint yet. Static export has no runtime — this needs
-                    NEXT_PUBLIC_FORM_ENDPOINT wiring before launch. */}
-                <div className="flex flex-wrap items-center gap-4 pt-1">
-                  <Button>Send it</Button>
-                  <span className="text-[13px] text-ink-40">
-                    Or email <a href={`mailto:${site.email}`} className="font-semibold text-cobalt">{site.email}</a>
-                  </span>
-                </div>
-              </form>
+              <ContactForm full idPrefix="contact" />
             </div>
           </div>
         </div>
@@ -125,15 +76,17 @@ export default function Contact() {
 
       <Section ground="mist">
         <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
-          {/* NEEDS REAL DATA: street addresses, phone numbers */}
           {site.offices.map((o) => (
             <div key={o.country} className="rounded-card bg-paper p-8">
               <p className="text-eyebrow text-ink-40 uppercase">{o.role}</p>
               <h2 className="mt-3 text-h2">{o.country}</h2>
-              <p className="mt-3 text-ink-60">{o.address}</p>
+              <address className="mt-3 text-ink-60 not-italic">
+                {o.address && <>{o.address}<br /></>}
+                {o.locality}
+              </address>
               <p className="mt-4 text-small text-ink-40">
                 {o.country === "Canada"
-                  ? "Client data is held in Canadian regions. Named regions confirmed on request."
+                  ? "Contracting entity. Data residency is set per engagement and written into the contract."
                   : "Delivery team. Access model documented for third-party risk review."}
               </p>
             </div>

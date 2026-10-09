@@ -31,13 +31,12 @@ export default function Page() {
                 <p className="text-eyebrow text-cobalt uppercase">{loc.role}</p>
                 <h3 className="mt-3 mb-4 text-h2">{loc.country}</h3>
                 <p className="mb-6 max-w-measure text-ink-60">{loc.body}</p>
-                {/* NEEDS REAL DATA: street address and phone. Rendered as a
-                    visible placeholder rather than an invented address,
-                    because an address is the one thing on a locations page
-                    a reader is entitled to treat as literal. */}
-                <p className="font-figure text-[13px] text-ink-40">
-                  {office?.status === "placeholder" ? "Address to confirm" : office?.address}
-                </p>
+                {/* No telephone number anywhere on the site: a 1-800 line has
+                    been requested and does not exist yet. */}
+                <address className="font-figure text-[13px] text-ink-40 not-italic">
+                  {office?.address && <>{office.address}<br /></>}
+                  {office?.locality}
+                </address>
               </div>
             );
           })}
@@ -45,15 +44,14 @@ export default function Page() {
       </Section>
 
       <Section ground="mist">
-        <SectionHead eyebrow="Data residency" title="Where your data sits is a separate question."
+        <SectionHead eyebrow="Data residency" title="Your data sits in the country you choose."
                      measure="measure-base" />
-        {/* status: claim-unverified in content/home.ts. Kept deliberately
-            vague here rather than naming a region nobody has confirmed. */}
         <p className="max-w-measure text-lead text-ink-60">
           Delivery happening in two countries does not by itself say anything about where your data
-          is held. Residency is set per engagement and written into the contract. If a regulator or
-          a risk review needs that answer before a pitch, ask us for it directly and you will get
-          the specific regions rather than a reassuring sentence.
+          is held. We build and run infrastructure in the jurisdiction the engagement requires, and
+          the regions go into the contract rather than onto this page — which is the document your
+          risk team can actually hold us to. If that answer is needed before a pitch, ask and you
+          will get the specific regions for the architecture being proposed.
         </p>
       </Section>
 

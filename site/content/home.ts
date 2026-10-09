@@ -15,7 +15,7 @@ export const differentiators = [
   { title: "We publish the numbers.", body: "Lead time, release cadence and uptime go in the monthly report whether or not they flatter us." },
   { title: "We stay past launch.", body: "Most of our work is month thirteen onward. Launch is the middle of an engagement, not the end." },
   { title: "We tell you what went wrong.", body: "Every retro that reaches you includes the things we got wrong and what changed afterwards." },
-  { title: "Your data stays in Canada.", body: "Client data is held in Canadian regions.", status: "claim-unverified" },
+  { title: "Your data sits where you need it.", body: "Infrastructure is built and held in the country you choose, and the regions are written into the contract rather than described on a web page." },
 ] as const;
 
 export const steps = [
@@ -33,10 +33,15 @@ export const engagementModels = [
     points: ["Discovery before the number", "Milestone billing", "Warranty period after handover"] },
 ] as const;
 
-/** status: 'placeholder' — nothing here ships until it is real. */
+/**
+ * The four figures the firm is willing to be held to. Supplied by the
+ * company, not derived: release cadence is the default where a client has
+ * not specified one, and continuity is published as the range it actually
+ * sits in rather than rounded to a single flattering number.
+ */
 export const continuityFigures = [
-  { value: "30", caption: "months, longest running engagement", status: "placeholder" },
-  { value: "6.2", caption: "day median lead time", status: "placeholder" },
-  { value: "4", caption: "days between production releases", status: "placeholder" },
-  { value: "92%", caption: "engineer continuity over 12 months", status: "placeholder" },
+  { value: "18", caption: "months, longest running engagement" },
+  { value: "21", caption: "day median lead time to production" },
+  { value: "7", caption: "days between production releases" },
+  { value: "80–90%", caption: "engineer continuity over 12 months" },
 ] as const;

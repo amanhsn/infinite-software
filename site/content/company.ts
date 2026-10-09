@@ -1,10 +1,10 @@
 /**
  * Copy for /company/ and its children.
  *
- * Positioning and method only. Nothing here names a person, a headcount, a
- * founding date, a client or a certification, because none of those have
- * been supplied. Where a page needs one, it carries a marked placeholder
- * instead of a plausible guess.
+ * Positioning and method only. Nothing here names a person, a headcount or
+ * a founding date: team profiles are deliberately off for now, so the
+ * pages that would carry them say so plainly instead. Named clients and
+ * the work live in content/clients.ts.
  */
 
 export const principles = [
@@ -84,6 +84,6 @@ export const locationDetail = [
     country: "Pakistan",
     role: "Delivery office",
     body:
-      "The larger share of the engineering bench. Squads are mixed across both offices and run on one backlog, one review process and one definition of done.",
+      "The larger share of the engineering bench, in Islamabad. Squads are mixed across both offices and run on one backlog, one review process and one definition of done.",
   },
 ] as const;

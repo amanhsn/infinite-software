@@ -53,9 +53,9 @@ export default function Page() {
       </Section>
 
       <Section>
-        {/* NEEDS REAL DATA: open roles. Listing invented vacancies would have
-            people apply for jobs that do not exist, so the page routes them
-            to a real address instead. */}
+        {/* No open roles, confirmed by the company. The page keeps its
+            empty state and routes speculative applications to a real
+            address rather than listing vacancies that do not exist. */}
         <div className="rounded-card border border-rule bg-paper p-[clamp(1.75rem,4vw,3rem)]">
           <p className="text-eyebrow text-ink-40 uppercase">Open roles</p>
           <h2 className="measure-base mt-4 text-h2">There is no vacancy list on this page yet.</h2>

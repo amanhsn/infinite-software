@@ -6,10 +6,11 @@ import { Section, SectionHead } from "@/components/primitives/Section";
 import { ContactBand } from "@/components/sections/ContactBand";
 import { Button } from "@/components/primitives/Button";
 import { Arrow } from "@/components/primitives/Arrow";
-import { MarkComposition } from "@/components/visuals/MarkComposition";
 import { serviceCategories, getCategory } from "@/content/services";
 import { steps, engagementModels } from "@/content/home";
 import { categoryIcons, leafIcons } from "@/components/nav-icons";
+import { WorkCards, NoWorkYet } from "@/components/sections/WorkCards";
+import { projectsForPractice } from "@/content/clients";
 
 export const dynamicParams = false;
 
@@ -31,6 +32,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const cat = getCategory(category);
   if (!cat) notFound();
   const others = serviceCategories.filter((c) => c.slug !== cat.slug);
+  const related = projectsForPractice(cat.slug);
 
   return (
     <>
@@ -89,24 +91,18 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <SectionHead eyebrow="Related work" title="Built in this practice." measure="measure-tight"
           action={<Link href="/work/" className="flex items-center gap-2 text-[14.5px] font-semibold text-cobalt no-underline">
             All work <Arrow className="size-[13px]" /></Link>} />
-        {/* NEEDS REAL DATA: two real projects from this practice */}
-        <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
-          {[0, 1].map((i) => (
-            <Link key={i} href="/work/" className="group flex flex-col gap-3 no-underline">
-              <MarkComposition index={i}
-                className="transition-transform duration-300 ease-brand group-hover:scale-[1.02]" />
-              <h3 className="text-h3">Project name</h3>
-              <p className="text-[15px] text-ink-60">One line on the sector and the outcome, with a number in it.</p>
-            </Link>
-          ))}
-        </div>
+        {related.length > 0
+          ? <WorkCards projects={related} columns={2} />
+          : <NoWorkYet what={cat.title.toLowerCase()} />}
       </Section>
 
       <Section ground="mist">
         <SectionHead eyebrow="Engagement models" title="Three ways to work with us." measure="measure-tight" />
         <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
           {engagementModels.map((m) => (
-            <div key={m.title} className="flex flex-col overflow-hidden rounded-card border border-rule bg-paper">
+            <div key={m.title}
+                 className="flex flex-col overflow-hidden rounded-card border border-rule bg-paper
+                            transition-all duration-300 ease-brand hover:-translate-y-[3px] hover:border-ink-25 hover:shadow-[0_18px_44px_-28px_rgb(10_16_36/0.28)]">
               <div className="bg-mist px-[26px] pt-[26px] pb-[22px]">
                 <h3 className="mb-2 text-h3">{m.title}</h3>
                 <p className="text-[15px] text-ink-60">{m.body}</p>

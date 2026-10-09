@@ -50,10 +50,10 @@ export default function Page() {
       </Section>
 
       <Section ground="mist">
-        {/* NEEDS REAL DATA: names, roles, photographs, consent to publish.
-            Deliberately not generated. Inventing engineers on the one page
-            whose entire purpose is that the people are real would undo the
-            claim the rest of the site makes. */}
+        {/* Profiles are off for now, by the company's decision — publishing
+            a name and a face needs that person's consent. Inventing people
+            on the one page whose purpose is that they are real would undo
+            the claim the rest of the site makes. */}
         <div className="rounded-card border border-rule bg-paper p-[clamp(1.75rem,4vw,3rem)]">
           <p className="text-eyebrow text-ink-40 uppercase">Profiles</p>
           <h2 className="measure-base mt-4 text-h2">The profiles are not up yet.</h2>

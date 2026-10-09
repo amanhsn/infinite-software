@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Section, SectionHead } from "@/components/primitives/Section";
 import { ContactBand } from "@/components/sections/ContactBand";
-import { site } from "@/content/site";
+import { Plate } from "@/components/primitives/Plate";
+import { Arrow } from "@/components/primitives/Arrow";
+import { articles, formatPublished } from "@/content/insights";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -48,22 +51,27 @@ export default function Page() {
       </Section>
 
       <Section ground="mist">
-        {/* NEEDS REAL DATA: three real articles. Generating plausible
-            article titles would create a list of links that go nowhere and
-            imply a body of writing that does not exist. */}
-        <div className="rounded-card border border-rule bg-paper p-[clamp(1.75rem,4vw,3rem)]">
-          <p className="text-eyebrow text-ink-40 uppercase">Articles</p>
-          <h2 className="measure-base mt-4 text-h2">Nothing published yet.</h2>
-          <p className="mt-4 max-w-measure text-ink-60">
-            The first pieces are being written by the engineers on the platforms they are about,
-            which is slower than commissioning them and is the entire point. There is no archive
-            here padded out with posts nobody read.
-          </p>
-          <p className="mt-4 max-w-measure text-ink-60">
-            If there is something specific you want our read on, ask and you will get a direct
-            answer rather than a link to an article.{" "}
-            <a href={`mailto:${site.email}`} className="font-semibold text-cobalt">{site.email}</a>
-          </p>
+        <SectionHead eyebrow="Articles" title="Three pieces, from one platform."
+                     body="All three come out of the same engagement, which is why they are specific. More follow as the work produces something worth writing down."
+                     measure="measure-base" />
+        <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
+          {articles.map((a) => (
+            <Link key={a.slug} href={`/insights/${a.slug}/`}
+                  className="group flex flex-col gap-3 no-underline">
+              <Plate src={a.image} alt={a.imageAlt} ratio="16/9"
+                     sizes="(min-width: 900px) 33vw, 100vw"
+                     className="transition-transform duration-300 ease-brand group-hover:scale-[1.02]" />
+              <span className="font-figure mt-1 flex gap-4 text-[13px] text-ink-40">
+                <span>{formatPublished(a.published)}</span>
+                <span>{a.readingTime}</span>
+              </span>
+              <h3 className="text-h3">{a.title}</h3>
+              <p className="m-0 text-[15px] text-ink-60">{a.summary}</p>
+              <span className="mt-1 flex items-center gap-2 text-[14.5px] font-semibold text-cobalt">
+                Read it <Arrow className="size-[13px]" />
+              </span>
+            </Link>
+          ))}
         </div>
       </Section>
 

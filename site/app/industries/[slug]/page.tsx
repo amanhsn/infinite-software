@@ -5,10 +5,11 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { Section, SectionHead } from "@/components/primitives/Section";
 import { ContactBand } from "@/components/sections/ContactBand";
 import { Arrow } from "@/components/primitives/Arrow";
-import { MarkComposition } from "@/components/visuals/MarkComposition";
 import { industries, getIndustry } from "@/content/industries";
 import { getLeaf } from "@/content/services";
 import { menuIcons, leafIcons } from "@/components/nav-icons";
+import { WorkCards, NoWorkYet } from "@/components/sections/WorkCards";
+import { projectsForIndustry } from "@/content/clients";
 
 export const dynamicParams = false;
 
@@ -29,6 +30,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
   const ind = getIndustry(slug);
   if (!ind) notFound();
+  const relatedWork = projectsForIndustry(ind.slug);
   const Icon = menuIcons[`/industries/${ind.slug}/`];
 
   const related = ind.related
@@ -98,17 +100,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                      measure="measure-base"
           action={<Link href="/work/" className="flex items-center gap-2 text-[14.5px] font-semibold text-cobalt no-underline">
             All work <Arrow className="size-[13px]" /></Link>} />
-        {/* NEEDS REAL DATA: two real projects in this sector */}
-        <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
-          {[0, 1].map((i) => (
-            <Link key={i} href="/work/" className="group flex flex-col gap-3 no-underline">
-              <MarkComposition index={i}
-                className="transition-transform duration-300 ease-brand group-hover:scale-[1.02]" />
-              <h3 className="text-h3">Project name</h3>
-              <p className="text-[15px] text-ink-60">One line on the outcome, with a number in it.</p>
-            </Link>
-          ))}
-        </div>
+        {relatedWork.length > 0
+          ? <WorkCards projects={relatedWork} columns={2} />
+          : <NoWorkYet what={ind.name.toLowerCase()} />}
       </Section>
 
       <ContactBand />

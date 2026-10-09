@@ -22,8 +22,11 @@ const VARIANT: Record<Variant, string> = {
 
 export function Button({
   href, children, variant = "solid", icon = true, className = "",
+  type = "button", disabled = false,
 }: {
   href?: string; children: ReactNode; variant?: Variant; icon?: boolean; className?: string;
+  /** `submit` for the one real form on the site; the rest are links. */
+  type?: "button" | "submit"; disabled?: boolean;
 }) {
   const showIcon = icon && variant !== "ghost" && variant !== "glass";
   const content = (
@@ -38,5 +41,8 @@ export function Button({
   );
   const cls = `${BASE} ${VARIANT[variant]} ${className}`;
   return href ? <Link href={href} className={cls}>{content}</Link>
-              : <button type="button" className={cls}>{content}</button>;
+              : <button type={type} disabled={disabled}
+                        className={`${cls} disabled:cursor-not-allowed disabled:opacity-55 disabled:hover:scale-100`}>
+                  {content}
+                </button>;
 }
