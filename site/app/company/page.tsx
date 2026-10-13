@@ -27,6 +27,7 @@ export default function Page() {
         trail={[{ label: "Company" }]}
         title="A firm built around people not leaving."
         lede={site.description}
+        banner="/img/company/overview"
       />
 
       <Section>

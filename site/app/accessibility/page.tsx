@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <LegalPage doc={accessibility} trail={[{ label: accessibility.title }]} />;
+  return <LegalPage doc={accessibility} trail={[{ label: accessibility.title }]} banner="/img/legal/accessibility" />;
 }

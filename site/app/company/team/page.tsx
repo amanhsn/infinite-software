@@ -34,6 +34,7 @@ export default function Page() {
         trail={[{ label: "Company", href: "/company/" }, { label: "Team" }]}
         title="You will know who is doing the work."
         lede="Continuity only means something if the people are specific. This page is where they get named."
+        banner="/img/company/team"
       />
 
       <Section>

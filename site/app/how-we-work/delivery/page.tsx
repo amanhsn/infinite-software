@@ -17,6 +17,7 @@ export default function Page() {
         trail={[{ label: "How we work", href: "/how-we-work/" }, { label: "Delivery model" }]}
         title="How the work actually runs."
         lede="The process below is the same on every engagement. It is deliberately unremarkable, because the value is in it being the same every month rather than in it being clever."
+        banner="/img/how-we-work/delivery"
       />
 
       <Section>

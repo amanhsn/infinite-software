@@ -40,6 +40,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         trail={[{ label: "Services", href: "/services/" }, { label: cat.title }]}
         title={cat.title}
         lede={cat.lede}
+        banner={`/img/services/${cat.slug}`}
         aside={
           <div className="rounded-card border border-rule bg-paper p-6">
             <span className="font-figure text-figure text-ink">{cat.leaves.length}</span>

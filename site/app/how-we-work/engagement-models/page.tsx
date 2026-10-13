@@ -24,6 +24,7 @@ export default function Page() {
         trail={[{ label: "How we work", href: "/how-we-work/" }, { label: "Engagement models" }]}
         title="Three ways to work with us."
         lede="There is no public rate card, because the number depends on the shape of the team and the length of the commitment. What follows is how each model is structured and what it suits."
+        banner="/img/how-we-work/engagement-models"
       />
 
       <Section>

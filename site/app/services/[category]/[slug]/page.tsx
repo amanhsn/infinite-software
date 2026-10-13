@@ -53,6 +53,7 @@ export default async function LeafPage(
         ]}
         title={leaf.name}
         lede={leaf.summary}
+        banner={`/img/services/${cat.slug}/${leaf.slug}`}
         aside={
           Icon ? (
             <div className="hidden justify-end lg:flex">

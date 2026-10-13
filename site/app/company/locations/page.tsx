@@ -18,6 +18,7 @@ export default function Page() {
         trail={[{ label: "Company", href: "/company/" }, { label: "Locations" }]}
         title="Two offices, one squad."
         lede="Canadian clients contract with the Canadian entity. Engineering sits across both offices and runs on a shared timezone window, one backlog and one review process."
+        banner="/img/company/locations"
       />
 
       <Section>

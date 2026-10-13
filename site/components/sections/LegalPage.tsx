@@ -7,13 +7,16 @@ import type { LegalDoc } from "@/content/legal";
  * Renders a policy.
  *
  * Every value in content/legal.ts is stated. There is no marker syntax and
- * no draft banner any more: if a fact in one of these documents changes,
+ * no draft warning any more: if a fact in one of these documents changes,
  * the fix is to change the sentence, not to highlight it.
+ *
+ * `banner` is the artwork band, passed per policy so the four pages do not
+ * share one plate — unrelated to the draft warning above.
  */
-export function LegalPage({ doc, trail }: { doc: LegalDoc; trail: Crumb[] }) {
+export function LegalPage({ doc, trail, banner }: { doc: LegalDoc; trail: Crumb[]; banner?: string }) {
   return (
     <>
-      <PageHeader trail={trail} title={doc.title} lede={doc.lede} />
+      <PageHeader trail={trail} title={doc.title} lede={doc.lede} banner={banner} />
 
       <Section>
         <div className="flex flex-col gap-10">

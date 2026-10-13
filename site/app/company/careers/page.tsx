@@ -18,6 +18,7 @@ export default function Page() {
         trail={[{ label: "Company", href: "/company/" }, { label: "Careers" }]}
         title="Join a squad, not a bench."
         lede="We hire people to stay on one platform for years rather than to be moved between accounts each quarter. That shapes who this suits and who it does not."
+        banner="/img/company/careers"
       />
 
       <Section>

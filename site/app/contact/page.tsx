@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Section } from "@/components/primitives/Section";
+import { Plate } from "@/components/primitives/Plate";
 import { Logo } from "@/components/primitives/Logo";
 import { site } from "@/content/site";
 import { Clock, MessageSquareReply, FileSearch, Users } from "lucide-react";
@@ -58,6 +59,12 @@ export default function Contact() {
             </div>
           </div>
         </div>
+
+        {/* Same artwork band every other page carries under its header. This
+            page has no PageHeader — the mesh block is the header — so the
+            plate is placed by hand, on the same geometry. */}
+        <Plate src="/img/contact/header" ratio="1000/300" radius="section" sizes="100vw" priority
+               className="mt-[18px]" />
       </div>
 
       <Section>

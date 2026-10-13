@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <LegalPage doc={privacy} trail={[{ label: privacy.title }]} />;
+  return <LegalPage doc={privacy} trail={[{ label: privacy.title }]} banner="/img/legal/privacy" />;
 }
