@@ -1,0 +1,11 @@
+# Vercel builds from source, so uploading build output only makes the CLI
+# push hundreds of megabytes it then throws away.
+.next/
+out/
+node_modules/
+
+# Not part of the deployed site.
+brand/
+docs/
+*.tsbuildinfo
+infinite-site-godaddy.zip

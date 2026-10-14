@@ -1,27 +1,36 @@
-# dependencies
+# ── dependencies ────────────────────────────────────────────────────────
 node_modules/
 .pnpm-store/
 
-# next.js
+# ── Next.js build output ────────────────────────────────────────────────
 .next/
 out/
 next-env.d.ts
 
-# build + tooling output
+# ── tooling output ──────────────────────────────────────────────────────
 *.tsbuildinfo
 .eslintcache
 
-# local env
+# ── environment ─────────────────────────────────────────────────────────
+# Never commit these. docs/deployment.md lists every variable the site
+# reads, and .env.example is the committed template.
 .env
 .env.local
 .env.*.local
 
-# os / editor
+# ── hosting ─────────────────────────────────────────────────────────────
+# The Vercel CLI writes the project link and a copy of the production
+# environment (including NOTION_TOKEN) in here.
+.vercel/
+
+# ── os / editor ─────────────────────────────────────────────────────────
 .DS_Store
 *.swp
+*.pem
 
-# agent + session artefacts
+# ── local agent + session artefacts ─────────────────────────────────────
+.claude/settings.local.json
 .playwright-mcp/
 
-# packaged static export for manual upload
+# ── packaged static export for manual upload ────────────────────────────
 infinite-site-godaddy.zip

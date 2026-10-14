@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Infinite — design tokens
+   Source of truth: brand/build-brand-book.py:70-71 and :116-143.
+   Every hex below appears in that file. Nothing here is invented.
+
+   The brand is light-committed by written decision (brand book §14):
+   there is deliberately no prefers-color-scheme block and no dark: variant.
+   ============================================================ */
+
+@theme {
+  /* Drop Tailwind's stock scales. After this, `bg-slate-500`, `rounded-lg`
+     and `md:` at 768px do not exist — brand drift becomes a build error
+     rather than a code-review habit. */
+  --color-*: initial;
+  --radius-*: initial;
+  --breakpoint-*: initial;
+  --font-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* ── colour ───────────────────────────────────────────── */
+  --color-paper:  #ffffff;   /* default ground, ~80% of surfaces */
+  --color-mist:   #f4f7fd;   /* alternating ground, carries rhythm */
+  --color-ink:    #0a1024;   /* all body text; navy-black, never #000 */
+  --color-cobalt: #2b5cf6;   /* the one thing that acts, ~4% */
+
+  /* extended ramp — gradient stops only, never flat behind text */
+  --color-sky:    #4fc7f2;
+  --color-iris:   #7a4df5;
+  --color-orchid: #c07bf0;
+  --color-blush:  #f7afd2;
+
+  /* neutrals — no true grey, all pulled blue */
+  --color-ink-60: #555c77;
+  --color-ink-40: #8b92ac;
+  --color-ink-25: #b4bacb;
+  --color-rule:      #dfe5f1;
+  --color-rule-soft: #edf1f9;
+
+  /* semantic — kept separate from the accent */
+  --color-ok:   #1f9268;
+  --color-warn: #b07a00;
+  --color-crit: #ce3f35;
+
+  /* on-ink */
+  --color-on-ink:    #ffffff;
+  --color-on-ink-70: rgb(255 255 255 / 0.70);
+  --color-on-ink-55: rgb(255 255 255 / 0.55);
+
+  /* Two glasses, not one. See the note under "glass" below. */
+  --color-glass-fill:       rgb(255 255 255 / 0.05);  /* dark glass, ink band only */
+  --color-glass-edge:       rgb(255 255 255 / 0.10);
+  --color-glass-light:      rgb(255 255 255 / 0.72);  /* light glass, nav + hero cards */
+  --color-glass-light-edge: rgb(10 16 36 / 0.08);
+
+  /* ── type ─────────────────────────────────────────────── */
+  --font-sans: var(--font-figtree), "Helvetica Neue", Arial, sans-serif;
+  /* Named `figure`, not `mono`: the constraint lives in the vocabulary, so
+     `font-mono` is not a class anyone can reach for. Figures only. */
+  --font-figure: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-display: clamp(2.5rem, 6.4vw, 4.75rem);
+  --text-display--line-height: 1.03;
+  --text-display--letter-spacing: -0.042em;
+  --text-display--font-weight: 700;
+
+  --text-h2: clamp(1.75rem, 3.7vw, 2.75rem);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.032em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: 1.3125rem; /* 21px */
+  --text-h3--line-height: 1.24;
+  --text-h3--letter-spacing: -0.022em;
+  --text-h3--font-weight: 600;
+
+  --text-lead: clamp(1.125rem, 2.1vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+  --text-lead--font-weight: 300;
+
+  --text-body: 1.03125rem; /* 16.5px */
+  --text-body--line-height: 1.66;
+
+  --text-small: 0.90625rem; /* 14.5px */
+  --text-small--line-height: 1.5;
+
+  --text-eyebrow: 0.6875rem; /* 11px */
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.2em;
+  --text-eyebrow--font-weight: 700;
+
+  --text-figure: clamp(2.125rem, 4.4vw, 3.25rem);
+  --text-figure--line-height: 1;
+  --text-figure--letter-spacing: -0.03em;
+  --text-figure--font-weight: 500;
+
+  /* ── form ─────────────────────────────────────────────── */
+  --radius-section: 2.5rem; /* 40px — every major wrapper */
+  --radius-card:    1.5rem; /* 24px */
+  --radius-inner:   1rem;   /* 16px */
+  --radius-pill:    9999px;
+
+  --container-shell:   100rem; /* 1600px */
+  --container-measure: 64ch;   /* running text */
+  --container-head:    58ch;   /* section-head body */
+
+  /* The clamp()s that were inline in the prototype, given names. */
+  --spacing-gut:     clamp(1.25rem, 4vw, 3.5rem);
+  --spacing-sec:     clamp(4rem, 9vw, 8rem);
+  --spacing-sec-gap: clamp(2rem, 4.4vw, 3.5rem);
+  --spacing-band-y:  clamp(2.5rem, 6vw, 4.75rem);
+  --spacing-band-x:  clamp(1.625rem, 4vw, 4rem);
+  --spacing-panel-x: clamp(1.625rem, 4.5vw, 4.5rem);
+  --spacing-hero-t:  clamp(3rem, 7vw, 6.5rem);
+  --spacing-hero-b:  clamp(3.5rem, 8vw, 7rem);
+  --spacing-safe-b:  clamp(6rem, 13vw, 11.25rem); /* mesh contrast safety zone */
+  --spacing-nav-h:   6rem;                        /* sticky offset, services index */
+
+  /* ── breakpoints — the design's real reflow points ──────
+     Mobile-first. The prototype's 860 and 900 are merged: two
+     breakpoints 40px apart were an accident, not a decision. */
+  --breakpoint-xs: 26.25rem; /* 420 */
+  --breakpoint-sm: 40rem;    /* 640 */
+  --breakpoint-md: 56.25rem; /* 900 */
+  --breakpoint-lg: 67.5rem;  /* 1080 */
+  --breakpoint-xl: 80rem;    /* 1280 */
+
+  /* ── motion ───────────────────────────────────────────── */
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-rise:   rise 0.8s var(--ease-brand) forwards;
+  --animate-unfurl: unfurl 1s var(--ease-brand) both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+  /* the band completing itself, outward from the crossing */
+  @keyframes unfurl {
+    from { clip-path: inset(0 50% 0 50%); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+}
+
+/* ── values with no Tailwind namespace ────────────────────
+   Multi-layer gradient stacks and a data URI. These are not
+   colours, so they cannot live in --color-*. ─────────────── */
+:root {
+  --mesh-light:
+    radial-gradient(56% 60% at 14% 90%, #4fc7f2 0%, rgb(79 199 242 / 0) 60%),
+    radial-gradient(54% 58% at 50% 104%, #2b5cf6 0%, rgb(43 92 246 / 0) 62%),
+    radial-gradient(56% 60% at 84% 94%, #c07bf0 0%, rgb(192 123 240 / 0) 60%),
+    linear-gradient(180deg, #ffffff 0%, #f7fafe 34%, #eaf1fd 60%, #d6e3f9 82%, #b6c6f2 100%);
+
+  /* evenly lit — OG images and app icons only, never a page ground */
+  --mesh-frame:
+    radial-gradient(58% 68% at 12% 16%, #74d9f7 0%, rgb(116 217 247 / 0) 62%),
+    radial-gradient(54% 62% at 84% 20%, #cba9f6 0%, rgb(203 169 246 / 0) 60%),
+    radial-gradient(68% 78% at 74% 90%, #f4b2d6 0%, rgb(244 178 214 / 0) 58%),
+    radial-gradient(64% 74% at 26% 84%, #3f7bf7 0%, rgb(63 123 247 / 0) 62%),
+    linear-gradient(135deg, #4fa8f2 0%, #5b7cf6 42%, #8e6bf3 72%, #bc92ef 100%);
+
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+/* ── named utilities ──────────────────────────────────────
+   `bg-mesh` rather than bg-[image:var(--mesh-light)] so the
+   per-page budget of two is greppable and CI can assert it. */
+@utility bg-mesh {
+  background-image: var(--mesh-light);
+}
+
+/* ink surfaces only — stops the navy banding */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--grain);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+}
+
+/* ── glass surfaces over the mesh ─────────────────────────
+   A 0.08-alpha border disappears against the near-white top of
+   the mesh and only shows where the ramp darkens, so the card
+   reads as open at the top. These carry a full border AND a drop
+   shadow, so the edge is legible on any part of the gradient. */
+@utility glass-card {
+  background: var(--glass-light);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(10 16 36 / 0.10);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.60) inset,
+    0 2px 8px -3px rgb(10 16 36 / 0.10),
+    0 14px 36px -16px rgb(10 16 36 / 0.22);
+}
+
+/* the floating nav: same logic, lighter shadow — it sits above content */
+@utility glass-bar {
+  background: var(--glass-light);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgb(10 16 36 / 0.10);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.55) inset,
+    0 6px 24px -10px rgb(10 16 36 / 0.16);
+}
+
+/* form controls on glass — same border weight so edges agree */
+@utility glass-field {
+  background: rgb(255 255 255 / 0.80);
+  border: 1px solid rgb(10 16 36 / 0.10);
+}
+
+/* Heading measure scale — replaces seven ad-hoc max-width:{14..26}ch
+   caps in the prototype with three deliberate widths. */
+@utility measure-tight { max-width: 15ch; }
+@utility measure-base  { max-width: 18ch; }
+@utility measure-wide  { max-width: 26ch; }
+
+@utility skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  &:focus {
+    left: 0;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  /* A floor, not a per-component concern: a blanket rule cannot be
+     forgotten on the next component the way a motion-reduce: variant can. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
